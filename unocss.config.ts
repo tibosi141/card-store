@@ -12,8 +12,8 @@ export default defineConfig({
   shortcuts: [],
   theme: {
     breakpoints: {
-      sm: '600px',
-      md: '1440px',
+      sm: '550px',
+      md: '1200px',
     },
   },
   presets: [
