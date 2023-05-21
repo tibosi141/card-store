@@ -26,16 +26,11 @@ function onLoading() {
     loadingBar?.finish()
   }, 3000)
 }
-
-const AppLocale = useApplocale()
-
-function onSwitchLocale(locale: string) {
-  AppLocale.value = locale
-}
 </script>
 
 <template>
   <div>
+    <div class="banner h-600px" />
     <n-space>
       <n-button @click="onMessage">
         Message
@@ -56,15 +51,7 @@ function onSwitchLocale(locale: string) {
     <n-space>
       <n-input />
     </n-space>
-    <n-space>
-      <n-button @click="onSwitchLocale('zh-CN')">
-        中文
-      </n-button>
-      <n-button @click="onSwitchLocale('en-US')">
-        英文
-      </n-button>
-    </n-space>
   </div>
 </template>
 
-<style lang="less"></style>
+<style></style>

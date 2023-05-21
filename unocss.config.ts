@@ -10,6 +10,12 @@ import {
 
 export default defineConfig({
   shortcuts: [],
+  theme: {
+    breakpoints: {
+      sm: '600px',
+      md: '1440px',
+    },
+  },
   presets: [
     presetUno(),
     presetAttributify(),

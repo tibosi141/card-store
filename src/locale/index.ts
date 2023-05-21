@@ -5,7 +5,7 @@ export const defaultLocale = 'zh-CN'
 
 const i18n = createI18n({
   legacy: false,
-  missingWarn: false,
+  missingWarn: 'false',
   locale: defaultLocale,
   fallbackLocale: defaultLocale,
   messages: {
@@ -14,12 +14,12 @@ const i18n = createI18n({
 })
 
 export const loadLanguageAsync = async (locale: string = defaultLocale) => {
-  const current = i18n.global.locale.value
+  const currentLang = i18n.global.locale.value
 
   try {
-    if (current === locale) return nextTick()
+    if (currentLang === locale) return nextTick()
 
-    const message = await import(`./langs/${locale}.ts`)
+    const message = await import(`./lang/${locale}.ts`)
     message && i18n.global.setLocaleMessage(locale, message.default)
   }
   catch (err) {
