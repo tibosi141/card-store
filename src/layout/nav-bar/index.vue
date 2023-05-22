@@ -27,7 +27,7 @@ defineEmits(['click'])
     >
       <template v-if="item.type === 'link'">
         <router-link
-          class="px-4"
+          md="px-4"
           :to="item.path"
           @click="$emit('click')"
         >
