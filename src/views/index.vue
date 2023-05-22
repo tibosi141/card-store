@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const cardList = ref(['cn', 'jp', 'kr'])
+</script>
 
 <template>
   <div>
@@ -16,7 +18,7 @@
         {{ $t('home-banner-p') }}
       </p>
     </Banner>
-    <CardList />
+    <CardList :data="cardList" />
   </div>
 </template>
 

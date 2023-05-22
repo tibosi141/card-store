@@ -21,6 +21,9 @@ dependencies:
     version: 4.1.6(vue@3.2.47)
 
 devDependencies:
+  '@iconify-json/flagpack':
+    specifier: ^1.1.6
+    version: 1.1.6
   '@mistjs/eslint-config-vue':
     specifier: ^0.0.5
     version: 0.0.5(eslint@8.40.0)(typescript@5.0.2)
@@ -423,6 +426,12 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/flagpack@1.1.6:
+    resolution: {integrity: sha512-9HJHthI84MQmBGinBRm2r47PRgxG4gWSgAAG6Jzi/kyL4cCLgqmtA2odnCXoHvWveWshzrC3IyAIL10EXuhitw==}
+    dependencies:
+      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify/types@2.0.0:

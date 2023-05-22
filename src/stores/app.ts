@@ -52,10 +52,12 @@ export const useAppStore = defineStore('app', () => {
       {
         key: 'zh-CN',
         label: '简体中文',
+        icon: () => h('span', { class: 'text-4 i-flagpack-cn' }),
       },
       {
         key: 'en-US',
         label: 'English',
+        icon: () => h('span', { class: 'text-4 i-flagpack-us' }),
       },
     ]
   })

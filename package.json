@@ -22,6 +22,7 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@iconify-json/flagpack": "^1.1.6",
     "@mistjs/eslint-config-vue": "^0.0.5",
     "@types/lodash-es": "^4.17.7",
     "@types/node": "^20.1.5",

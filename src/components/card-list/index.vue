@@ -1,118 +1,55 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  data: string[]
+}>()
+</script>
 
 <template>
-  <section
-    md="mb-12 px-10%"
-    sm="mt-6 px-4%"
-    class="mb-4 px-6"
-  >
-    <h4 class="py-8 flex justify-between text-xl">
-      <span class="text-6 font-bold">{{ $t('home-card-title-span') }}</span>
+  <section mt="8px sm:12px md:14px" px="20px sm:4% md:10%">
+    <h4
+      py="14px sm:20px md:26px"
+      flex="~ justify-between"
+    >
+      <span text="18px sm:20px md-22px" font="bold">
+        {{ $t('home-card-title-span') }}
+      </span>
       <a
-        md="text-4"
-        class="text-xl"
+        md="text-16px"
+        class="text-14px"
         href="javascript:;"
       >
         {{ $t('home-card-title-a') }}
       </a>
     </h4>
     <div sm="gap-4%" class="flex flex-wrap">
-      <section
-        md="w-22% mb-0"
-        sm="w-48% mb-4%"
-        class="box-border mb-4% p-6 bg-#262626 shadow-xl duration-250 hover:translate-y--1 hover:shadow-#1e293b"
-      >
-        <h5 md="text-6" class="text-6">
-          {{ $t('home-card-item-cn-title') }}
-        </h5>
-        <figure
-          md="w-13 mx-0"
-          sm="w-18 mx-auto my-6"
-          class="w-14 my-4 overflow-hidden "
+      <template v-for="item in data" :key="item">
+        <section
+          w="100% sm:48% md:22%"
+          mb="20px sm:4%"
+          p="16px sm:20px md:24px"
+          class="box-border bg-#262626 duration-250"
+          hover="translate-y--2px shadow-xl shadow-#1e293b"
         >
-          <img class="w-full duration-250 hover:scale-120" src="@/assets/images/cards/cn.png">
-        </figure>
-        <div>
-          <p
-            md="text-left"
-            sm="my-4 text-center"
-            class="my-2 text-xl"
+          <h5 text="16px sm:18px md:20px">
+            {{ $t(`home-card-item-${item}-title`) }}
+          </h5>
+          <figure
+            w="sm:16"
+            mx="sm:auto md:0"
+            my="14px sm:20px"
           >
-            {{ $t('home-card-item-cn-desc') }}
-          </p>
-          <p
-            md="px-0"
-            sm="my-4 px-1%"
-            class="text-4 text-gray"
-          >
-            {{ $t('home-card-item-cn-detail') }}
-          </p>
-        </div>
-      </section>
-      <section
-        md="w-22% mb-0 shadow-xl"
-        sm="w-48% mb-4%"
-        class="box-border mb-4% p-6 bg-#262626 shadow-md duration-250 hover:translate-y--1 hover:shadow-#0f172a"
-      >
-        <h5 md="text-6" class="text-6">
-          {{ $t('home-card-item-jp-title') }}
-        </h5>
-        <figure
-          md="w-13 mx-0"
-          sm="w-18 mx-auto  my-6"
-          class="w-14 my-4"
-        >
-          <img class="w-full" src="@/assets/images/cards/jp.png">
-        </figure>
-        <div>
-          <p
-            md="text-left"
-            sm="my-4 text-center"
-            class="my-2 text-xl"
-          >
-            {{ $t('home-card-item-jp-desc') }}
-          </p>
-          <p
-            md="px-0"
-            sm="my-4 px-1%"
-            class="text-4 text-gray"
-          >
-            {{ $t('home-card-item-jp-detail') }}
-          </p>
-        </div>
-      </section>
-      <section
-        md="w-22% mb-0"
-        sm="w-48% mb-4%"
-        class="box-border mb-4% p-6 bg-#262626 shadow-xl duration-250 hover:translate-y--1 hover:shadow-#0f172a"
-      >
-        <h5 md="text-6" class="text-6">
-          {{ $t('home-card-item-kr-title') }}
-        </h5>
-        <figure
-          md="w-13 mx-0"
-          sm="w-18 mx-auto  my-6"
-          class="w-14 my-4"
-        >
-          <img class="w-full" src="@/assets/images/cards/kr.png">
-        </figure>
-        <div>
-          <p
-            md="text-left"
-            sm="my-4 text-center"
-            class="my-2 text-xl"
-          >
-            {{ $t('home-card-item-kr-desc') }}
-          </p>
-          <p
-            md="px-0"
-            sm="my-4 px-1%"
-            class="text-4 text-gray"
-          >
-            {{ $t('home-card-item-kr-detail') }}
-          </p>
-        </div>
-      </section>
+            <span text="12 sm:16 md:10" :class="[`i-flagpack-${item}`]" />
+          </figure>
+          <div>
+            <p mt="6px sm:10px md:6px" text="14px sm:16px sm:center md:left">
+              {{ $t(`home-card-item-${item}-desc`) }}
+            </p>
+            <p mt="6px sm:8px md:4px" text="12px gray sm:14px">
+              {{ $t(`home-card-item-${item}-detail`) }}
+            </p>
+          </div>
+        </section>
+      </template>
     </div>
   </section>
 </template>

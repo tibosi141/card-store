@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks: {
             naiveUI: ['naive-ui'],
-            antdIcon: ['@vicons/antd'],
+            icon: ['@vicons/antd', '@iconify-json/flagpack'],
             lodash: ['@vueuse/core'],
             vue: ['vue', 'vue-router', 'vue-i18n', 'pinia'],
           },

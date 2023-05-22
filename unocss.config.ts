@@ -12,8 +12,8 @@ export default defineConfig({
   shortcuts: [],
   theme: {
     breakpoints: {
-      sm: '550px',
-      md: '1200px',
+      sm: '720px',
+      md: '1440px',
     },
   },
   presets: [
@@ -21,7 +21,10 @@ export default defineConfig({
     presetAttributify(),
     presetTypography(),
     presetIcons({
-      scale: 1.2,
+      extraProperties: {
+        'display': 'inline-block',
+        'vertical-align': 'middle',
+      },
       warn: true,
     }),
   ],

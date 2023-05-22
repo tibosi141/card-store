@@ -1,3 +1,16 @@
+/* Firefox 隐藏滚动条 */
+html,
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* Chrome 隐藏滚动条 */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
 html {
     background-color: #2A2C2C;
 }
