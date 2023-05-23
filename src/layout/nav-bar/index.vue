@@ -18,7 +18,7 @@ defineEmits(['click'])
     <li
       v-for="item in navigations"
       :key="item.label"
-      md="text-4 lh-10 transform-none"
+      md="text-4 lh-8 transform-none"
       class="text-xl lh-20 cursor-pointer transition-transform duration-250 hover:text-gray-300"
       :class="[
         item.path === $route.path ? 'text-gray-300' : 'text-gray',
@@ -28,6 +28,7 @@ defineEmits(['click'])
       <template v-if="item.type === 'link'">
         <router-link
           md="px-4"
+          block="~"
           :to="item.path"
           @click="$emit('click')"
         >

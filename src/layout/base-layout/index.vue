@@ -14,7 +14,7 @@ const { logo, title, open, navigations, localeOptions } = storeToRefs(appStore)
     <n-layout-header
       md="px-10%"
       sm="px-4%"
-      class="z-10 fixed w-full px-6 py-4 flex items-center justify-between font-bold !bg-black"
+      class="z-10 fixed w-full px-20px py-4 flex items-center justify-between font-bold !bg-black"
     >
       <div class="flex gap-4 items-center text-gray-300 cursor-pointer">
         <Logo :src="logo" />

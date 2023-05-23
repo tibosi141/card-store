@@ -40,6 +40,7 @@ export default defineConfig(({ mode }) => {
     server: {
       open: true,
       host: '0.0.0.0',
+      port: 3000,
       proxy: {
         [env.VITE_APP_BASE_API]: {
           target: env.VITE_APP_BASE_URL,

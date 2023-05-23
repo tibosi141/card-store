@@ -12,7 +12,7 @@ export const useAppStore = defineStore('app', () => {
   const { t } = useI18n()
 
   const logo = ref(logoSvg)
-  const title = computed(() => t('global.header.title'))
+  const title = computed(() => t('global.header.title') && '')
 
   const open = ref(false)
   function closeMenu() {

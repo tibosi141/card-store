@@ -1,6 +1,5 @@
 <script setup lang="ts">
 defineProps<{ src?: string }>()
-defineEmits(['click'])
 </script>
 
 <template>
@@ -9,8 +8,9 @@ defineEmits(['click'])
     class="w-8 h-8"
     alt="logo"
     :src="src"
+    :title="$t('global.header.title')"
     preview-disabled
-    @click="$emit('click')"
+    @click="$router.push('/')"
   />
 </template>
 
