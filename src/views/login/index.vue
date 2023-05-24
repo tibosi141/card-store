@@ -5,13 +5,16 @@ import {
   MessageOutlined,
   UserOutlined,
 } from '@vicons/antd'
+
+import { useNaiveUIProps } from './composables/naive-ui-props'
 import { useLogin } from './composables/login'
 import { useRegister } from './composables/register'
 import { BlankLayout } from '~/layout'
 
+const { isMobile, isPad, isDesktop } = useQueryBreakpoints()
+const { tabName, tabType, formSize } = useNaiveUIProps()
 const { lForm, lLoading, lModel, lRules, login } = useLogin()
 const {
-  tabName,
   rForm,
   password,
   rLoading,
@@ -20,18 +23,31 @@ const {
   registerState,
   rModel,
   rRules,
-  onSwitchTab,
   handlePasswordInput,
   sendCode,
   register,
 } = useRegister()
 
-watch(registerState, (newVal) => {
-  console.log(newVal)
-  if (!newVal) return
+watchEffect(() => {
+  if (isDesktop.value) {
+    if (formSize.value !== 'large') formSize.value = 'large'
+  }
+  else if (isPad.value) {
+    if (tabType.value !== 'bar') tabType.value = 'bar'
+    if (formSize.value !== 'medium') formSize.value = 'medium'
+  }
+  else if (isMobile.value) {
+    if (tabType.value !== 'line') tabType.value = 'line'
+    if (formSize.value !== 'medium') formSize.value = 'medium'
+  }
 
-  lModel.username = 'admin'
-  lModel.password = '123456'
+  if (registerState.value) {
+    const { username, password } = rModel
+
+    tabName.value = 'login'
+    lModel.username = username
+    lModel.password = password
+  }
 })
 </script>
 
@@ -39,33 +55,34 @@ watch(registerState, (newVal) => {
   <BlankLayout>
     <div
       md="hidden"
-      mb="30px sm:20px"
-      pb="40px sm:0"
-      border="b-1 b-white/9 sm:0"
-      flex="~ items-center justify-around sm:justify-center"
+      m="b-60px sm:b-20px"
+      flex="~ items-center justify-center sm:justify-center"
     >
       <img
         class="w-12 h-12"
         src="@/assets/vue.svg"
         alt=""
       >
-      <p m="sm:l-8" text="white 8">
-        {{ $t('global.header.title') }}
-      </p>
     </div>
     <n-tabs
       size="large"
+      :type="tabType"
       :value="tabName"
       justify-content="space-evenly"
     >
       <n-tab-pane name="login">
         <template #tab>
-          <div text="16px md:18px" @click="onSwitchTab('login')">
-            {{ $t('login.login.tab') }}
+          <div
+            m="md:b-10px"
+            text="16px md:18px"
+            @click="tabName = 'login'"
+          >
+            {{ $t('login.tabs.login') }}
           </div>
         </template>
         <n-form
           ref="lForm"
+          :size="formSize"
           :model="lModel"
           :rules="lRules"
           label-align="left"
@@ -112,17 +129,22 @@ watch(registerState, (newVal) => {
           :loading="lLoading"
           @click="login"
         >
-          {{ $t('login.login.tab') }}
+          {{ $t('login.tabs.login') }}
         </n-button>
       </n-tab-pane>
       <n-tab-pane name="register">
         <template #tab>
-          <div text="16px md:18px" @click="onSwitchTab('register')">
-            {{ $t('login.register.tab') }}
+          <div
+            m="md:b-10px"
+            text="16px md:18px"
+            @click="tabName = 'register'"
+          >
+            {{ $t('login.tabs.register') }}
           </div>
         </template>
         <n-form
           ref="rForm"
+          :size="formSize"
           :model="rModel"
           :rules="rRules"
           label-align="left"
@@ -156,7 +178,7 @@ watch(registerState, (newVal) => {
               v-model:value="rModel.confirmPassword"
               type="password"
               show-password-on="click"
-              :placeholder="$t('register.password.confirm.placeholder')"
+              :placeholder="$t('register.confirm.password.placeholder')"
             >
               <template #prefix>
                 <n-icon :component="LockOutlined" />
@@ -206,7 +228,7 @@ watch(registerState, (newVal) => {
           :loading="rLoading"
           @click="register"
         >
-          {{ $t('login.register.tab') }}
+          {{ $t('login.tabs.register') }}
         </n-button>
       </n-tab-pane>
     </n-tabs>

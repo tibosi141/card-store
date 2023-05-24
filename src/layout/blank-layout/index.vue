@@ -4,14 +4,15 @@ import SelectLang from '../select-lang/index.vue'
 
 const locale = useAppLocale()
 const appStore = useAppStore()
-const { logo, localeOptions } = storeToRefs(appStore)
+const { headerConfig, localeOptions } = storeToRefs(appStore)
+
+const logo = computed(() => headerConfig.value.logo)
 </script>
 
 <template>
-  <n-el class="login-page-container h-screen">
+  <n-el class="login-page-container">
     <div
-      h="48px md:64px"
-      px="20px md:10%"
+      p="x-20px y-4 md:x-10%"
       flex="~ items-center justify-end md:justify-between"
     >
       <Logo
@@ -23,8 +24,8 @@ const { logo, localeOptions } = storeToRefs(appStore)
     </div>
     <div
       w="300px sm:400px"
-      m="x-auto y-50px sm:y-180px"
-      p="sm:x-50px sm:y-30px"
+      m="x-auto y-40px sm:y-150px"
+      p="sm:x-50px sm:t-20px sm:y-30px"
       bg="sm:white/10"
       border="sm:rd-8px"
     >
@@ -35,6 +36,7 @@ const { logo, localeOptions } = storeToRefs(appStore)
 
 <style scoped>
 .login-page-container {
+  height: 100vh;
   background-image: url('~/assets/images/login-bg.svg');
   background-repeat: no-repeat;
   background-position: center 110px;

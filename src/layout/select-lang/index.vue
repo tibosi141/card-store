@@ -13,7 +13,7 @@ defineEmits(['update:value'])
     :options="options"
     @select="$emit('update:value', $event)"
   >
-    <div text="~ 6" class="text-gray-300 cursor-pointer">
+    <div text="6 gray-300" class="cursor-pointer">
       <LangIcon />
     </div>
   </NDropdown>

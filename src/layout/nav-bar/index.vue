@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import Dropdown from './drop-down.vue'
-import type { Navigation } from '~/stores/app'
+import type { NavigationInfo } from '~/stores/app'
 
 defineProps<{
   open?: boolean
-  navigations?: Navigation[]
+  navigations?: NavigationInfo[]
 }>()
 defineEmits(['click'])
 </script>
@@ -37,25 +37,35 @@ defineEmits(['click'])
       </template>
       <template v-else>
         <Dropdown :text="item.label">
-          <div>
-            <img
-              md="w-18 h-18"
-              class="w-26 h-26 mx-auto"
-              src="@/assets/images/ercode.jpg"
-            >
-          </div>
           <div
-            md="mt-4 gap-4 text-left"
-            class="flex flex-col justify-around font-300 text-right"
+            w="full"
+            h="120px md:auto"
+            flex="~ col wrap items-center justify-evenly md:row md:justify-between"
+            text="left"
+            font="300"
           >
-            <p class="lh-4 whitespace-nowrap">
+            <p
+              w="20% md:auto"
+              m="md:b-6"
+              class="lh-5 whitespace-nowrap"
+            >
               <span>{{ $t('global.header.qq') }}</span>
               <span>: 8208208820</span>
             </p>
-            <p class="lh-4 whitespace-nowrap">
-              <span>{{ $t('global.header.wechat') }}</span>
-              <span>: 18639396666</span>
+            <p w="20% md:auto" class="lh-5 whitespace-nowrap">
+              {{ $t('global.header.wechat') }}→
             </p>
+            <div
+              w="80% md:auto"
+              h="full md:auto"
+              flex="~ items-center justify-end"
+            >
+              <img
+                w="26 md:18"
+                h="26 md:18"
+                src="@/assets/images/ercode.jpg"
+              >
+            </div>
           </div>
         </Dropdown>
       </template>

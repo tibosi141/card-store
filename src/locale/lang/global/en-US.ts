@@ -1,15 +1,18 @@
 export default {
+  // Header
   'global.header.title': 'Site Title',
+  'global.header.navigation.home': 'Home',
+  'global.header.navigation.guide': 'Guide',
+  'global.header.navigation.about': 'About Us',
+  'global.header.navigation.contact': 'Contact Us',
   'global.header.qq': 'QQ',
   'global.header.wechat': 'WeChat',
-  // 导航栏
-  'global.navigation.home': 'Home',
-  'global.navigation.guide': 'Guide',
-  'global.navigation.about': 'About Us',
-  'global.navigation.contact': 'Contact Us',
-  // 请求多语言配置
+  // Request
   'global.request.error.401': 'Login Expired',
   'global.request.error.403': 'Resource Request Error',
   'global.request.error.500': 'Server Error',
   'global.request.error.other': 'System Error',
+  // Dialog
+  'global.dialog.btn.cancle': 'cancle',
+  'global.dialog.btn.confirm': 'confirm',
 }

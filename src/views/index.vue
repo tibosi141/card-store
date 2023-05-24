@@ -4,21 +4,31 @@ const cardList = ref(['cn', 'jp', 'kr'])
 
 <template>
   <div>
-    <Banner>
-      <h3 md="text-8" class="text-6">
+    <Banner class="banner">
+      <h3
+        w="92% md:64%"
+        m="md:t-12%"
+        text="6 md:8"
+      >
         {{ $t('home-banner-h3') }}
       </h3>
-      <h2 md="text-18" class="text-10 font-bold">
+      <h2
+        w="92% md:64%"
+        text="10 md:18"
+        font="bold"
+      >
         {{ $t('home-banner-h2') }}
       </h2>
       <p
-        md="w-68% mb-0 p-0 text-6 border-0"
-        class="mb-46 p-4 text-5 border-white border-1"
+        w="92% md:64%"
+        p="4 md:0"
+        text="5 md:6"
+        border="~ white md:0"
       >
         {{ $t('home-banner-p') }}
       </p>
     </Banner>
-    <CardList :data="cardList" />
+    <CardList :card-list="cardList" />
   </div>
 </template>
 

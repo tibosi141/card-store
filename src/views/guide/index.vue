@@ -2,13 +2,20 @@
 
 <template>
   <div>
-    <Banner>
-      <h2 md="text-18" class="text-10 font-bold">
+    <Banner class="banner">
+      <h2
+        w="92% md:64%"
+        m="md:t-12%"
+        text="10 md:18"
+        font="bold"
+      >
         {{ $t('guide-banner-h2') }}
       </h2>
       <p
-        md="w-68% mb-0 p-0 text-6 border-0"
-        class="mb-46 p-4 text-5 border-white border-1"
+        w="92% md:64%"
+        p="4 md:0"
+        text="5 md:6"
+        border="~ white md:0"
       >
         {{ $t('guide-banner-p') }}
       </p>

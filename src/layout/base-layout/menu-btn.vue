@@ -14,7 +14,7 @@ defineEmits(['click'])
 </script>
 
 <template>
-  <div class="flex items-center">
+  <div flex="~ items-center">
     <n-icon
       class="text-gray-300 cursor-pointer"
       :size="size"

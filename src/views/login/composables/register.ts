@@ -1,17 +1,11 @@
 import type { FormInst, FormItemInst, FormItemRule, FormRules } from 'naive-ui'
 import type { UserRegisterParams } from '~/apis/user'
 
-export type TabName = 'login' | 'register'
-
 export const useRegister = () => {
   const { t } = useI18n()
   const message = useMessage()
   const dialog = useDialog()
 
-  const tabName = ref<TabName>('login')
-  const onSwitchTab = (val: TabName) => {
-    tabName.value = val
-  }
   const rForm = ref<FormInst>()
   const password = ref<FormItemInst>()
   const rLoading = ref(false)
@@ -152,16 +146,18 @@ export const useRegister = () => {
         }, 2000)
       })
       rLoading.value = false
-      registerState.value = true
       dialog.success({
-        title: () => t('register.success'),
-        content: () => t('register.success.tips'),
-        positiveText: '确定',
-        onClose: () => {
-          onSwitchTab('login')
+        title: t('register.success.title'),
+        content: t('register.success.content'),
+        positiveText: t('global.dialog.btn.confirm'),
+        onMaskClick() {
+          registerState.value = true
         },
-        onPositiveClick: () => {
-          onSwitchTab('login')
+        onClose() {
+          registerState.value = true
+        },
+        onPositiveClick() {
+          registerState.value = true
         },
       })
     }
@@ -171,7 +167,6 @@ export const useRegister = () => {
   }
 
   return {
-    tabName,
     rForm,
     password,
     rLoading,
@@ -180,7 +175,6 @@ export const useRegister = () => {
     registerState,
     rModel,
     rRules,
-    onSwitchTab,
     handlePasswordInput,
     sendCode,
     register,
