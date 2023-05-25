@@ -3,10 +3,15 @@ import { Logo, Title } from '../common'
 import NavBar from '../nav-bar/index.vue'
 import SelectLang from '../select-lang/index.vue'
 import MenuBtn from './menu-btn.vue'
+import LayoutBtn from './layout-btn.vue'
+import { useScrollHandle } from './handle-scroll'
 
 const locale = useAppLocale()
 const appStore = useAppStore()
+const userStore = useUserStore()
 const { headerConfig, navigations, localeOptions } = storeToRefs(appStore)
+const { isScroll } = useScrollHandle()
+const { isDesktop } = useQueryBreakpoints()
 
 const logo = computed(() => headerConfig.value.logo)
 const title = computed(() => headerConfig.value.title)
@@ -18,7 +23,9 @@ const openSidebar = computed(() => headerConfig.value.openSidebar)
     <n-layout-header
       p="x-20px y-4 sm:x-4% md:x-10%"
       flex="~ items-center justify-between"
-      class="z-10 fixed w-full font-bold !bg-black"
+      bg="!black md:!transparent"
+      class="z-10 fixed w-full font-bold"
+      :class="{ 'header': isDesktop, 'on-scroll': isDesktop && isScroll }"
     >
       <div flex="~ gap-4 items-center" class="text-gray-300 cursor-pointer">
         <Logo :src="logo" />
@@ -44,6 +51,7 @@ const openSidebar = computed(() => headerConfig.value.openSidebar)
           :open="openSidebar"
           @click="appStore.toggleMenu(!openSidebar)"
         />
+        <LayoutBtn @click="userStore.logout" />
       </div>
     </n-layout-header>
     <n-layout-content>
@@ -52,4 +60,26 @@ const openSidebar = computed(() => headerConfig.value.openSidebar)
   </n-layout>
 </template>
 
-<style scoped></style>
+<style scoped>
+@media (min-width: 1440px) {
+  .header::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 80%;
+    height: 100%;
+    opacity: 0;
+    background-color: black;
+    transform: translateX(-50%);
+    transition: none;
+  }
+
+  .header.on-scroll::after {
+    opacity: 1;
+    width: 100%;
+    transition: width, opacity, 0.35s linear;
+  }
+}
+</style>

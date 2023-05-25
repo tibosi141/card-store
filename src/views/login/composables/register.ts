@@ -1,5 +1,6 @@
 import type { FormInst, FormItemInst, FormItemRule, FormRules } from 'naive-ui'
 import type { UserRegisterParams } from '~/apis/user'
+import { userSendCodeApi } from '~/apis/user'
 
 export const useRegister = () => {
   const { t } = useI18n()
@@ -121,11 +122,7 @@ export const useRegister = () => {
     try {
       await rForm.value?.validate(undefined, rule => rule.key === 'email')
       countState.value = true
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve('发送成功')
-        }, 1000)
-      })
+      await userSendCodeApi({ email: rModel.email })
       msgIns.destroy()
       startCount()
       message.success(t('register.verification-code.success'))
@@ -150,13 +147,13 @@ export const useRegister = () => {
         title: t('register.success.title'),
         content: t('register.success.content'),
         positiveText: t('global.dialog.btn.confirm'),
-        onMaskClick() {
+        onMaskClick: () => {
           registerState.value = true
         },
-        onClose() {
+        onClose: () => {
           registerState.value = true
         },
-        onPositiveClick() {
+        onPositiveClick: () => {
           registerState.value = true
         },
       })

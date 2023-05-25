@@ -1,5 +1,6 @@
 import type {
   AxiosError,
+  AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
@@ -83,3 +84,55 @@ instance.interceptors.request.use(requestHandler)
 instance.interceptors.response.use(responseHandler, errorHandler)
 
 export default instance
+
+export const useGet = <P = any, R = any>(
+  url: string,
+  params?: P,
+  config?: AxiosRequestConfig,
+): Promise<ResponseBody<R>> => {
+  return instance.request({
+    url,
+    method: 'GET',
+    params,
+    ...config,
+  })
+}
+
+export const usePost = <P = any, R = any>(
+  url: string,
+  data?: P,
+  config?: AxiosRequestConfig,
+): Promise<ResponseBody<R>> => {
+  return instance.request({
+    url,
+    method: 'POST',
+    data,
+    ...config,
+  })
+}
+
+export const usePut = <P = any, R = any>(
+  url: string,
+  data?: P,
+  config?: AxiosRequestConfig,
+): Promise<ResponseBody<R>> => {
+  return instance.request({
+    url,
+    method: 'PUT',
+    data,
+    ...config,
+  })
+}
+
+export const useDelete = <P = any, R = any>(
+  url: string,
+  data?: P,
+  config?: AxiosRequestConfig,
+): Promise<ResponseBody<R>> => {
+  return instance.request({
+    url,
+    method: 'Delete',
+    data,
+    ...config,
+  })
+}

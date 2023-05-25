@@ -10,6 +10,7 @@ export default {
   'login.password.length': '密码长度在 5 到 20 个字符',
   'login.remember-me': '记住密码',
   'login.forgot-password': '忘记密码',
+  'login.success.message': '登录成功',
   'register.confirm.password.placeholder': '确认密码',
   'register.confirm.password.required': '请再次输入密码！',
   'register.confirm.password.rule': '两次密码输入不一致',

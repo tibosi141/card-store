@@ -3,6 +3,8 @@ import type { UserLoginParams } from '~/apis/user'
 
 export const useLogin = () => {
   const { t } = useI18n()
+  const userStore = useUserStore()
+  const { message } = useGlobalConfig()
   const router = useRouter()
 
   const lForm = ref<FormInst>()
@@ -44,14 +46,14 @@ export const useLogin = () => {
 
     try {
       await lForm.value?.validate()
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve('通过')
-        }, 2000)
-      })
+      await userStore.login(lModel)
       lLoading.value = false
+      const msgIns = message?.success(t('login.success.message'))
       const redirect = router.currentRoute.value.params.redirect as string
       await router.replace(redirect || '/')
+      setTimeout(() => {
+        msgIns?.destroy()
+      }, 2000)
     }
     catch (err) {
       lLoading.value = false

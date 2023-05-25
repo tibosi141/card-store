@@ -12,6 +12,9 @@ export default {
   'global.request.error.403': '资源请求错误',
   'global.request.error.500': '服务器错误',
   'global.request.error.other': '系统错误',
+  // User
+  'global.user.logout': '退出登录',
+  'global.user.logout.success': '退出成功',
   // Dialog
   'global.dialog.btn.cancle': '取消',
   'global.dialog.btn.confirm': '确定',

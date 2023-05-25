@@ -12,6 +12,9 @@ export default {
   'global.request.error.403': 'Resource Request Error',
   'global.request.error.500': 'Server Error',
   'global.request.error.other': 'System Error',
+  // User
+  'global.user.logout': 'Logout ',
+  'global.user.logout.success': 'Logout successfully',
   // Dialog
   'global.dialog.btn.cancle': 'cancle',
   'global.dialog.btn.confirm': 'confirm',

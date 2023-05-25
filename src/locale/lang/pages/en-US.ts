@@ -10,6 +10,7 @@ export default {
   'login.remember-me': 'Remember me',
   'login.forgot-password': 'Forgot your password?',
   'login.password.length': 'Password length should be 5 to 20 characters',
+  'login.success.message': 'login successfully',
   'register.confirm.password.placeholder': 'Confirm password',
   'register.confirm.password.required': 'Please enter your password again!',
   'register.confirm.password.rule': 'The two password entries are inconsistent',
