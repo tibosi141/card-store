@@ -9,17 +9,6 @@ export const useAutoLocale = () => {
   const { locale } = useI18n()
   const { isSupported, language } = useNavigatorLanguage()
 
-  const setLanguage = async (lang: string) => {
-    try {
-      await loadLanguageAsync(lang).then(() => {})
-      appLocale.value = lang
-      locale.value = lang
-    }
-    catch (err) {
-      console.warn(`Failed to load language: ${lang}`)
-    }
-  }
-
   if (isSupported.value) {
     if (language.value && language.value !== defaultLocale)
       setLanguage(language.value).then(() => {})
@@ -32,6 +21,17 @@ export const useAutoLocale = () => {
   const naiveLocale = computed(
     () => i18n.global.getLocaleMessage(appLocale.value).naiveUI || {},
   )
+
+  async function setLanguage(lang: string) {
+    try {
+      await loadLanguageAsync(lang).then(() => {})
+      appLocale.value = lang
+      locale.value = lang
+    }
+    catch (err) {
+      console.warn(`Failed to load language: ${lang}`)
+    }
+  }
 
   watch(
     appLocale,

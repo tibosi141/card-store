@@ -3,20 +3,18 @@ import type { UserLoginParams } from '~/apis/user'
 
 export const useLogin = () => {
   const { t } = useI18n()
-  const userStore = useUserStore()
   const { message } = useGlobalConfig()
+  const userStore = useUserStore()
   const router = useRouter()
 
   const lForm = ref<FormInst>()
   const lLoading = ref(false)
-
   const lModel = reactive<UserLoginParams>({
     username: null,
     password: null,
     rememberMe: false,
   })
-
-  const lRules = ref<FormRules>({
+  const lRules = reactive<FormRules>({
     username: [
       {
         required: true,
@@ -41,7 +39,7 @@ export const useLogin = () => {
     ],
   })
 
-  const login = async () => {
+  async function login() {
     lLoading.value = true
 
     try {

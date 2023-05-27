@@ -9,8 +9,10 @@ interface GlobalConfigType {
 
 const globalConfig: GlobalConfigType = {}
 
-export const useGlobalConfig = () => globalConfig
+export function useGlobalConfig() {
+  return globalConfig
+}
 
-export const useGlobalConfigProvider = (config: GlobalConfigType) => {
+export function useGlobalConfigProvider(config: GlobalConfigType) {
   merge(globalConfig, config)
 }

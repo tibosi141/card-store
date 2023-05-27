@@ -12,7 +12,7 @@ const logo = computed(() => headerConfig.value.logo)
 <template>
   <n-el class="login-page-container">
     <div
-      p="x-20px y-4 md:x-10%"
+      p="4 md:x-10%"
       flex="~ items-center justify-end md:justify-between"
     >
       <Logo
@@ -25,7 +25,7 @@ const logo = computed(() => headerConfig.value.logo)
     <div
       w="300px sm:400px"
       m="x-auto y-40px sm:y-150px"
-      p="sm:x-50px sm:t-20px sm:y-30px"
+      p="sm:x-50px sm:t-20px sm:y-50px"
       bg="sm:white/10"
       border="sm:rd-8px"
     >

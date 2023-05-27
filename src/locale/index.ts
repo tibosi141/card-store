@@ -13,7 +13,7 @@ const i18n = createI18n({
   },
 })
 
-export const loadLanguageAsync = async (locale: string = defaultLocale) => {
+export async function loadLanguageAsync(locale: string = defaultLocale) {
   const currentLang = i18n.global.locale.value
 
   try {

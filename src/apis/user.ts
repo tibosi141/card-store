@@ -15,6 +15,7 @@ export interface UserLoginResult {
 }
 
 export type UserSendCodeParams = Pick<UserRegisterParams, 'email'>
+
 export interface UserRegisterParams {
   username: IncludeNull<string>
   password: IncludeNull<string>
@@ -25,15 +26,15 @@ export interface UserRegisterParams {
 
 export type UserRegisterResult = Pick<any, string>
 
-export const userLoginApi = (params: UserLoginParams) => {
+export function userLoginApi(params: UserLoginParams) {
   return usePost<UserLoginParams, UserLoginResult>(userLoginUrl, params)
 }
 
-export const userSendCodeApi = (params: UserSendCodeParams) => {
+export function userSendCodeApi(params: UserSendCodeParams) {
   return usePost<UserSendCodeParams, any>(userSendCodeUrl, params)
 }
 
-export const userRegisterApi = (params: UserRegisterParams) => {
+export function userRegisterApi(params: UserRegisterParams) {
   return usePost<UserRegisterParams, UserRegisterResult>(
     userRegisterUrl,
     params,

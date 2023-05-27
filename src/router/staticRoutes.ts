@@ -10,7 +10,7 @@ const staticRoutes: RouteRecordRaw[] = [
       {
         path: '/',
         name: 'Home',
-        component: () => import('~/views/index.vue'),
+        component: () => import('~/views/home/index.vue'),
       },
       {
         path: '/about',
@@ -21,6 +21,11 @@ const staticRoutes: RouteRecordRaw[] = [
         path: '/guide',
         name: 'Guide',
         component: () => import('~/views/guide/index.vue'),
+      },
+      {
+        path: '/profile',
+        name: 'Profile',
+        component: () => import('~/views/profile/index.vue'),
       },
     ],
   },

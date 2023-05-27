@@ -22,10 +22,6 @@ export const useAppStore = defineStore('app', () => {
     openSidebar: false,
   })
 
-  const toggleMenu = (val: boolean) => {
-    headerConfig.openSidebar = val
-  }
-
   const navigations = computed<NavigationInfo[]>(() => {
     return [
       {
@@ -65,6 +61,10 @@ export const useAppStore = defineStore('app', () => {
       },
     ]
   })
+
+  function toggleMenu(val: boolean) {
+    headerConfig.openSidebar = val
+  }
 
   return {
     headerConfig,

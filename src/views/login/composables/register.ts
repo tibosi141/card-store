@@ -4,8 +4,7 @@ import { userSendCodeApi } from '~/apis/user'
 
 export const useRegister = () => {
   const { t } = useI18n()
-  const message = useMessage()
-  const dialog = useDialog()
+  const { message, dialog } = useGlobalConfig()
 
   const rForm = ref<FormInst>()
   const password = ref<FormItemInst>()
@@ -13,7 +12,6 @@ export const useRegister = () => {
   const counter = ref(120)
   const countState = ref(false)
   const registerState = ref(false)
-
   const rModel = reactive<UserRegisterParams>({
     username: null,
     password: null,
@@ -21,27 +19,7 @@ export const useRegister = () => {
     email: null,
     code: null,
   })
-
-  const validatePasswordStartWith = (
-    _: FormItemRule,
-    value: string,
-  ): boolean => {
-    return (
-      !!rModel.password
-      && rModel.password.startsWith(value)
-      && rModel.password.length >= value.length
-    )
-  }
-  const validatePasswordSame = (_: FormItemRule, value: string): boolean => {
-    return value === rModel.password
-  }
-
-  const handlePasswordInput = () => {
-    if (rModel.confirmPassword)
-      password.value?.validate({ trigger: 'password-input' })
-  }
-
-  const rRules = ref<FormRules>({
+  const rRules = reactive<FormRules>({
     username: [
       {
         required: true,
@@ -105,8 +83,26 @@ export const useRegister = () => {
     ],
   })
 
-  const startCount = () => {
+  function handlePasswordInput() {
+    if (rModel.confirmPassword)
+      password.value?.validate({ trigger: 'password-input' })
+  }
+
+  function validatePasswordStartWith(_: FormItemRule, value: string): boolean {
+    return (
+      !!rModel.password
+      && rModel.password.startsWith(value)
+      && rModel.password.length >= value.length
+    )
+  }
+
+  function validatePasswordSame(_: FormItemRule, value: string): boolean {
+    return value === rModel.password
+  }
+
+  function startCount() {
     counter.value = 120
+
     const timer = setInterval(() => {
       if (counter.value <= 0) {
         clearInterval(timer)
@@ -117,22 +113,23 @@ export const useRegister = () => {
     }, 1000)
   }
 
-  const sendCode = async () => {
-    const msgIns = message.success(t('register.verification-code.loading'))
+  async function sendCode() {
+    const msgIns = message?.success(t('register.verification-code.loading'))
+
     try {
       await rForm.value?.validate(undefined, rule => rule.key === 'email')
       countState.value = true
       await userSendCodeApi({ email: rModel.email })
-      msgIns.destroy()
+      msgIns?.destroy()
       startCount()
-      message.success(t('register.verification-code.success'))
+      message?.success(t('register.verification-code.success'))
     }
     catch (err) {
-      msgIns.destroy()
+      msgIns?.destroy()
     }
   }
 
-  const register = async () => {
+  async function register() {
     rLoading.value = true
 
     try {
@@ -143,7 +140,7 @@ export const useRegister = () => {
         }, 2000)
       })
       rLoading.value = false
-      dialog.success({
+      dialog?.success({
         title: t('register.success.title'),
         content: t('register.success.content'),
         positiveText: t('global.dialog.btn.confirm'),

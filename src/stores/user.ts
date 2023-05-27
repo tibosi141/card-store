@@ -8,17 +8,17 @@ export const useUserStore = defineStore('user', () => {
   const { t } = i18n.global
   const router = useRouter()
 
-  const setToken = (value: string | null) => {
+  function setToken(value: string | null) {
     token.value = value
   }
 
-  const login = async (params: UserLoginParams) => {
+  async function login(params: UserLoginParams) {
     const { data } = await userLoginApi(params)
 
     data?.token && setToken(data?.token)
   }
 
-  const logout = async () => {
+  async function logout() {
     setToken(null)
     message?.success(t('global.user.logout.success'))
     await router.replace({

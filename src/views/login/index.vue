@@ -5,13 +5,11 @@ import {
   MessageOutlined,
   UserOutlined,
 } from '@vicons/antd'
-
 import { useNaiveUIProps } from './composables/naive-ui-props'
 import { useLogin } from './composables/login'
 import { useRegister } from './composables/register'
 import { BlankLayout } from '~/layout'
 
-const { isMobile, isPad, isDesktop } = useQueryBreakpoints()
 const { tabName, tabType, formSize } = useNaiveUIProps()
 const { lForm, lLoading, lModel, lRules, login } = useLogin()
 const {
@@ -28,20 +26,8 @@ const {
   register,
 } = useRegister()
 
-watchEffect(() => {
-  if (isDesktop.value) {
-    if (formSize.value !== 'large') formSize.value = 'large'
-  }
-  else if (isPad.value) {
-    if (tabType.value !== 'bar') tabType.value = 'bar'
-    if (formSize.value !== 'medium') formSize.value = 'medium'
-  }
-  else if (isMobile.value) {
-    if (tabType.value !== 'line') tabType.value = 'line'
-    if (formSize.value !== 'medium') formSize.value = 'medium'
-  }
-
-  if (registerState.value) {
+watch(registerState, (newVal) => {
+  if (newVal) {
     const { username, password } = rModel
 
     tabName.value = 'login'
@@ -202,7 +188,7 @@ watchEffect(() => {
                 @click="sendCode"
               >
                 {{
-                  countState && counter !== 120
+                  countState
                     ? `${counter}${$t('register.verification-code.resend')}`
                     : $t('register.verification-code.get-verification-code')
                 }}

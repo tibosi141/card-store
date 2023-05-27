@@ -53,7 +53,7 @@ defineEmits(['click'])
               <span>: 8208208820</span>
             </p>
             <p w="20% md:auto" class="lh-5 whitespace-nowrap">
-              {{ $t('global.header.wechat') }}→
+              {{ $t('global.header.wechat') }} <span md="hidden">→</span>
             </p>
             <div
               w="80% md:auto"

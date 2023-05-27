@@ -10,7 +10,3 @@ html::-webkit-scrollbar,
 body::-webkit-scrollbar {
     display: none;
 }
-
-html {
-    background-color: #2A2C2C;
-}
