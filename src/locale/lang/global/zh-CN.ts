@@ -1,10 +1,11 @@
 export default {
   // Header
   'global.header.title': '网站标题',
-  'global.header.navigation.home': '主页',
+  'global.header.navigation.home': '首页',
   'global.header.navigation.guide': '指南',
   'global.header.navigation.about': '关于我们',
   'global.header.navigation.contact': '联系我们',
+  'global.header.navigation.profile': '个人中心',
   'global.header.qq': 'QQ',
   'global.header.wechat': '微信',
   // Request
@@ -15,6 +16,7 @@ export default {
   // User
   'global.user.logout': '退出登录',
   'global.user.logout.success': '退出成功',
+  'global.user.center': '个人中心',
   // Dialog
   'global.dialog.btn.cancle': '取消',
   'global.dialog.btn.confirm': '确定',

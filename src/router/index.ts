@@ -10,6 +10,11 @@ const router = createRouter({
       name: 'Login',
       component: () => import('~/views/login/index.vue'),
     },
+    {
+      path: '/error',
+      name: 'Error',
+      component: () => import('~/views/error/index.vue'),
+    },
   ],
 })
 

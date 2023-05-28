@@ -19,7 +19,7 @@ const deviceList: DeviceInfo[] = [
   {
     id: 'L3SA-4DPL-50FD',
     type: 'Mobile',
-    brand: 'iPhone',
+    brand: 'Apple',
     name: 'iPhone 13 Pro',
     system: 'IOS',
   },

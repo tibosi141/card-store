@@ -17,7 +17,7 @@ defineEmits(['click'])
   >
     <li
       v-for="item in navigations"
-      :key="item.label"
+      :key="item.path"
       md="text-4 lh-8 transform-none"
       class="text-xl lh-20 cursor-pointer transition-transform duration-250 hover:text-gray-300"
       :class="[
@@ -32,11 +32,11 @@ defineEmits(['click'])
           :to="item.path"
           @click="$emit('click')"
         >
-          {{ item.label }}
+          {{ $t(item.label) }}
         </router-link>
       </template>
       <template v-else>
-        <Dropdown :text="item.label">
+        <Dropdown :text="$t(item.label)">
           <div
             w="full"
             h="120px md:auto"
@@ -53,7 +53,8 @@ defineEmits(['click'])
               <span>: 8208208820</span>
             </p>
             <p w="20% md:auto" class="lh-5 whitespace-nowrap">
-              {{ $t('global.header.wechat') }} <span md="hidden">→</span>
+              {{ $t('global.header.wechat') }}
+              <span md="hidden">→</span>
             </p>
             <div
               w="80% md:auto"

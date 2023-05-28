@@ -1,15 +1,20 @@
-import type { UserLoginParams } from '~/apis/user'
-import { userLoginApi } from '~/apis/user'
+import type { UserInfo, UserLoginParams } from '~/apis/user'
+import { userGetInfoApi, userLoginApi } from '~/apis/user'
 import i18n from '~/locale'
+import router from '~/router'
 
 export const useUserStore = defineStore('user', () => {
-  const token = useAuthorization()
-  const { message } = useGlobalConfig()
   const { t } = i18n.global
-  const router = useRouter()
+  const { message } = useGlobalConfig()
+  const token = useAuthorization()
+  const userInfo = ref<UserInfo>()
 
-  function setToken(value: string | null) {
-    token.value = value
+  function setToken(val: string | null) {
+    token.value = val
+  }
+
+  function setUserInfo(info: UserInfo | undefined) {
+    userInfo.value = info
   }
 
   async function login(params: UserLoginParams) {
@@ -18,8 +23,15 @@ export const useUserStore = defineStore('user', () => {
     data?.token && setToken(data?.token)
   }
 
+  async function getUserInfo() {
+    const { data } = await userGetInfoApi()
+
+    data && setUserInfo(data)
+  }
+
   async function logout() {
     setToken(null)
+    setUserInfo(undefined)
     message?.success(t('global.user.logout.success'))
     await router.replace({
       path: '/login',
@@ -31,7 +43,11 @@ export const useUserStore = defineStore('user', () => {
 
   return {
     token,
+    userInfo,
+    setToken,
+    setUserInfo,
     login,
     logout,
+    getUserInfo,
   }
 })

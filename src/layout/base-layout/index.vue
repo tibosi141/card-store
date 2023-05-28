@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { Logo, Title } from '../common'
 import NavBar from '../nav-bar/index.vue'
-import SelectLang from '../select-lang/index.vue'
-import MenuBtn from './menu-btn.vue'
-import LayoutBtn from './layout-btn.vue'
+// import SelectLang from '../select-lang/index.vue'
+// import MenuBtn from './menu-btn.vue'
+import RightMenu from './right-menu.vue'
 import { useScrollHandle } from './composables/handle-scroll'
 
-const locale = useAppLocale()
+// const locale = useAppLocale()
 const appStore = useAppStore()
-const userStore = useUserStore()
-const { headerConfig, navigations, localeOptions } = storeToRefs(appStore)
+const { headerConfig, navigations } = storeToRefs(appStore)
 const { isScroll } = useScrollHandle()
 const { isDesktop } = useQueryBreakpoints()
 
@@ -29,7 +28,7 @@ const openSidebar = computed(() => headerConfig.value.openSidebar)
     >
       <div flex="~ gap-4 items-center" class="text-gray-300 cursor-pointer">
         <Logo :src="logo" />
-        <Title :title="title" />
+        <Title :title="$t(title)" />
       </div>
       <nav
         w="full"
@@ -44,14 +43,14 @@ const openSidebar = computed(() => headerConfig.value.openSidebar)
           @click="appStore.toggleMenu(false)"
         />
       </nav>
-      <div flex="~ gap-4 items-center">
-        <SelectLang v-model:value="locale" :options="localeOptions" />
+      <div flex="shrink-0">
+        <RightMenu />
+        <!-- <SelectLang v-model:value="locale" :options="localeOptions" />
         <MenuBtn
           md="hidden"
           :open="openSidebar"
           @click="appStore.toggleMenu(!openSidebar)"
-        />
-        <LayoutBtn @click="userStore.logout" />
+        /> -->
       </div>
     </n-layout-header>
     <n-layout-content class="min-h-screen" style="--n-color: #2a2c2c">

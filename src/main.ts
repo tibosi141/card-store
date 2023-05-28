@@ -8,6 +8,7 @@ import './assets/styles/index.css'
 import 'uno.css'
 import './utils/auto-rem'
 import './utils/unocss-icon'
+import './router/router-guard'
 
 const pinia = createPinia()
 

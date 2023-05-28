@@ -10,21 +10,33 @@ const staticRoutes: RouteRecordRaw[] = [
       {
         path: '/',
         name: 'Home',
+        meta: {
+          title: 'global.header.navigation.home',
+        },
         component: () => import('~/views/home/index.vue'),
-      },
-      {
-        path: '/about',
-        name: 'About',
-        component: () => import('~/views/about/index.vue'),
       },
       {
         path: '/guide',
         name: 'Guide',
+        meta: {
+          title: 'global.header.navigation.guide',
+        },
         component: () => import('~/views/guide/index.vue'),
+      },
+      {
+        path: '/about',
+        name: 'About',
+        meta: {
+          title: 'global.header.navigation.about',
+        },
+        component: () => import('~/views/about/index.vue'),
       },
       {
         path: '/profile',
         name: 'Profile',
+        meta: {
+          title: 'global.header.navigation.profile',
+        },
         component: () => import('~/views/profile/index.vue'),
       },
     ],

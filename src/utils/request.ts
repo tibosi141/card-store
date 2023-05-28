@@ -50,9 +50,15 @@ function errorHandler(error: AxiosError): Promise<any> {
         duration: 3000,
       })
 
-      router.replace('/login').then(() => {
-        token.value = null
-      })
+      token.value = null
+      router
+        .replace({
+          path: '/login',
+          query: {
+            redirect: router.currentRoute.value.path,
+          },
+        })
+        .then(() => {})
     }
     else if (status === 403) {
       notification?.error({

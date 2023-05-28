@@ -5,6 +5,7 @@ export default {
   'global.header.navigation.guide': 'Guide',
   'global.header.navigation.about': 'About Us',
   'global.header.navigation.contact': 'Contact Us',
+  'global.header.navigation.profile': 'User Center',
   'global.header.qq': 'QQ',
   'global.header.wechat': 'WeChat',
   // Request
@@ -15,6 +16,7 @@ export default {
   // User
   'global.user.logout': 'Logout ',
   'global.user.logout.success': 'Logout successfully',
+  'global.user.center': 'User Center',
   // Dialog
   'global.dialog.btn.cancle': 'cancle',
   'global.dialog.btn.confirm': 'confirm',

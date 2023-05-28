@@ -3,10 +3,11 @@ import { defineStore } from 'pinia'
 import logoSvg from '~/assets/vue.svg'
 
 export interface HeaderConfig {
-  logo?: string
-  title?: string
+  logo: string
+  title: string
   openSidebar: boolean
 }
+
 export interface NavigationInfo {
   path: string
   label: string
@@ -14,38 +15,34 @@ export interface NavigationInfo {
 }
 
 export const useAppStore = defineStore('app', () => {
-  const { t } = useI18n()
-
   const headerConfig = reactive<HeaderConfig>({
     logo: logoSvg,
-    title: t('global.header.title') && '',
+    title: 'global.header.title',
     openSidebar: false,
   })
 
-  const navigations = computed<NavigationInfo[]>(() => {
-    return [
-      {
-        path: '/',
-        label: t('global.header.navigation.home'),
-        type: 'link',
-      },
-      {
-        path: '/guide',
-        label: t('global.header.navigation.guide'),
-        type: 'link',
-      },
-      {
-        path: '/about',
-        label: t('global.header.navigation.about'),
-        type: 'link',
-      },
-      {
-        path: '~',
-        label: t('global.header.navigation.contact'),
-        type: 'button',
-      },
-    ]
-  })
+  const navigations = ref<NavigationInfo[]>([
+    {
+      path: '/',
+      label: 'global.header.navigation.home',
+      type: 'link',
+    },
+    {
+      path: '/guide',
+      label: 'global.header.navigation.guide',
+      type: 'link',
+    },
+    {
+      path: '/about',
+      label: 'global.header.navigation.about',
+      type: 'link',
+    },
+    {
+      path: '~',
+      label: 'global.header.navigation.contact',
+      type: 'button',
+    },
+  ])
 
   const localeOptions = computed<DropdownOption[]>(() => {
     return [

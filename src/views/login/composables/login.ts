@@ -47,7 +47,7 @@ export const useLogin = () => {
       await userStore.login(lModel)
       lLoading.value = false
       const msgIns = message?.success(t('login.success.message'))
-      const redirect = router.currentRoute.value.params.redirect as string
+      const redirect = router.currentRoute.value.query.redirect as string
       await router.replace(redirect || '/')
       setTimeout(() => {
         msgIns?.destroy()
