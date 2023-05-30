@@ -10,7 +10,7 @@ defineProps<{
 <template>
   <section
     w="100% sm:48% md:22%"
-    m="b-20px sm:b-4%"
+    m="b-20px sm:b-4% md:b-0"
     p="16px sm:20px md:24px"
     class="box-border bg-#18181c duration-250"
     hover="translate-y--2px shadow-xl shadow-black/36"

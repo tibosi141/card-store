@@ -1,38 +1,51 @@
 <script setup lang="ts">
 import Container from './container.vue'
 import CardItem from './card-item.vue'
-import { useCardList } from './composables/card-list'
 
-const { cardList, getCardList } = useCardList()
-
-getCardList()
+const cardList = ref([
+  {
+    id: 'cn',
+    icon: 'i-flagpack-cn',
+    title: 'home-card-item-cn-title',
+    description: 'home-card-item-cn-desc',
+    detail: 'home-card-item-cn-detail',
+  },
+  {
+    id: 'jp',
+    icon: 'i-flagpack-jp',
+    title: 'home-card-item-jp-title',
+    description: 'home-card-item-jp-desc',
+    detail: 'home-card-item-jp-detail',
+  },
+  {
+    id: 'kr',
+    icon: 'i-flagpack-kr',
+    title: 'home-card-item-kr-title',
+    description: 'home-card-item-kr-desc',
+    detail: 'home-card-item-kr-detail',
+  },
+])
 </script>
 
 <template>
   <div>
     <Banner class="banner">
-      <h3
-        w="92% md:64%"
-        m="md:t-12%"
-        text="6 md:8"
-      >
-        {{ $t('home-banner-h3') }}
-      </h3>
-      <h2
-        w="92% md:64%"
-        text="10 md:18"
-        font="bold"
-      >
-        {{ $t('home-banner-h2') }}
-      </h2>
-      <p
-        w="92% md:64%"
-        p="4 md:0"
-        text="5 md:6"
-        border="~ white md:0"
-      >
-        {{ $t('home-banner-p') }}
-      </p>
+      <div w="94% md:80%">
+        <h3 m="md:t-10%" text="6 md:8">
+          {{ $t('home-banner-h3') }}
+        </h3>
+        <h2 text="10 md:14" font="bold">
+          {{ $t('home-banner-h2') }}
+        </h2>
+        <p
+          w="md:40%"
+          p="4 md:0"
+          text=" md:6"
+          border="~ white md:0"
+        >
+          {{ $t('home-banner-p') }}
+        </p>
+      </div>
     </Banner>
     <Container>
       <template #headerRight>
@@ -43,10 +56,10 @@ getCardList()
       <div flex="~ wrap sm:gap-4%">
         <template v-for="item in cardList" :key="item.id">
           <CardItem
-            :title="item.title"
+            :title="$t(item.title)"
             :icon="item.icon"
-            :description="item.description"
-            :detail="item.detail"
+            :description="$t(item.description)"
+            :detail="$t(item.detail)"
           />
         </template>
       </div>
