@@ -54,6 +54,7 @@ export default {
   'guide-addguest-windows-first': '打开switch 界面，在右上角找到飞机图标，点击图标，选择服务器菜单，找到设置，如下图',
   'guide-addguest-windows-middle': '在弹出的对话框中，填写账号密码等信息，点击 OK',
   'guide-addguest-windows-last': '然后再点击屏幕右上角的飞机图标，点击开启即可。',
+  'guide-addguest-image-title': '点击查看详情',
   // About Page
   'about-banner-h2': '是代表数据库的',
   'about-banner-text-p': '的身份看看函数返回记录',

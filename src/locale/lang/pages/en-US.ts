@@ -43,9 +43,9 @@ export default {
   'home-card-item-kr-detail': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum accusantium quisquam dicta voluptatem, eaque nostrum molestiae quo perferendis voluptatibus neque. Architecto corrupti, alias velit laudantium quidem debitis officia eius perspiciatis.',
   // Guide Page
   'guide-banner-h2': 'Gameplatform Guide',
-  'guide-download-title': 'Download link',
+  'guide-download-title': 'Download Link',
   'guide-download-platforms': 'Platforms download address for each platform',
-  'guide-addguest-title': 'Adding an account',
+  'guide-addguest-title': 'Adding An Account',
   'guide-addguest-macos-first': 'Open the switch interface, find the airplane icon in the upper right corner, click the icon, select the Server menu, and find the Settings, as shown below',
   'guide-addguest-macos-middle': 'In the pop-up dialog box, fill in the account password and other information, click OK',
   'guide-addguest-macos-last': 'Then click the airplane icon in the top right corner of the screen, and click on it.',
@@ -54,6 +54,7 @@ export default {
   'guide-addguest-windows-first': 'Open the switch interface, find the airplane icon in the upper right corner, click the icon, select the Server menu, and find the Settings, as shown below',
   'guide-addguest-windows-middle': 'In the pop-up dialog box, fill in the account password and other information, click OK',
   'guide-addguest-windows-last': 'Then click the airplane icon in the top right corner of the screen, and click on it.',
+  'guide-addguest-image-title': 'Click for details',
   // About Page
   'about-banner-h2': 'Database representative',
   'about-banner-text-p': 'ten years later',
