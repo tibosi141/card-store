@@ -80,6 +80,16 @@ const platformList = ref([
     ],
   },
 ])
+const ConnectionList = ref([
+  {
+    title: 'guide-connection-single-title',
+    detail: 'guide-connection-single-detail',
+  },
+  {
+    title: 'guide-connection-group-title',
+    detail: 'guide-connection-group-detail',
+  },
+])
 </script>
 
 <template>
@@ -98,13 +108,13 @@ const platformList = ref([
           </n-h3>
           <ul class="mt-6 flex flex-col gap-xl text-xl">
             <template v-for="item in downloadList" :key="item.platform">
-              <li class="text-right">
+              <li class="md:text-right">
                 <span>{{ item.platform }}：</span>
                 <a
                   :href="item.href"
                   class="duration-250 hover:text-dark hover:underline"
                 >
-                  {{ item.href }}
+                  {{ $t('guide-download-link') }}
                 </a>
               </li>
             </template>
@@ -113,12 +123,12 @@ const platformList = ref([
       </div>
     </Banner>
     <div
-      class="mx-auto h-full w-92% flex flex-col justify-around py-12 md:w-80% md:py-16"
+      class="mx-auto w-92% flex flex-col justify-around py-12 md:w-80% md:py-16"
     >
       <n-divider class="text-7!" style="--n-color: white">
         {{ $t('guide-addguest-title') }}
       </n-divider>
-      <div class="flex flex-wrap justify-between gap-14 md:mt-14 md:gap-20">
+      <div class="flex flex-wrap justify-between gap-14 md:mt-7 md:gap-20">
         <section v-for="platform in platformList" :key="platform.key">
           <n-h3 prefix="bar">
             {{ platform.key }}
@@ -142,6 +152,31 @@ const platformList = ref([
           </div>
         </section>
       </div>
+    </div>
+    <div
+      class="mx-auto flex flex-col justify-around bg-black/50 px-4% py-12 md:px-10% md:py-16"
+    >
+      <n-divider class="text-7!" style="--n-color: white">
+        {{ $t('guide-connection-title') }}
+      </n-divider>
+      <n-blockquote style="--n-font-size: 1.2rem">
+        {{ $t('guide-connection-introduce') }}
+      </n-blockquote>
+      <n-text type="info" />
+      <ul class="flex flex-col justify-between md:flex-row">
+        <li
+          v-for="(item, index) in ConnectionList"
+          :key="item.title"
+          class="border-b-1px border-gray py-4 md:w-35%"
+        >
+          <n-text type="info" class="text-xl">
+            {{ `${index + 1}、${$t(item.title)}` }}
+          </n-text>
+          <p class="mt-4 indent-8 text-4">
+            {{ $t(item.detail) }}
+          </p>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

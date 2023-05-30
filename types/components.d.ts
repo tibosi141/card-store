@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     Banner: typeof import('./../src/components/banner/index.vue')['default']
     NaiveProvider: typeof import('./../src/components/app-provider/naive-provider.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
+    NBlockquote: typeof import('naive-ui')['NBlockquote']
     NButton: typeof import('naive-ui')['NButton']
     NCheckbox: typeof import('naive-ui')['NCheckbox']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
@@ -36,6 +37,7 @@ declare module '@vue/runtime-core' {
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     NTabPane: typeof import('naive-ui')['NTabPane']
     NTabs: typeof import('naive-ui')['NTabs']
+    NText: typeof import('naive-ui')['NText']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
