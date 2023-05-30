@@ -2,11 +2,14 @@ import { AxiosError } from 'axios'
 import router from './index'
 import i18n from '~/locale'
 
-export const allowedRoutes = ['/', '/guide', '/about', '/error']
-export const dynamicRoutes = ['/profile']
 export const loginRoute = '/login'
-export const hasLoginAllowRoutes = [...allowedRoutes, loginRoute]
-export const hasDynamicAllowRoutes = [...allowedRoutes, ...dynamicRoutes]
+export const staticRoutes = ['/', '/guide', '/about']
+export const allowedRoutes = ['/error', '/404', '/403', '/500', '/401']
+export const hasLoginAllowRoutes = [
+  loginRoute,
+  ...staticRoutes,
+  ...allowedRoutes,
+]
 
 router.beforeEach(async (to, _, next) => {
   const token = useAuthorization()
@@ -27,14 +30,14 @@ router.beforeEach(async (to, _, next) => {
     }
   }
   else {
-    if (!userStore.userInfo && to.path !== 'login') {
+    if (!userStore.userInfo && !allowedRoutes.includes(to.path)) {
       try {
         await userStore.getUserInfo()
 
-        // if (to.path === loginRoute) {
-        //   next('/')
-        //   return
-        // }
+        if (to.path === loginRoute) {
+          next('/')
+          return
+        }
       }
       catch (err) {
         if (err instanceof AxiosError && err.response?.status === 401) {

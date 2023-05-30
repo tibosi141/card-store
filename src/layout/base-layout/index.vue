@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { Logo, Title } from '../common'
 import NavBar from '../nav-bar/index.vue'
-// import SelectLang from '../select-lang/index.vue'
-// import MenuBtn from './menu-btn.vue'
 import RightMenu from './right-menu.vue'
 import { useScrollHandle } from './composables/handle-scroll'
 
@@ -45,12 +43,6 @@ const openSidebar = computed(() => headerConfig.value.openSidebar)
       </nav>
       <div flex="shrink-0">
         <RightMenu />
-        <!-- <SelectLang v-model:value="locale" :options="localeOptions" />
-        <MenuBtn
-          md="hidden"
-          :open="openSidebar"
-          @click="appStore.toggleMenu(!openSidebar)"
-        /> -->
       </div>
     </n-layout-header>
     <n-layout-content class="min-h-screen" style="--n-color: #2a2c2c">

@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
   <n-dropdown
-    trigger="click"
+    trigger="hover"
     :options="options"
     @select="onSelect"
   >
@@ -22,7 +22,7 @@ defineProps<{
         :src="avatar"
         size="small"
       />
-      <span class="ml-2 hidden md:block">{{ nickname ? nickname : '点此登录' }}</span>
+      <span class="ml-2 hidden md:block">{{ nickname }}</span>
     </div>
   </n-dropdown>
 </template>

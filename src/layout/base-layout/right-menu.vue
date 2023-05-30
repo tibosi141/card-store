@@ -10,40 +10,53 @@ import {
 import type { Component } from 'vue'
 import SelectLang from '../select-lang/index.vue'
 import SelectUser from '../select-user/index.vue'
+import profileJpg from '~/assets/images/profile.jpg'
 
 const router = useRouter()
 const { t } = useI18n()
 const locale = useAppLocale()
 const appStore = useAppStore()
 const userStore = useUserStore()
+
 const openSidebar = computed(() => appStore.headerConfig.openSidebar)
-const avatar = computed(() => userStore.userInfo?.avatar)
-const nickname = computed(() => userStore.userInfo?.nickname)
-const renderIcon = (icon: Component) =>
-  h(NIcon, null, { default: () => h(icon) })
 
-const userOptions = ref<DropdownOption[]>([
-  {
-    key: 'user-center',
-    label: () => t('global.user.center'),
-    icon: () => renderIcon(UserOutlined),
-  },
-  {
-    key: 'header-divider',
-    type: 'divider',
-  },
-  {
-    key: 'logout',
-    label: () => t('global.user.logout'),
-    icon: () => renderIcon(LoginOutlined),
-  },
-])
+const avatar = computed(() => userStore.userInfo?.avatar || profileJpg)
 
-function handleClick() {
+const nickname = computed(() => userStore.userInfo?.nickname || '点此登录')
+
+const userOptions = computed<DropdownOption[]>(() => {
+  if (userStore.userInfo) {
+    return [
+      {
+        key: 'user-center',
+        label: () => t('global.user.center'),
+        icon: () => renderIcon(UserOutlined),
+      },
+      {
+        key: 'header-divider',
+        type: 'divider',
+      },
+      {
+        key: 'logout',
+        label: () => t('global.user.logout'),
+        icon: () => renderIcon(LoginOutlined),
+      },
+    ]
+  }
+  else {
+    return []
+  }
+})
+
+function renderIcon(icon: Component) {
+  return h(NIcon, null, { default: () => h(icon) })
+}
+
+function onClick() {
   if (!userStore.userInfo) router.push('/login')
 }
 
-const handleSelect = (key: string) => {
+const onSelect = (key: string) => {
   if (key === 'user-center') router.push('/profile')
   if (key === 'logout') userStore.logout()
 }
@@ -55,8 +68,8 @@ const handleSelect = (key: string) => {
       :avatar="avatar"
       :nickname="nickname"
       :options="userOptions"
-      @click="handleClick"
-      @select="handleSelect"
+      @click="onClick"
+      @select="onSelect"
     />
     <SelectLang v-model:value="locale" :options="appStore.localeOptions" />
     <NIcon
