@@ -7,11 +7,14 @@ import {
 } from '@vicons/antd'
 import { useNaiveUIProps } from './composables/naive-ui-props'
 import { useLogin } from './composables/login'
+import { useForgetPassword } from './composables/forget-password'
 import { useRegister } from './composables/register'
 import { BlankLayout } from '~/layout'
 
-const { tabName, tabType, formSize } = useNaiveUIProps()
+const { tabName, tabType, formSize, buttonSize } = useNaiveUIProps()
 const { lForm, lLoading, lModel, lRules, login } = useLogin()
+const { show, fForm, fModel, fRules, toggleSwitch, sendEmail }
+  = useForgetPassword()
 const {
   rForm,
   password,
@@ -77,7 +80,7 @@ watch(registerState, (newVal) => {
           <n-form-item-row path="userName">
             <n-input
               v-model:value="lModel.email"
-              :placeholder="$t('login.email.placeholder')"
+              :placeholder="$t('register.email.placeholder')"
             >
               <template #prefix>
                 <n-icon :component="UserOutlined" />
@@ -101,9 +104,12 @@ watch(registerState, (newVal) => {
               <n-checkbox v-model:checked="lModel.rememberMe">
                 {{ $t('login.remember-me') }}
               </n-checkbox>
-              <a class="cursor-pointer text-[var(--primary-color)]">
-                {{ $t('login.forgot-password') }}
-              </a>
+              <span
+                class="cursor-pointer text-[var(--primary-color)]"
+                @click="toggleSwitch(true)"
+              >
+                {{ $t('login.forget-password') }}
+              </span>
             </div>
           </n-form-item-row>
         </n-form>
@@ -219,6 +225,44 @@ watch(registerState, (newVal) => {
       </n-tab-pane>
     </n-tabs>
   </BlankLayout>
+  <n-modal
+    v-model:show="show"
+    style="width: 30rem"
+    preset="card"
+    :title="$t('login.reset-password')"
+    :bordered="false"
+    :size="formSize"
+  >
+    <n-form
+      ref="fForm"
+      :model="fModel"
+      :rules="fRules"
+      :size="formSize"
+      label-align="left"
+      label-placement="left"
+    >
+      <n-form-item-row :label="$t('register.email.placeholder')" path="email">
+        <n-input
+          v-model:value="fModel.email"
+          :placeholder="$t('register.email.placeholder')"
+        />
+      </n-form-item-row>
+    </n-form>
+    <template #footer>
+      <n-space justify="end" size="large">
+        <n-button :size="buttonSize" @click="toggleSwitch(false)">
+          {{ $t('global.dialog.btn.cancle') }}
+        </n-button>
+        <n-button
+          :size="buttonSize"
+          type="primary"
+          @click="sendEmail"
+        >
+          {{ $t('global.dialog.btn.confirm') }}
+        </n-button>
+      </n-space>
+    </template>
+  </n-modal>
 </template>
 
 <style scoped></style>

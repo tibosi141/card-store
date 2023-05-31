@@ -20,7 +20,7 @@ export interface UserInfo {
 export const userRegisterUrl = '/user/registerUser'
 export const userSendCodeUrl = '/user/check_yzm'
 export const userLoginUrl = '/user/userLogin'
-export const userRetrPassUrl = '/user/retrPass'
+export const userForgetPasswordUrl = '/user/retrPass'
 export const userGetInfoUrl = '/user/getInfo/'
 export const userLogoutUrl = '/user/user_logout'
 
@@ -62,8 +62,8 @@ export function userLoginApi(params: UserLoginParams) {
   return usePost<UserLoginParams, UserLoginResult>(userLoginUrl, params)
 }
 
-export function userRetrPassApis(params: UserSendCodeParams) {
-  return usePost<UserSendCodeParams, any>(userRetrPassUrl, params)
+export function userForgetPasswordApi(params: UserSendCodeParams) {
+  return usePost<UserSendCodeParams, any>(userForgetPasswordUrl, params)
 }
 
 export function userGetInfoApi(params: string) {

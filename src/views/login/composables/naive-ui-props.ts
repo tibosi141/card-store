@@ -1,3 +1,4 @@
+import type { ButtonProps } from 'naive-ui'
 import type { Size } from 'naive-ui/es/form/src/interface'
 import type { TabsType } from 'naive-ui/es/tabs/src/interface'
 
@@ -9,24 +10,29 @@ export const useNaiveUIProps = () => {
   const tabName = ref<TabName>('login')
   const tabType = ref<TabsType>('bar')
   const formSize = ref<Size>('large')
+  const buttonSize = ref<ButtonProps['size']>('medium')
 
   watchEffect(() => {
     if (isDesktop.value) {
       formSize.value = 'large'
+      buttonSize.value = 'medium'
     }
-    else if (isPad.value) {
+    else {
+      formSize.value = 'medium'
+      buttonSize.value = 'small'
+    }
+
+    if (isPad.value)
       tabType.value = 'bar'
-      formSize.value = 'medium'
-    }
-    else if (isMobile.value) {
+
+    if (isMobile.value)
       tabType.value = 'line'
-      formSize.value = 'medium'
-    }
   })
 
   return {
     tabType,
     tabName,
     formSize,
+    buttonSize,
   }
 }

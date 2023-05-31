@@ -2,7 +2,6 @@ export default {
   // Login Page
   'login.tabs.login': '登录',
   'login.tabs.register': '注册',
-  'login.email.placeholder': '邮箱',
   'login.username.placeholder': '用户名',
   'login.username.required': '请输入用户名!',
   'login.username.length': '用户名长度在 5 到 20 个字符',
@@ -10,7 +9,8 @@ export default {
   'login.password.required': '请输入密码！',
   'login.password.length': '密码长度在 5 到 20 个字符',
   'login.remember-me': '记住密码',
-  'login.forgot-password': '忘记密码',
+  'login.forget-password': '忘记密码',
+  'login.reset-password': '重置密码',
   'login.success.message': '登录成功',
   'register.confirm.password.placeholder': '确认密码',
   'register.confirm.password.required': '请再次输入密码！',
