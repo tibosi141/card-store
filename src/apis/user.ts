@@ -2,7 +2,7 @@ import type { IncludeNull } from '~/utils/types'
 
 export interface UserInfo {
   id: number
-  username: string
+  userName: string
   nickname?: string
   avatar?: string
   email?: string
@@ -12,15 +12,20 @@ export interface UserInfo {
   realName?: string
   birthday?: string
   money?: number
+  createTime?: number
+  ip?: string
+  password?: string
 }
 
-export const userLoginUrl = '/user/login'
-export const userSendCodeUrl = '/user/send-code'
-export const userRegisterUrl = '/user/register/'
-export const userGetInfoUrl = '/user/info'
+export const userRegisterUrl = '/user/registerUser'
+export const userSendCodeUrl = '/user/check_yzm'
+export const userLoginUrl = '/user/userLogin'
+export const userRetrPassUrl = '/user/retrPass'
+export const userGetInfoUrl = '/user/getInfo/'
+export const userLogoutUrl = '/user/user_logout'
 
 export interface UserRegisterParams {
-  username: IncludeNull<string>
+  userName: IncludeNull<string>
   password: IncludeNull<string>
   confirmPassword: IncludeNull<string>
   email: IncludeNull<string>
@@ -30,20 +35,17 @@ export interface UserRegisterParams {
 export type UserRegisterResult = Pick<any, string>
 
 export interface UserLoginParams {
-  username: IncludeNull<string>
+  email: IncludeNull<string>
   password: IncludeNull<string>
   rememberMe?: boolean
 }
 
 export interface UserLoginResult {
+  id: number
   token: string
 }
 
 export type UserSendCodeParams = Pick<UserRegisterParams, 'email'>
-
-export function userSendCodeApi(params: UserSendCodeParams) {
-  return usePost<UserSendCodeParams, any>(userSendCodeUrl, params)
-}
 
 export function userRegisterApi(params: UserRegisterParams) {
   return usePost<UserRegisterParams, UserRegisterResult>(
@@ -52,10 +54,22 @@ export function userRegisterApi(params: UserRegisterParams) {
   )
 }
 
+export function userSendCodeApi(params: UserSendCodeParams) {
+  return usePost<UserSendCodeParams, any>(userSendCodeUrl, params)
+}
+
 export function userLoginApi(params: UserLoginParams) {
   return usePost<UserLoginParams, UserLoginResult>(userLoginUrl, params)
 }
 
-export function userGetInfoApi() {
-  return useGet<any, UserInfo>(userGetInfoUrl)
+export function userRetrPassApis(params: UserSendCodeParams) {
+  return usePost<UserSendCodeParams, any>(userRetrPassUrl, params)
+}
+
+export function userGetInfoApi(params: string) {
+  return useGet<string, UserInfo>(userGetInfoUrl + params)
+}
+
+export function userLogoutApi() {
+  return usePost(userLogoutUrl)
 }

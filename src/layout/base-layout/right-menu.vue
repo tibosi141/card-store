@@ -22,7 +22,7 @@ const openSidebar = computed(() => appStore.headerConfig.openSidebar)
 
 const avatar = computed(() => userStore.userInfo?.avatar || profileJpg)
 
-const nickname = computed(() => userStore.userInfo?.nickname || '点此登录')
+const nickname = computed(() => userStore.userInfo?.userName || '点此登录')
 
 const userOptions = computed<DropdownOption[]>(() => {
   if (userStore.userInfo) {
@@ -73,7 +73,7 @@ const onSelect = (key: string) => {
     />
     <SelectLang v-model:value="locale" :options="appStore.localeOptions" />
     <NIcon
-      class="text-gray-300 cursor-pointer md:hidden!"
+      class="cursor-pointer text-gray-300 md:hidden!"
       :size="24"
       @click="appStore.toggleMenu(!openSidebar)"
     >

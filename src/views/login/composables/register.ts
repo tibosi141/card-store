@@ -5,6 +5,7 @@ import { userSendCodeApi } from '~/apis/user'
 export const useRegister = () => {
   const { t } = useI18n()
   const { message, dialog } = useGlobalConfig()
+  const userStore = useUserStore()
 
   const rForm = ref<FormInst>()
   const password = ref<FormItemInst>()
@@ -13,14 +14,14 @@ export const useRegister = () => {
   const countState = ref(false)
   const registerState = ref(false)
   const rModel = reactive<UserRegisterParams>({
-    username: null,
+    userName: null,
     password: null,
     confirmPassword: null,
     email: null,
     code: null,
   })
   const rRules = reactive<FormRules>({
-    username: [
+    userName: [
       {
         required: true,
         renderMessage: () => t('login.username.required'),
@@ -118,11 +119,11 @@ export const useRegister = () => {
 
     try {
       await rForm.value?.validate(undefined, rule => rule.key === 'email')
-      countState.value = true
       await userSendCodeApi({ email: rModel.email })
+      countState.value = true
       msgIns?.destroy()
-      startCount()
       message?.success(t('register.verification-code.success'))
+      startCount()
     }
     catch (err) {
       msgIns?.destroy()
@@ -134,26 +135,27 @@ export const useRegister = () => {
 
     try {
       await rForm.value?.validate()
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve('通过')
-        }, 2000)
-      })
+      const { code } = await userStore.register(rModel)
       rLoading.value = false
-      dialog?.success({
-        title: t('register.success.title'),
-        content: t('register.success.content'),
-        positiveText: t('global.dialog.btn.confirm'),
-        onMaskClick: () => {
-          registerState.value = true
-        },
-        onClose: () => {
-          registerState.value = true
-        },
-        onPositiveClick: () => {
-          registerState.value = true
-        },
-      })
+      if (code === 200) {
+        dialog?.success({
+          title: t('register.success.title'),
+          content: t('register.success.content'),
+          positiveText: t('global.dialog.btn.confirm'),
+          onMaskClick: () => {
+            registerState.value = true
+          },
+          onClose: () => {
+            registerState.value = true
+          },
+          onPositiveClick: () => {
+            registerState.value = true
+          },
+        })
+      }
+      else {
+        rModel.code = null
+      }
     }
     catch (err) {
       rLoading.value = false

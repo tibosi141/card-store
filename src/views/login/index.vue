@@ -28,10 +28,10 @@ const {
 
 watch(registerState, (newVal) => {
   if (newVal) {
-    const { username, password } = rModel
+    const { email, password } = rModel
 
     tabName.value = 'login'
-    lModel.username = username
+    lModel.email = email
     lModel.password = password
   }
 })
@@ -45,7 +45,7 @@ watch(registerState, (newVal) => {
       flex="~ items-center justify-center sm:justify-center"
     >
       <img
-        class="w-12 h-12"
+        class="h-12 w-12"
         src="@/assets/vue.svg"
         alt=""
       >
@@ -74,10 +74,10 @@ watch(registerState, (newVal) => {
           label-align="left"
           label-placement="left"
         >
-          <n-form-item-row path="username">
+          <n-form-item-row path="userName">
             <n-input
-              v-model:value="lModel.username"
-              :placeholder="$t('login.username.placeholder')"
+              v-model:value="lModel.email"
+              :placeholder="$t('login.email.placeholder')"
             >
               <template #prefix>
                 <n-icon :component="UserOutlined" />
@@ -109,9 +109,9 @@ watch(registerState, (newVal) => {
         </n-form>
         <n-button
           type="primary"
-          block
           secondary
           strong
+          block
           :loading="lLoading"
           @click="login"
         >
@@ -136,9 +136,9 @@ watch(registerState, (newVal) => {
           label-align="left"
           label-placement="left"
         >
-          <n-form-item-row path="username">
+          <n-form-item-row path="userName">
             <n-input
-              v-model:value="rModel.username"
+              v-model:value="rModel.userName"
               :placeholder="$t('login.username.placeholder')"
             >
               <template #prefix>
@@ -208,9 +208,9 @@ watch(registerState, (newVal) => {
         </n-form>
         <n-button
           type="primary"
-          block
           secondary
           strong
+          block
           :loading="rLoading"
           @click="register"
         >

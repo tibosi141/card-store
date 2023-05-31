@@ -32,7 +32,7 @@ router.beforeEach(async (to, _, next) => {
   else {
     if (!userStore.userInfo && !allowedRoutes.includes(to.path)) {
       try {
-        await userStore.getUserInfo()
+        await userStore.getUserInfo(token.value)
 
         if (to.path === loginRoute) {
           next('/')

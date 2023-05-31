@@ -3,27 +3,25 @@ import type { UserLoginParams } from '~/apis/user'
 
 export const useLogin = () => {
   const { t } = useI18n()
-  const { message } = useGlobalConfig()
   const userStore = useUserStore()
   const router = useRouter()
 
   const lForm = ref<FormInst>()
   const lLoading = ref(false)
   const lModel = reactive<UserLoginParams>({
-    username: null,
+    email: null,
     password: null,
     rememberMe: false,
   })
   const lRules = reactive<FormRules>({
-    username: [
+    email: [
       {
         required: true,
-        renderMessage: () => t('login.username.required'),
+        renderMessage: () => t('register.email.required'),
       },
       {
-        min: 5,
-        max: 20,
-        renderMessage: () => t('login.username.length'),
+        pattern: /^([a-zA-Z\d][\w-]{2,})@(\w{2,})\.([a-z]{2,})(\.[a-z]{2,})?$/,
+        renderMessage: () => t('register.email.rule'),
       },
     ],
     password: [
@@ -44,14 +42,15 @@ export const useLogin = () => {
 
     try {
       await lForm.value?.validate()
-      await userStore.login(lModel)
+      const { code } = await userStore.login(lModel)
       lLoading.value = false
-      const msgIns = message?.success(t('login.success.message'))
-      const redirect = router.currentRoute.value.query.redirect as string
-      await router.replace(redirect || '/')
-      setTimeout(() => {
-        msgIns?.destroy()
-      }, 2000)
+      if (code === 200) {
+        const redirect = router.currentRoute.value.query.redirect as string
+        await router.replace(redirect || '/')
+      }
+      else {
+        lModel.password = null
+      }
     }
     catch (err) {
       lLoading.value = false

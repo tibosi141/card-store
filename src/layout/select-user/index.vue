@@ -16,13 +16,13 @@ defineProps<{
     :options="options"
     @select="onSelect"
   >
-    <div class="flex items-center cursor-pointer" @click="onClick">
+    <div class="flex cursor-pointer items-center" @click="onClick">
       <n-avatar
         round
         :src="avatar"
         size="small"
       />
-      <span class="ml-2 hidden md:block">{{ nickname }}</span>
+      <span class="ml-2">{{ nickname }}</span>
     </div>
   </n-dropdown>
 </template>

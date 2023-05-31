@@ -2,6 +2,7 @@ export default {
   // Login Page
   'login.tabs.login': '登录',
   'login.tabs.register': '注册',
+  'login.email.placeholder': '邮箱',
   'login.username.placeholder': '用户名',
   'login.username.required': '请输入用户名!',
   'login.username.length': '用户名长度在 5 到 20 个字符',

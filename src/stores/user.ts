@@ -1,5 +1,6 @@
-import type { UserInfo, UserLoginParams } from '~/apis/user'
-import { userGetInfoApi, userLoginApi } from '~/apis/user'
+import type { UserInfo, UserLoginParams, UserRegisterParams } from '~/apis/user'
+import { userGetInfoApi, userLoginApi, userLogoutApi, userRegisterApi } from '~/apis/user'
+
 import i18n from '~/locale'
 import router from '~/router'
 
@@ -17,19 +18,31 @@ export const useUserStore = defineStore('user', () => {
     userInfo.value = info
   }
 
-  async function login(params: UserLoginParams) {
-    const { data } = await userLoginApi(params)
+  async function register(params: UserRegisterParams) {
+    const { code, msg } = await userRegisterApi(params)
 
-    data?.token && setToken(data?.token)
+    code !== 200 && message?.error(msg)
+
+    return { code }
   }
 
-  async function getUserInfo() {
-    const { data } = await userGetInfoApi()
+  async function login(params: UserLoginParams) {
+    const { code, msg, data } = await userLoginApi(params)
+
+    data?.id && setToken(String(data?.id))
+    code !== 200 && message?.error(msg)
+
+    return { code }
+  }
+
+  async function getUserInfo(params: string) {
+    const { data } = await userGetInfoApi(params)
 
     data && setUserInfo(data)
   }
 
   async function logout() {
+    await userLogoutApi()
     setToken(null)
     setUserInfo(undefined)
     message?.success(t('global.user.logout.success'))
@@ -46,8 +59,9 @@ export const useUserStore = defineStore('user', () => {
     userInfo,
     setToken,
     setUserInfo,
+    register,
     login,
-    logout,
     getUserInfo,
+    logout,
   }
 })
