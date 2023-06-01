@@ -13,7 +13,7 @@ import { BlankLayout } from '~/layout'
 
 const { tabName, tabType, formSize, buttonSize } = useNaiveUIProps()
 const { lForm, lLoading, lModel, lRules, login } = useLogin()
-const { show, fForm, fModel, fRules, toggleSwitch, sendEmail }
+const { show, fForm, fLoading, fModel, fRules, toggleSwitch, sendEmail }
   = useForgetPassword()
 const {
   rForm,
@@ -51,6 +51,7 @@ watch(registerState, (newVal) => {
         class="h-12 w-12"
         src="@/assets/vue.svg"
         alt=""
+        @click="$router.push('/')"
       >
     </div>
     <n-tabs
@@ -254,6 +255,7 @@ watch(registerState, (newVal) => {
           {{ $t('global.dialog.btn.cancle') }}
         </n-button>
         <n-button
+          :loading="fLoading"
           :size="buttonSize"
           type="primary"
           @click="sendEmail"

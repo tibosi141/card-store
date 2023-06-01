@@ -8,6 +8,7 @@ export const useForgetPassword = () => {
 
   const show = ref(false)
   const fForm = ref<FormInst>()
+  const fLoading = ref(false)
   const fModel = reactive<UserSendCodeParams>({
     email: null,
   })
@@ -30,20 +31,30 @@ export const useForgetPassword = () => {
   }
 
   async function sendEmail() {
+    fLoading.value = true
+
     try {
       await fForm.value?.validate()
-      await userForgetPasswordApi(fModel)
-      message?.success('发送成功')
-      // toggleSwitch(false)
+      const flag = await userForgetPasswordApi(fModel)
+      fLoading.value = false
+      if (flag) {
+        toggleSwitch(false)
+        message?.success(t('login.reset-password.success'))
+      }
+      else {
+        message?.error(t('login.reset-password.notfound'))
+      }
     }
     catch (err) {
-      // toggleSwitch(false)
+      fLoading.value = false
+      message?.error(t('login.reset-password.fail'))
     }
   }
 
   return {
     show,
     fForm,
+    fLoading,
     fModel,
     fRules,
     toggleSwitch,

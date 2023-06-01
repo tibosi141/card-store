@@ -63,7 +63,11 @@ export function userLoginApi(params: UserLoginParams) {
 }
 
 export function userForgetPasswordApi(params: UserSendCodeParams) {
-  return usePost<UserSendCodeParams, any>(userForgetPasswordUrl, params)
+  return usePost<UserSendCodeParams, any>(userForgetPasswordUrl, params, {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  })
 }
 
 export function userGetInfoApi(params: string) {
