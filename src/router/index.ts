@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import staticRoutes from './staticRoutes'
+import staticRoutes from './static-routes'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_APP_BASE ?? '/'),

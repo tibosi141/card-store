@@ -38,6 +38,11 @@ export const useAppStore = defineStore('app', () => {
       type: 'link',
     },
     {
+      path: '/product',
+      label: 'global.header.navigation.product',
+      type: 'link',
+    },
+    {
       path: '~',
       label: 'global.header.navigation.contact',
       type: 'button',

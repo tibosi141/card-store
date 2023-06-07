@@ -39,6 +39,14 @@ const staticRoutes: RouteRecordRaw[] = [
         },
         component: () => import('~/views/profile/index.vue'),
       },
+      {
+        path: '/product',
+        name: 'Product',
+        meta: {
+          title: 'global.header.navigation.product',
+        },
+        component: () => import('~/views/product/index.vue'),
+      },
     ],
   },
 ]

@@ -6,6 +6,8 @@ export default {
   'global.header.navigation.about': 'About Us',
   'global.header.navigation.contact': 'Contact Us',
   'global.header.navigation.profile': 'User Center',
+  'global.header.navigation.product': 'Card Purchase',
+  'global.header.navigation.active': 'Card Active',
   'global.header.qq': 'QQ',
   'global.header.wechat': 'WeChat',
   // Request
