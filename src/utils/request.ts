@@ -32,6 +32,13 @@ async function requestHandler(
 function responseHandler(
   response: AxiosResponse,
 ): ResponseBody<any> | AxiosResponse<any> | Promise<any> | any {
+  const data = response.data as ResponseBody
+  if (data.code !== 200) {
+    const { message } = useGlobalConfig()
+    message?.error(data.msg)
+    return Promise.reject(data)
+  }
+
   return response.data
 }
 

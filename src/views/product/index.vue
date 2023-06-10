@@ -1,277 +1,136 @@
 <script setup lang="ts">
-import type { TagProps } from 'naive-ui'
-const { t } = useI18n()
+import type {
+  CardProps,
+  InputNumberProps,
+  RadioProps,
+  SpaceProps,
+  TagProps,
+} from 'naive-ui'
+import { usePay, useProducts, useShoping } from './composables'
+import ProductItem from './product-item.vue'
+import ShopItem from './shop-item.vue'
 
-interface RootObject {
-  label: string
-  children: Child[]
+const { isDesktop } = useQueryBreakpoints()
+const { productList, goodList } = useProducts()
+const { multipleList, shopCar, totalPrice, onRemove } = useShoping(goodList)
+const { pay, payErCode, payModeList, handlePay } = usePay()
+
+const vertical = ref(false)
+const spaceSize = ref<SpaceProps['size']>(60)
+const cardSize = ref<CardProps['size']>('medium')
+const tagSize = ref<TagProps['size']>('large')
+const inputSize = ref<InputNumberProps['size']>('medium')
+const radioSize = ref<RadioProps['size']>('large')
+
+function reset() {
+  multipleList.value = []
+  pay.mode = ''
 }
 
-interface Child {
-  id: string
-  name: string
-  classify: string
-  price: string
-  flow: string
-  type: string
-  online: string
-}
+watchEffect(() => {
+  if (isDesktop.value) {
+    vertical.value = false
+    spaceSize.value = 60
+    cardSize.value = 'medium'
+    tagSize.value = 'large'
+    inputSize.value = 'medium'
+    radioSize.value = 'large'
+  }
+  else {
+    vertical.value = true
+    spaceSize.value = 'large'
+    cardSize.value = 'small'
+    tagSize.value = 'medium'
+    inputSize.value = 'small'
+    radioSize.value = 'medium'
+  }
 
-interface Shop extends Child {
-  count: number
-}
-
-const productList: RootObject[] = [
-  {
-    label: 'product.regular.label',
-    children: [
-      {
-        id: 'regular-quarter',
-        name: 'product.regular.quarter.name',
-        classify: 'product.type.quarter',
-        price: 'product.regular.quarter.price',
-        flow: 'product.regular.quarter.flow',
-        type: 'product.regular.quarter.type',
-        online: 'product.regular.quarter.online',
-      },
-      {
-        id: 'regular-month',
-        name: 'product.regular.month.name',
-        classify: 'product.type.month',
-        price: 'product.regular.month.price',
-        flow: 'product.regular.month.flow',
-        type: 'product.regular.month.type',
-        online: 'product.regular.month.online',
-      },
-    ],
-  },
-  {
-    label: 'product.higher.label',
-    children: [
-      {
-        id: 'higher-quarter',
-        name: 'product.higher.quarter.name',
-        classify: 'product.type.quarter',
-        price: 'product.higher.quarter.price',
-        flow: 'product.higher.quarter.flow',
-        type: 'product.higher.quarter.type',
-        online: 'product.higher.quarter.online',
-      },
-      {
-        id: 'higher-month',
-        name: 'product.higher.month.name',
-        classify: 'product.type.month',
-        price: 'product.higher.month.price',
-        flow: 'product.higher.month.flow',
-        type: 'product.higher.month.type',
-        online: 'product.higher.month.online',
-      },
-    ],
-  },
-  {
-    label: 'product.super.label',
-    children: [
-      {
-        id: 'super-quarter',
-        name: 'product.super.quarter.name',
-        classify: 'product.type.quarter',
-        price: 'product.super.quarter.price',
-        flow: 'product.super.quarter.flow',
-        type: 'product.super.quarter.type',
-        online: 'product.super.quarter.online',
-      },
-      {
-        id: 'super-month',
-        name: 'product.super.month.name',
-        classify: 'product.type.month',
-        price: 'product.super.month.price',
-        flow: 'product.super.month.flow',
-        type: 'product.super.month.type',
-        online: 'product.super.month.online',
-      },
-    ],
-  },
-]
-
-const array = productList
-  .reduce((total: Child[], item: RootObject) => {
-    return [...total, ...item.children]
-  }, [])
-  .map((product) => {
-    return { ...product, count: 1 }
-  })
-
-const selectList = ref<string[]>()
-const shopCar = ref<Shop[]>()
-
-const { dialog, message } = useGlobalConfig()
-function handleClose(val: string) {
-  dialog?.warning({
-    title: '警告',
-    content: '确定要移除此商品？',
-    positiveText: '确定',
-    negativeText: '取消',
-    onPositiveClick: () => {
-      array.forEach((item) => {
-        if (item.id === val) item.count = 1
-      })
-
-      selectList.value = selectList.value?.filter(item => item !== val)
-      message?.success('已移除')
-    },
-    onNegativeClick: () => {
-      message?.info('操作取消')
-    },
-  })
-}
-
-function switchTagType(id: string): TagProps['type'] {
-  if (id.startsWith('regular')) return 'success'
-  else if (id.startsWith('higher')) return 'info'
-  else if (id.startsWith('super')) return 'error'
-}
-
-const value = ref('')
-const payList = [
-  {
-    label: '支付宝',
-    value: '支付宝',
-  },
-  {
-    label: '微信',
-    value: '微信',
-  },
-]
-
-const total = computed(() => {
-  return shopCar.value?.reduce((total, item) => {
-    // console.log(item.price.match(/^[0-9]*$/))
-    return total + parseInt(t(item.price)) * item.count
-  }, 0)
-})
-
-watch(selectList, (v) => {
-  shopCar.value = (v as string[]).map((item: string) =>
-    array.find(value => value.id === item),
-  ) as Shop[]
-  if (!v?.length) value.value = ''
+  if (!multipleList.value?.length || pay.state) reset()
 })
 </script>
 
 <template>
-  <div p="x-4 y-12 sm:x-4% md:x-10% md:t-24">
-    <n-space size="large" justify="space-between">
-      <n-card
-        v-for="product in productList"
-        :key="product.label"
-        :title="$t(product.label)"
-        hoverable
-        :segmented="{
-          content: true,
-          footer: 'soft',
-        }"
+  <div p="x-4 t-24 b-12 sm:x-4% md:x-10%">
+    <n-checkbox-group v-model:value="multipleList">
+      <n-space
+        size="large"
+        :vertical="vertical"
+        justify="space-between"
       >
-        <n-checkbox-group v-model:value="selectList">
-          <n-space :size="40" justify="space-between">
-            <n-descriptions
-              v-for="item in product.children"
-              :key="item.id"
-              label-placement="left"
-              bordered
-              :column="1"
-              label-align="center"
-            >
-              <template #header>
-                <div flex="~ justify-between">
-                  <span>{{ $t(item.classify) }}</span>
-                  <n-checkbox :value="item.id" />
-                </div>
-              </template>
-              <n-descriptions-item
-                :label="$t('product.label.flow')"
-                :content-style="{ textAlign: 'center' }"
+        <template v-for="item in productList" :key="item.name">
+          <ProductItem
+            :product="item"
+            :card-size="cardSize"
+            :space-size="spaceSize"
+            :vertical="vertical"
+          />
+        </template>
+      </n-space>
+    </n-checkbox-group>
+    <div m="t-8 md:t-16">
+      <div flex="~ gap-6 col md:row md:justify-between">
+        <div flex="~ items-center justify-between md:gap-21.5 md:col md:items-start">
+          <n-h3 m="b-0!" prefix="bar">
+            {{ $t('product.shop-car.title') }}
+          </n-h3>
+          <p text="lg right md:left">
+            {{ $t('product.shop-car.total') }}：
+            <n-text strong type="error">
+              {{ totalPrice ? totalPrice : 0 }}
+            </n-text>
+          </p>
+        </div>
+        <div flex="1 md:grow-.77">
+          <n-space size="large" :vertical="vertical">
+            <template v-for="item in shopCar" :key="item.id">
+              <ShopItem
+                :good-item="item"
+                :tag-size="tagSize"
+                @on-remove="onRemove"
               >
-                {{ $t(item.flow) }}
-              </n-descriptions-item>
-              <n-descriptions-item
-                :label="$t('product.label.type')"
-                :content-style="{ textAlign: 'center' }"
-              >
-                {{ $t(item.type) }}
-              </n-descriptions-item>
-              <n-descriptions-item
-                :label="$t('product.label.price')"
-                :content-style="{ textAlign: 'center' }"
-              >
-                {{ $t(item.price) }}
-              </n-descriptions-item>
-              <n-descriptions-item
-                :label="$t('product.label.number')"
-                :content-style="{ textAlign: 'center' }"
-              >
-                {{ $t(item.online) }}
-              </n-descriptions-item>
-            </n-descriptions>
-          </n-space>
-        </n-checkbox-group>
-      </n-card>
-    </n-space>
-    <div m="t-16">
-      <div flex="~ gap-24 justify-between">
-        <p text="xl" flex="shrink-0">
-          确认信息:
-        </p>
-        <n-space size="large" justify="end">
-          <n-card
-            v-for="item in shopCar"
-            :key="item.id"
-            closable
-            header-style="padding: 1rem"
-            class="bg-transparent!"
-            @close="handleClose(item.id)"
-          >
-            <template #header>
-              <n-tag :type="switchTagType(item.id)" size="large">
-                {{ $t(item.name) }}
-              </n-tag>
-            </template>
-            <template #header-extra>
-              <div w="150px" m="l-50px">
                 <n-input-number
                   v-model:value="item.count"
                   button-placement="both"
                   :min="1"
                   :max="99"
+                  :size="inputSize"
                 />
-              </div>
+              </ShopItem>
             </template>
-          </n-card>
-        </n-space>
+          </n-space>
+        </div>
       </div>
       <n-divider />
-      <div flex="~ gap-24">
-        <p text="xl" flex="shrink-0">
-          支付方式:
-        </p>
-        <n-radio-group v-model:value="value" name="radiogroup">
-          <n-space vertical>
-            <n-radio
-              v-for="pay in payList"
-              :key="pay.value"
-              :value="pay.value"
-              :disabled="!Boolean(shopCar?.length)"
-            >
-              {{ pay.label }}
-            </n-radio>
-          </n-space>
-        </n-radio-group>
-        <div v-if="value">
-          <img
-            width="150"
-            src="@/assets/images/ercode.jpg"
-            alt=""
+      <div flex="~ gap-6 col md:row md:items-start md:justify-between">
+        <div flex="~ items-center justify-between md:gap-6">
+          <n-h3 m="b-0!" prefix="bar">
+            {{ $t('product.pay.title') }}
+          </n-h3>
+          <n-radio-group
+            v-model:value="pay.mode"
+            name="radiogroup"
+            :size="radioSize"
+            :disabled="!Boolean(totalPrice)"
           >
-          <p>{{ `需使用${value}扫码支付: ${total}` }}</p>
+            <n-space :size="20">
+              <n-radio-button
+                v-for="item in payModeList"
+                :key="item.value"
+                :value="item.value"
+                :label="$t(item.label)"
+              />
+            </n-space>
+          </n-radio-group>
+        </div>
+        <div v-if="payErCode" flex="~ gap-6 col items-center">
+          <n-image
+            width="150"
+            :src="payErCode"
+            alt=""
+          />
+          <n-button @click="handlePay">
+            {{ $t('product.pay.finish') }}
+          </n-button>
         </div>
       </div>
     </div>

@@ -1,4 +1,8 @@
 export default {
+  // Pay
+  'global.contact.qq': 'QQ',
+  'global.contact.wechat': 'WeChat',
+  'global.contact.alipay': 'Alipay',
   // Header
   'global.header.title': 'Site Title',
   'global.header.navigation.home': 'Home',
@@ -8,8 +12,6 @@ export default {
   'global.header.navigation.profile': 'User Center',
   'global.header.navigation.product': 'Card Purchase',
   'global.header.navigation.active': 'Card Active',
-  'global.header.qq': 'QQ',
-  'global.header.wechat': 'WeChat',
   // Request
   'global.request.error.401': 'Login Expired',
   'global.request.error.403': 'Resource Request Error',
@@ -20,6 +22,9 @@ export default {
   'global.user.logout.success': 'Logout successfully',
   'global.user.center': 'User Center',
   // Dialog
-  'global.dialog.btn.cancle': 'cancle',
-  'global.dialog.btn.confirm': 'confirm',
+  'global.dialog.title.info': 'Hint',
+  'global.dialog.title.warn': 'Warning',
+  'global.dialog.btn.cancle': 'Cancle',
+  'global.dialog.btn.confirm': 'Confirm',
+  'global.dialog.message.cancle': 'Cancel operation',
 }

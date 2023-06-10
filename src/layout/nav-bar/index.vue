@@ -13,13 +13,13 @@ defineEmits(['click'])
   <ul
     md="p-0 flex gap-12 justify-center divide-y-0"
     sm="px-4%"
-    class="px-20px py-4 divide-gray divide-y"
+    class="px-20px py-4 divide-y divide-gray"
   >
     <li
       v-for="item in navigations"
       :key="item.path"
       md="text-4 lh-8 transform-none"
-      class="text-xl lh-20 cursor-pointer transition-transform duration-250 hover:text-gray-300"
+      class="cursor-pointer text-xl lh-20 transition-transform duration-250 hover:text-gray-300"
       :class="[
         item.path === $route.path ? 'text-gray-300' : 'text-gray',
         open ? 'transform-none ' : 'translate-x--8',
@@ -47,13 +47,13 @@ defineEmits(['click'])
             <p
               w="20% md:auto"
               m="md:b-6"
-              class="lh-5 whitespace-nowrap"
+              class="whitespace-nowrap lh-5"
             >
-              <span>{{ $t('global.header.qq') }}</span>
+              <span>{{ $t('global.contact.qq') }}</span>
               <span>: 8208208820</span>
             </p>
-            <p w="20% md:auto" class="lh-5 whitespace-nowrap">
-              {{ $t('global.header.wechat') }}
+            <p w="20% md:auto" class="whitespace-nowrap lh-5">
+              {{ $t('global.contact.wechat') }}
               <span md="hidden">→</span>
             </p>
             <div
