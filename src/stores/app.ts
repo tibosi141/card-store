@@ -28,6 +28,16 @@ export const useAppStore = defineStore('app', () => {
       type: 'link',
     },
     {
+      path: '/product',
+      label: 'global.header.navigation.product',
+      type: 'link',
+    },
+    {
+      path: '/active',
+      label: 'global.header.navigation.active',
+      type: 'link',
+    },
+    {
       path: '/guide',
       label: 'global.header.navigation.guide',
       type: 'link',
@@ -35,11 +45,6 @@ export const useAppStore = defineStore('app', () => {
     {
       path: '/about',
       label: 'global.header.navigation.about',
-      type: 'link',
-    },
-    {
-      path: '/product',
-      label: 'global.header.navigation.product',
       type: 'link',
     },
     {

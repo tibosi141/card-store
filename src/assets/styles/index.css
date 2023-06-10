@@ -1,6 +1,8 @@
 /* Firefox 隐藏滚动条 */
 html,
 body {
+    background-color: rgb(16, 16, 20);
+    ;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }

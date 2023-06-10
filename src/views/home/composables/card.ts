@@ -1,7 +1,7 @@
 import { cardGetListApi } from '~/apis/home'
 import type { CardGetListParams, CardInfo } from '~/apis/home'
 
-export function useCardList() {
+export const useCard = () => {
   const loading = ref(false)
   const cardList = ref<CardInfo[]>()
 

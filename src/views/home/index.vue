@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useCard } from './composables/card'
 import Container from './container.vue'
 import CardItem from './card-item.vue'
+
+const { getCardList } = useCard()
 
 const cardList = ref([
   {
@@ -25,6 +28,8 @@ const cardList = ref([
     detail: 'home-card-item-kr-detail',
   },
 ])
+
+getCardList()
 </script>
 
 <template>

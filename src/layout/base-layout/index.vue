@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { Logo, Title } from '../common'
 import NavBar from '../nav-bar/index.vue'
-import RightMenu from './right-menu.vue'
 import { useScrollHandle } from './composables/handle-scroll'
+import RightMenu from './right-menu.vue'
 
-// const locale = useAppLocale()
 const appStore = useAppStore()
 const { headerConfig, navigations } = storeToRefs(appStore)
 const { isScroll } = useScrollHandle()
@@ -21,10 +20,10 @@ const openSidebar = computed(() => headerConfig.value.openSidebar)
       p="4 sm:x-4% md:x-10%"
       flex="~ items-center justify-between"
       bg="!black md:!transparent"
-      class="z-10 fixed w-full font-bold"
+      class="fixed z-10 w-full font-bold"
       :class="{ 'header': isDesktop, 'on-scroll': isScroll }"
     >
-      <div flex="~ gap-4 items-center" class="text-gray-300 cursor-pointer">
+      <div flex="~ gap-4 items-center" class="cursor-pointer text-gray-300">
         <Logo :src="logo" />
         <Title :title="$t(title)" />
       </div>

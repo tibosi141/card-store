@@ -16,12 +16,9 @@ export const usePay = () => {
   })
 
   const payErCode = computed(() => {
-    if (pay.mode === 'global.contact.wechat')
-      return wechatPayPng
-    else if (pay.mode === 'global.contact.alipay')
-      return alipayPayPng
-    else
-      return ''
+    if (pay.mode === 'global.contact.wechat') return wechatPayPng
+    else if (pay.mode === 'global.contact.alipay') return alipayPayPng
+    else return ''
   })
 
   const payModeList = computed<PayMode[]>(() => [
@@ -47,7 +44,11 @@ export const usePay = () => {
           pay.state = false
         },
         onPositiveClick: () => {
-          router.push('/').then(() => {}).catch(() => {}).then(() => {})
+          router
+            .push('/')
+            .then(() => {})
+            .catch(() => {})
+            .then(() => {})
         },
       })
     }, 2000)

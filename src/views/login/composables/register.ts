@@ -135,29 +135,25 @@ export const useRegister = () => {
 
     try {
       await rForm.value?.validate()
-      const { code } = await userStore.register(rModel)
+      await userStore.register(rModel)
       rLoading.value = false
-      if (code === 200) {
-        dialog?.success({
-          title: t('register.success.title'),
-          content: t('register.success.content'),
-          positiveText: t('global.dialog.btn.confirm'),
-          onMaskClick: () => {
-            registerState.value = true
-          },
-          onClose: () => {
-            registerState.value = true
-          },
-          onPositiveClick: () => {
-            registerState.value = true
-          },
-        })
-      }
-      else {
-        rModel.code = null
-      }
+      dialog?.success({
+        title: t('register.success.title'),
+        content: t('register.success.content'),
+        positiveText: t('global.dialog.btn.confirm'),
+        onMaskClick: () => {
+          registerState.value = true
+        },
+        onClose: () => {
+          registerState.value = true
+        },
+        onPositiveClick: () => {
+          registerState.value = true
+        },
+      })
     }
     catch (err) {
+      rModel.code = null
       rLoading.value = false
     }
   }

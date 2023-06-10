@@ -3,7 +3,7 @@ export const breakpointsEnum = {
   sm: 720,
 }
 
-export function useQueryBreakpoints() {
+export const useQueryBreakpoints = () => {
   const breakpoints = reactive(useBreakpoints(breakpointsEnum))
 
   const isMobile = breakpoints.smaller('sm')

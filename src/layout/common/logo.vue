@@ -5,7 +5,7 @@ defineProps<{ src?: string }>()
 <template>
   <n-image
     v-if="src"
-    class="w-8 h-8"
+    class="h-8 w-8"
     alt="logo"
     :src="src"
     :title="$t('global.header.title')"

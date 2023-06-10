@@ -41,7 +41,7 @@ export interface CardGetListParams {
   type: string
 }
 
-export function cardGetListApi(params?: CardGetListParams) {
+export const cardGetListApi = (params?: CardGetListParams) => {
   return new Promise<ResponseBody<CardInfo[]>>((resolve) => {
     setTimeout(() => {
       resolve({

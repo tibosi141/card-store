@@ -100,6 +100,6 @@ const productList: Product[] = [
   },
 ]
 
-export function productGetListApi() {
+export const productGetListApi = () => {
   return productList
 }

@@ -1,5 +1,10 @@
 import type { UserInfo, UserLoginParams, UserRegisterParams } from '~/apis/user'
-import { userGetInfoApi, userLoginApi, userLogoutApi, userRegisterApi } from '~/apis/user'
+import {
+  userGetInfoApi,
+  userLoginApi,
+  userLogoutApi,
+  userRegisterApi,
+} from '~/apis/user'
 
 import i18n from '~/locale'
 import router from '~/router'
@@ -19,20 +24,13 @@ export const useUserStore = defineStore('user', () => {
   }
 
   async function register(params: UserRegisterParams) {
-    const { code, msg } = await userRegisterApi(params)
-
-    code !== 200 && message?.error(msg)
-
-    return { code }
+    await userRegisterApi(params)
   }
 
   async function login(params: UserLoginParams) {
-    const { code, msg, data } = await userLoginApi(params)
+    const { data } = await userLoginApi(params)
 
     data?.id && setToken(String(data?.id))
-    code !== 200 && message?.error(msg)
-
-    return { code }
   }
 
   async function getUserInfo(params: string) {

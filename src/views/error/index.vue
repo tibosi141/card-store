@@ -7,18 +7,20 @@ function onBack() {
 </script>
 
 <template>
-  <n-result
-    class="mt-48px"
-    status="404"
-    title="404 资源不存在"
-    description="抱歉，您访问的页面不存在"
-  >
-    <template #footer>
-      <n-button @click="onBack">
-        找点乐子吧
-      </n-button>
-    </template>
-  </n-result>
+  <div class="grid h-screen place-items-center">
+    <n-result
+      w="92%"
+      status="404"
+      :title="$t('global.error.title')"
+      :description="$t('global.error.content')"
+    >
+      <template #footer>
+        <n-button @click="onBack">
+          {{ $t('global.error.back') }}
+        </n-button>
+      </template>
+    </n-result>
+  </div>
 </template>
 
 <style scoped></style>

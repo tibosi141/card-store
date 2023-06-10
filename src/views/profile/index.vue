@@ -1,14 +1,36 @@
 <script setup lang="ts">
+import type { CardProps, SpaceProps } from 'naive-ui'
+import { useCard, useDevice } from './composables'
 import Container from './container.vue'
 import DeviceItem from './device-item.vue'
 import CardItem from './card-item.vue'
-import { useDeviceInfo } from './composables/device-info'
-import { useMyCardInfo } from './composables/my-card'
-import { useNaiveUIProps } from './composables/naive-ui-props'
 
-const { cLoading, cardList, getCardList } = useMyCardInfo()
-const { dLoading, deviceList, getDeviceList } = useDeviceInfo()
-const { vertical, spaceSize, cardSize } = useNaiveUIProps()
+const { isDesktop } = useQueryBreakpoints()
+const { cLoading, cardList, getCardList } = useCard()
+const { dLoading, deviceList, getDeviceList } = useDevice()
+
+const vertical = ref(false)
+const spaceSize = ref<SpaceProps['size']>(45)
+const cardSize = ref<CardProps['size']>('medium')
+
+watch(
+  isDesktop,
+  (newVal) => {
+    if (newVal) {
+      vertical.value = false
+      spaceSize.value = 45
+      cardSize.value = 'medium'
+    }
+    else {
+      vertical.value = true
+      spaceSize.value = 'large'
+      cardSize.value = 'small'
+    }
+  },
+  {
+    immediate: true,
+  },
+)
 
 getCardList()
 getDeviceList()

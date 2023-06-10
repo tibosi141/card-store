@@ -47,22 +47,22 @@ export interface UserLoginResult {
 
 export type UserSendCodeParams = Pick<UserRegisterParams, 'email'>
 
-export function userRegisterApi(params: UserRegisterParams) {
+export const userRegisterApi = (params: UserRegisterParams) => {
   return usePost<UserRegisterParams, UserRegisterResult>(
     userRegisterUrl,
     params,
   )
 }
 
-export function userSendCodeApi(params: UserSendCodeParams) {
+export const userSendCodeApi = (params: UserSendCodeParams) => {
   return usePost<UserSendCodeParams, any>(userSendCodeUrl, params)
 }
 
-export function userLoginApi(params: UserLoginParams) {
+export const userLoginApi = (params: UserLoginParams) => {
   return usePost<UserLoginParams, UserLoginResult>(userLoginUrl, params)
 }
 
-export function userForgetPasswordApi(params: UserSendCodeParams) {
+export const userForgetPasswordApi = (params: UserSendCodeParams) => {
   return usePost<UserSendCodeParams, any>(userForgetPasswordUrl, params, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -70,10 +70,10 @@ export function userForgetPasswordApi(params: UserSendCodeParams) {
   })
 }
 
-export function userGetInfoApi(params: string) {
+export const userGetInfoApi = (params: string) => {
   return useGet<string, UserInfo>(userGetInfoUrl + params)
 }
 
-export function userLogoutApi() {
+export const userLogoutApi = () => {
   return usePost(userLogoutUrl)
 }

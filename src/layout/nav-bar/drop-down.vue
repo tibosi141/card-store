@@ -7,7 +7,7 @@ defineProps<{ text: string }>()
     <p
       md="block"
       flex="~ items-center justify-between"
-      class="after:content-['⨠'] after:inline-block after:transition-transform after:duration-250 group-hover:after:rotate-90"
+      class="after:inline-block after:transition-transform after:duration-250 after:content-['⨠'] group-hover:after:rotate-90"
     >
       {{ `${text} ` }}
     </p>

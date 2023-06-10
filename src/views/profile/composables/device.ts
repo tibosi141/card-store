@@ -1,7 +1,7 @@
 import type { DeviceGetListParams, DeviceInfo } from '~/apis/profile'
 import { deviceGetListApi } from '~/apis/profile'
 
-export function useDeviceInfo() {
+export const useDevice = () => {
   const dLoading = ref(false)
   const deviceList = ref<DeviceInfo[]>()
 

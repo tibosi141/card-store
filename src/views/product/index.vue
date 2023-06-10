@@ -69,7 +69,9 @@ watchEffect(() => {
     </n-checkbox-group>
     <div m="t-8 md:t-16">
       <div flex="~ gap-6 col md:row md:justify-between">
-        <div flex="~ items-center justify-between md:gap-21.5 md:col md:items-start">
+        <div
+          flex="~ items-center justify-between md:gap-21.5 md:col md:items-start"
+        >
           <n-h3 m="b-0!" prefix="bar">
             {{ $t('product.shop-car.title') }}
           </n-h3>

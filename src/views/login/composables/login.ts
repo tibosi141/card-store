@@ -42,20 +42,22 @@ export const useLogin = () => {
 
     try {
       await lForm.value?.validate()
-      const { code } = await userStore.login(lModel)
+      await userStore.login(lModel)
       lLoading.value = false
-      if (code === 200) {
-        const redirect = router.currentRoute.value.query.redirect as string
-        await router.replace(redirect || '/')
-      }
-      else {
-        lModel.password = null
-      }
+      const redirect = router.currentRoute.value.query.redirect as string
+      await router.replace(redirect || '/')
     }
     catch (err) {
+      lModel.password = null
       lLoading.value = false
     }
   }
 
-  return { lForm, lLoading, lModel, lRules, login }
+  return {
+    lForm,
+    lLoading,
+    lModel,
+    lRules,
+    login,
+  }
 }

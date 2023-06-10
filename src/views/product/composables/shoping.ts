@@ -22,7 +22,9 @@ export const useShoping = (goodList: GoodItem[]) => {
       positiveText: t('global.dialog.btn.confirm'),
       negativeText: t('global.dialog.btn.cancle'),
       onPositiveClick: () => {
-        multipleList.value = multipleList.value?.filter(item => item !== good.id)
+        multipleList.value = multipleList.value?.filter(
+          item => item !== good.id,
+        )
         message?.success(`${goodName} ${t('product.removed.good.message')}`)
       },
       onNegativeClick: () => {
@@ -38,7 +40,9 @@ export const useShoping = (goodList: GoodItem[]) => {
         if (item.id === id) item.count = 1
       })
     })
-    shopCar.value = newVal?.map(id => goodList.find(item => item.id === id)) as GoodItem[]
+    shopCar.value = newVal?.map(id =>
+      goodList.find(item => item.id === id),
+    ) as GoodItem[]
   })
 
   return {

@@ -1,17 +1,17 @@
 <script setup lang="ts">
+import type { ButtonProps, FormProps, TabsProps } from 'naive-ui'
 import {
   LockOutlined,
   MailOutlined,
   MessageOutlined,
   UserOutlined,
 } from '@vicons/antd'
-import { useNaiveUIProps } from './composables/naive-ui-props'
-import { useLogin } from './composables/login'
-import { useForgetPassword } from './composables/forget-password'
-import { useRegister } from './composables/register'
+import { useForgetPassword, useLogin, useRegister } from './composables'
 import { BlankLayout } from '~/layout'
 
-const { tabName, tabType, formSize, buttonSize } = useNaiveUIProps()
+type TabName = 'login' | 'register'
+
+const { isMobile, isPad, isDesktop } = useQueryBreakpoints()
 const { lForm, lLoading, lModel, lRules, login } = useLogin()
 const { show, fForm, fLoading, fModel, fRules, toggleSwitch, sendEmail }
   = useForgetPassword()
@@ -29,8 +29,24 @@ const {
   register,
 } = useRegister()
 
-watch(registerState, (newVal) => {
-  if (newVal) {
+const tabName = ref<TabName>('login')
+const tabType = ref<TabsProps['type']>('bar')
+const formSize = ref<FormProps['size']>('large')
+const buttonSize = ref<ButtonProps['size']>('medium')
+
+watchEffect(() => {
+  if (isDesktop.value) {
+    formSize.value = 'large'
+    buttonSize.value = 'medium'
+  }
+  else {
+    formSize.value = 'medium'
+    buttonSize.value = 'small'
+  }
+  if (isPad.value) tabType.value = 'bar'
+  if (isMobile.value) tabType.value = 'line'
+
+  if (registerState.value) {
     const { email, password } = rModel
 
     tabName.value = 'login'
@@ -38,6 +54,15 @@ watch(registerState, (newVal) => {
     lModel.password = password
   }
 })
+// watch(registerState, (newVal) => {
+//   if (newVal) {
+//     const { email, password } = rModel
+
+//     tabName.value = 'login'
+//     lModel.email = email
+//     lModel.password = password
+//   }
+// })
 </script>
 
 <template>

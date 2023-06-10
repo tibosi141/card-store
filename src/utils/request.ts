@@ -19,9 +19,9 @@ const instance = axios.create({
   timeout: 6000,
 })
 
-async function requestHandler(
+const requestHandler = async (
   config: InternalAxiosRequestConfig,
-): Promise<InternalAxiosRequestConfig> {
+): Promise<InternalAxiosRequestConfig> => {
   const token = useAuthorization()
 
   if (token.value) config.headers[STORE_AUTHORIZE_KEY] = token.value
@@ -29,9 +29,9 @@ async function requestHandler(
   return config
 }
 
-function responseHandler(
+const responseHandler = (
   response: AxiosResponse,
-): ResponseBody<any> | AxiosResponse<any> | Promise<any> | any {
+): ResponseBody<any> | AxiosResponse<any> | Promise<any> | any => {
   const data = response.data as ResponseBody
   if (data.code !== 200) {
     const { message } = useGlobalConfig()
@@ -42,7 +42,7 @@ function responseHandler(
   return response.data
 }
 
-function errorHandler(error: AxiosError): Promise<any> {
+const errorHandler = (error: AxiosError): Promise<any> => {
   // 判断是否存在response
   if (error.response) {
     const { notification } = useGlobalConfig()
@@ -98,11 +98,11 @@ instance.interceptors.response.use(responseHandler, errorHandler)
 
 export default instance
 
-export function useGet<P = any, R = any>(
+export const useGet = <P = any, R = any>(
   url: string,
   params?: P,
   config?: AxiosRequestConfig,
-): Promise<ResponseBody<R>> {
+): Promise<ResponseBody<R>> => {
   return instance.request({
     url,
     method: 'GET',
@@ -111,11 +111,11 @@ export function useGet<P = any, R = any>(
   })
 }
 
-export function usePost<P = any, R = any>(
+export const usePost = <P = any, R = any>(
   url: string,
   data?: P,
   config?: AxiosRequestConfig,
-): Promise<ResponseBody<R>> {
+): Promise<ResponseBody<R>> => {
   return instance.request({
     url,
     method: 'POST',
@@ -124,11 +124,11 @@ export function usePost<P = any, R = any>(
   })
 }
 
-export function usePut<P = any, R = any>(
+export const usePut = <P = any, R = any>(
   url: string,
   data?: P,
   config?: AxiosRequestConfig,
-): Promise<ResponseBody<R>> {
+): Promise<ResponseBody<R>> => {
   return instance.request({
     url,
     method: 'PUT',
@@ -137,11 +137,11 @@ export function usePut<P = any, R = any>(
   })
 }
 
-export function useDelete<P = any, R = any>(
+export const useDelete = <P = any, R = any>(
   url: string,
   data?: P,
   config?: AxiosRequestConfig,
-): Promise<ResponseBody<R>> {
+): Promise<ResponseBody<R>> => {
   return instance.request({
     url,
     method: 'Delete',

@@ -11,10 +11,7 @@ const logo = computed(() => headerConfig.value.logo)
 
 <template>
   <n-el class="login-page-container">
-    <div
-      p="4 md:x-10%"
-      flex="~ items-center justify-end md:justify-between"
-    >
+    <div p="4 md:x-10%" flex="~ items-center justify-end md:justify-between">
       <Logo
         md="visible"
         class="invisible cursor-pointer"

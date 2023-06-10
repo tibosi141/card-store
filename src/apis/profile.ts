@@ -38,7 +38,7 @@ export interface DeviceGetListParams {
   type?: string
 }
 
-export function deviceGetListApi(params?: DeviceGetListParams) {
+export const deviceGetListApi = (params?: DeviceGetListParams) => {
   return new Promise<ResponseBody<DeviceInfo[]>>((resolve) => {
     setTimeout(() => {
       resolve({

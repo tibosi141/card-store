@@ -1,4 +1,8 @@
 export default {
+  // Error
+  'global.error.title': '404 资源不存在',
+  'global.error.content': '抱歉，您访问的页面不存在',
+  'global.error.back': '返回上一页',
   // Pay
   'global.contact.qq': 'QQ',
   'global.contact.wechat': '微信',

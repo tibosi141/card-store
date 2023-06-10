@@ -1,4 +1,8 @@
 export default {
+  // Error
+  'global.error.title': '404 The resource was not found',
+  'global.error.content': 'Sorry, the page you are looking for does not exist',
+  'global.error.back': 'Return to previous page',
   // Pay
   'global.contact.qq': 'QQ',
   'global.contact.wechat': 'WeChat',
@@ -10,8 +14,8 @@ export default {
   'global.header.navigation.about': 'About Us',
   'global.header.navigation.contact': 'Contact Us',
   'global.header.navigation.profile': 'User Center',
-  'global.header.navigation.product': 'Card Purchase',
-  'global.header.navigation.active': 'Card Active',
+  'global.header.navigation.product': 'Purchase',
+  'global.header.navigation.active': 'Activate',
   // Request
   'global.request.error.401': 'Login Expired',
   'global.request.error.403': 'Resource Request Error',

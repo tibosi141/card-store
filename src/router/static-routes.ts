@@ -16,6 +16,22 @@ const staticRoutes: RouteRecordRaw[] = [
         component: () => import('~/views/home/index.vue'),
       },
       {
+        path: '/product',
+        name: 'Product',
+        meta: {
+          title: 'global.header.navigation.product',
+        },
+        component: () => import('~/views/product/index.vue'),
+      },
+      {
+        path: '/active',
+        name: 'Active',
+        meta: {
+          title: 'global.header.navigation.active',
+        },
+        component: () => import('~/views/active/index.vue'),
+      },
+      {
         path: '/guide',
         name: 'Guide',
         meta: {
@@ -38,14 +54,6 @@ const staticRoutes: RouteRecordRaw[] = [
           title: 'global.header.navigation.profile',
         },
         component: () => import('~/views/profile/index.vue'),
-      },
-      {
-        path: '/product',
-        name: 'Product',
-        meta: {
-          title: 'global.header.navigation.product',
-        },
-        component: () => import('~/views/product/index.vue'),
       },
     ],
   },
