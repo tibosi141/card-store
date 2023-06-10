@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
           manualChunks: {
             naiveUI: ['naive-ui'],
             icon: ['@vicons/antd', '@iconify-json/flagpack'],
-            lodash: ['@vueuse/core'],
+            lodash: ['@vueuse/core', 'lodash-es'],
             vue: ['vue', 'vue-router', 'vue-i18n', 'pinia'],
           },
         },
@@ -45,6 +45,7 @@ export default defineConfig(({ mode }) => {
         [env.VITE_APP_BASE_API]: {
           target: env.VITE_APP_BASE_URL,
           changeOrigin: true,
+          ws: false,
           // rewrite: (path) => {
           //   return path.replace(new RegExp(`^${env.VITE_APP_BASE_API}`), '')
           // },
@@ -69,7 +70,7 @@ export default defineConfig(({ mode }) => {
             ],
           },
         ],
-        dts: 'types/auto-imports.d.ts',
+        dts: 'types/auto-import.d.ts',
         dirs: ['src/stores', 'src/composables'],
       }),
       Components({

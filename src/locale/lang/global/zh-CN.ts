@@ -14,8 +14,8 @@ export default {
   'global.header.navigation.about': '关于我们',
   'global.header.navigation.contact': '联系我们',
   'global.header.navigation.profile': '个人中心',
-  'global.header.navigation.product': '卡片购买',
-  'global.header.navigation.active': '卡片激活',
+  'global.header.navigation.product': '购买',
+  'global.header.navigation.active': '激活',
   // Request
   'global.request.error.401': '登录过期',
   'global.request.error.403': '资源请求错误',

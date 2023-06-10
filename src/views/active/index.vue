@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div p="x-4 t-16 b-12 sm:x-4% md:x-10% md:t-18">
+  <div p="x-4 t-24 b-12 sm:x-4% md:x-10%">
     激活页
   </div>
 </template>

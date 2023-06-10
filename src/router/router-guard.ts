@@ -3,7 +3,7 @@ import router from './index'
 import i18n from '~/locale'
 
 export const loginRoute = '/login'
-export const staticRoutes = ['/', '/guide', '/about']
+export const staticRoutes = ['/', '/guide', '/about', '/profile', '/product', '/active']
 export const allowedRoutes = ['/error', '/404', '/403', '/500', '/401']
 export const hasLoginAllowRoutes = [
   loginRoute,
