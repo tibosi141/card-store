@@ -27,6 +27,7 @@ export default {
   'register.verification-code.get-verification-code': 'Get code',
   'register.verification-code.success': 'Verification code sent successfully!',
   'register.verification-code.loading': 'Sending verification code...',
+  'register.verification-code.error': 'This email is registered',
   'register.verification-code.resend': 'Resend',
   'register.success.title': 'registered successfully',
   'register.success.content': 'Close this window to jump to the login page',
@@ -104,4 +105,10 @@ export default {
   'product.pay.finish': 'Payment finish',
   'product.pay.success.title': 'Payment success',
   'product.pay.success.content': 'Click OK to go to the activation page for activation',
+  // Active Page
+  'active.code.label': 'Activation code',
+  'active.code.placeholder': 'Please enter the activation code',
+  'active.code.required': 'Activation codes cannot be empty',
+  'active.activate.btn': 'Activate',
+  'active.activate.success': 'Successful activation',
 }

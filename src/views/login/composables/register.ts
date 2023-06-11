@@ -127,6 +127,7 @@ export const useRegister = () => {
     }
     catch (err) {
       msgIns?.destroy()
+      message?.error(t('register.verification-code.error'))
     }
   }
 

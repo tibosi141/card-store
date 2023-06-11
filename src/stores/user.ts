@@ -5,7 +5,6 @@ import {
   userLogoutApi,
   userRegisterApi,
 } from '~/apis/user'
-import avatarJpeg from '~/assets/images/07akioni.jpeg'
 import i18n from '~/locale'
 import router from '~/router'
 
@@ -20,7 +19,6 @@ export const useUserStore = defineStore('user', () => {
   }
 
   function setUserInfo(info: UserInfo | undefined) {
-    if (info) info.avatar = avatarJpeg
     userInfo.value = info
   }
 

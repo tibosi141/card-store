@@ -27,6 +27,7 @@ export default {
   'register.verification-code.get-verification-code': '获取验证码',
   'register.verification-code.success': '验证码发送成功！',
   'register.verification-code.loading': '验证码发送中...',
+  'register.verification-code.error': '该邮箱已注册',
   'register.verification-code.resend': '重新获取',
   'register.success.title': '注册成功',
   'register.success.content': '关闭此弹窗即可跳转至登录页',
@@ -104,4 +105,10 @@ export default {
   'product.pay.finish': '支付完成',
   'product.pay.success.title': '支付成功',
   'product.pay.success.content': '点击确定即可跳转至激活页面进行激活',
+  // Active Page
+  'active.code.label': '激活码',
+  'active.code.placeholder': '请输入激活码',
+  'active.code.required': '激活码不能为空',
+  'active.activate.btn': '激活',
+  'active.activate.success': '激活成功',
 }

@@ -45,10 +45,9 @@ export const usePay = () => {
         },
         onPositiveClick: () => {
           router
-            .push('/')
+            .push('/active')
             .then(() => {})
             .catch(() => {})
-            .then(() => {})
         },
       })
     }, 2000)

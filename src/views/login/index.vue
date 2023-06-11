@@ -141,8 +141,8 @@ watchEffect(() => {
         </n-form>
         <n-button
           type="primary"
-          secondary
           strong
+          secondary
           block
           :loading="lLoading"
           @click="login"
