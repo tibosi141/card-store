@@ -11,6 +11,7 @@ import router from '~/router'
 export interface ResponseBody<T = any> {
   code: number
   data?: T
+  page?: T
   msg: string
 }
 
@@ -29,13 +30,37 @@ const requestHandler = async (
   return config
 }
 
+const responseIsError = (res: any) => {
+  console.log(typeof res)
+
+  switch (typeof res) {
+    case 'boolean':
+      if (!res) return true
+      break
+
+    case 'string':
+      if (res !== 'success') return true
+      break
+
+    case 'object':
+      if (res.msg !== 'success') return true
+      break
+
+    default:
+      return false
+      break
+  }
+}
+
 const responseHandler = (
   response: AxiosResponse,
 ): ResponseBody<any> | AxiosResponse<any> | Promise<any> | any => {
-  const data = response.data as ResponseBody
-  if (data.code !== 200) {
+  const data = response.data
+  const flag = responseIsError(data)
+  console.log(flag)
+  if (flag) {
     const { message } = useGlobalConfig()
-    message?.error(data.msg)
+    data.msg && message?.error(data.msg)
     return Promise.reject(data)
   }
 

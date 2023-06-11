@@ -1,39 +1,35 @@
 <script setup lang="ts">
 import type { CardProps } from 'naive-ui'
+import type { DeviceInfo } from '~/apis/profile'
 
-withDefaults(
-  defineProps<{
-    size?: CardProps['size']
-    id: string
-    name: string
-    type: string
-    system?: string
-    brand?: string
-  }>(),
-  {
-    size: 'medium',
-  },
-)
+defineProps<{
+  size: CardProps['size']
+  device: DeviceInfo
+}>()
 </script>
 
 <template>
-  <n-card :size="size" :title="name">
+  <n-card
+    hoverable
+    :size="size"
+    :title="device.account"
+  >
     <ul>
       <li>
         <span>ID：</span>
-        <span>{{ id }}</span>
+        <span>{{ device.id }}</span>
       </li>
       <li>
         <span>类型：</span>
-        <span>{{ type }}</span>
+        <span>{{ device.type }}</span>
       </li>
       <li>
-        <span>系统：</span>
-        <span>{{ system }}</span>
+        <span>IP：</span>
+        <span>{{ device.devIp }}</span>
       </li>
       <li>
-        <span>品牌：</span>
-        <span>{{ brand }}</span>
+        <span>端口：</span>
+        <span>{{ device.devPort }}</span>
       </li>
     </ul>
   </n-card>

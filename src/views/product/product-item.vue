@@ -44,6 +44,9 @@ function switchTagType(type: Product['type']): TextProps['type'] {
       :size="spaceSize"
       :vertical="vertical"
       justify="space-between"
+      :item-style="{
+        flex: 1,
+      }"
     >
       <n-descriptions
         v-for="item in product.children"

@@ -10,13 +10,15 @@ import { usePay, useProducts, useShoping } from './composables'
 import ProductItem from './product-item.vue'
 import ShopItem from './shop-item.vue'
 
-const { isDesktop } = useQueryBreakpoints()
+const { isDesktop, isPad } = useQueryBreakpoints()
 const { productList, goodList } = useProducts()
 const { multipleList, shopCar, totalPrice, onRemove } = useShoping(goodList)
 const { pay, payErCode, payModeList, handlePay } = usePay()
 
 const vertical = ref(false)
+const itemVertical = ref(false)
 const spaceSize = ref<SpaceProps['size']>(60)
+const justify = ref<SpaceProps['justify']>('start')
 const cardSize = ref<CardProps['size']>('medium')
 const tagSize = ref<TagProps['size']>('large')
 const inputSize = ref<InputNumberProps['size']>('medium')
@@ -29,19 +31,28 @@ function reset() {
 
 watchEffect(() => {
   if (isDesktop.value) {
+    justify.value = 'start'
     vertical.value = false
-    spaceSize.value = 60
-    cardSize.value = 'medium'
     tagSize.value = 'large'
     inputSize.value = 'medium'
+  }
+  else {
+    justify.value = 'space-between'
+    vertical.value = true
+    tagSize.value = 'medium'
+    inputSize.value = 'small'
+  }
+
+  if (isDesktop.value || isPad.value) {
+    itemVertical.value = false
+    spaceSize.value = 60
+    cardSize.value = 'medium'
     radioSize.value = 'large'
   }
   else {
-    vertical.value = true
+    itemVertical.value = true
     spaceSize.value = 'large'
     cardSize.value = 'small'
-    tagSize.value = 'medium'
-    inputSize.value = 'small'
     radioSize.value = 'medium'
   }
 
@@ -50,19 +61,22 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div p="x-4 t-24 b-12 sm:x-4% md:x-10%">
+  <div p="x-4 t-24 b-20 sm:x-4% md:x-10%">
     <n-checkbox-group v-model:value="multipleList">
       <n-space
-        size="large"
+        :size="spaceSize"
         :vertical="vertical"
         justify="space-between"
+        :item-style="{
+          flex: 1,
+        }"
       >
         <template v-for="item in productList" :key="item.name">
           <ProductItem
             :product="item"
             :card-size="cardSize"
             :space-size="spaceSize"
-            :vertical="vertical"
+            :vertical="itemVertical"
           />
         </template>
       </n-space>
@@ -75,7 +89,7 @@ watchEffect(() => {
           <n-h3 m="b-0!" prefix="bar">
             {{ $t('product.shop-car.title') }}
           </n-h3>
-          <p text="lg right md:left">
+          <p text="lg right sm:xl md:lg md:left">
             {{ $t('product.shop-car.total') }}：
             <n-text strong type="error">
               {{ totalPrice ? totalPrice : 0 }}
@@ -83,7 +97,11 @@ watchEffect(() => {
           </p>
         </div>
         <div flex="1 md:grow-.77">
-          <n-space size="large" :vertical="vertical">
+          <n-space
+            size="large"
+            :justify="justify"
+            :vertical="itemVertical"
+          >
             <template v-for="item in shopCar" :key="item.id">
               <ShopItem
                 :good-item="item"
@@ -128,7 +146,6 @@ watchEffect(() => {
           <n-image
             width="150"
             :src="payErCode"
-            alt=""
           />
           <n-button @click="handlePay">
             {{ $t('product.pay.finish') }}

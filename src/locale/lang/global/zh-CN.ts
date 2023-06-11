@@ -17,6 +17,7 @@ export default {
   'global.header.navigation.product': '购买',
   'global.header.navigation.active': '激活',
   // Request
+  'global.request.error.failed': '操作失败，请重试',
   'global.request.error.401': '登录过期',
   'global.request.error.403': '资源请求错误',
   'global.request.error.500': '服务器错误',

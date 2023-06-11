@@ -35,19 +35,15 @@ export const useForgetPassword = () => {
 
     try {
       await fForm.value?.validate()
-      const flag = await userForgetPasswordApi(fModel)
+      await userForgetPasswordApi(fModel)
       fLoading.value = false
-      if (flag) {
-        toggleSwitch(false)
-        message?.success(t('login.reset-password.success'))
-      }
-      else {
-        message?.error(t('login.reset-password.notfound'))
-      }
+      toggleSwitch(false)
+      message?.success(t('login.reset-password.success'))
     }
     catch (err) {
       fLoading.value = false
-      message?.error(t('login.reset-password.fail'))
+      // message?.error(t('login.reset-password.fail'))
+      message?.error(t('login.reset-password.notfound'))
     }
   }
 

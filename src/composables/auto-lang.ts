@@ -5,8 +5,10 @@ export const useAppLocale = createGlobalState(() =>
 )
 
 export const useAutoLocale = () => {
+  const route = useRoute()
+  const appStore = useAppStore()
   const appLocale = useAppLocale()
-  const { locale } = useI18n()
+  const { t, locale } = useI18n()
   const { isSupported, language } = useNavigatorLanguage()
 
   if (isSupported.value) {
@@ -27,6 +29,12 @@ export const useAutoLocale = () => {
       await loadLanguageAsync(lang).then(() => {})
       appLocale.value = lang
       locale.value = lang
+      const title = route.meta.title
+      if (title) {
+        const localeTitle = t(title)
+        const appTitle = t(appStore.headerConfig.title)
+        document.title = `${localeTitle} - ${appTitle}`
+      }
     }
     catch (err) {
       console.warn(`Failed to load language: ${lang}`)

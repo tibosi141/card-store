@@ -1,26 +1,18 @@
 <script setup lang="ts">
 import type { CardProps } from 'naive-ui'
+import type { CardInfo } from '~/apis/profile'
 
-withDefaults(
-  defineProps<{
-    size?: CardProps['size']
-    title: string
-    headerIcon?: string
-    activeCode?: string
-    type?: string
-    expirationTime?: string
-    counter?: number
-  }>(),
-  {
-    size: 'medium',
-  },
-)
+defineProps<{
+  size?: CardProps['size']
+  card: CardInfo
+  headerIcon?: string
+}>()
 </script>
 
 <template>
   <n-card
     :size="size"
-    :title="title"
+    :title="String(card.userId)"
     hoverable
     :segmented="{
       content: true,
@@ -28,26 +20,32 @@ withDefaults(
     }"
   >
     <template #header-extra>
-      <span text="10 sm:16 md:8" :class="headerIcon" />
+      <span>
+        {{ card.channel }}
+      </span>
     </template>
     <ul>
       <li>
-        <span>激活码：</span>
-        <span>{{ activeCode }}</span>
+        <span>卡号：</span>
+        <span>{{ card.code }}</span>
       </li>
       <li>
         <span>类型：</span>
-        <span>{{ type }}</span>
+        <span>{{ card.type }}</span>
+      </li>
+      <li>
+        <span>是否激活：</span>
+        <span>{{ card.isActive ? '已激活' : '未激活' }}</span>
       </li>
       <li>
         <span>设备数量：</span>
-        <span>{{ counter }}</span>
+        <span>{{ card.device }}</span>
       </li>
     </ul>
     <template #footer>
       <p>
         <span>到期时间：</span>
-        <span>{{ expirationTime }}</span>
+        <span>{{ card.endTime }}</span>
       </p>
     </template>
   </n-card>

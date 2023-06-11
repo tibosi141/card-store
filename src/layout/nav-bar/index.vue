@@ -13,13 +13,13 @@ defineEmits(['click'])
   <ul
     md="p-0 flex gap-12 justify-center divide-y-0"
     sm="px-4%"
-    class="px-20px py-4 divide-y divide-gray"
+    class="p-4 divide-y divide-gray"
   >
     <li
       v-for="item in navigations"
       :key="item.path"
-      md="text-4 lh-8 transform-none"
-      class="cursor-pointer text-xl lh-20 transition-transform duration-250 hover:text-gray-300"
+      md="px-0 text-4 lh-8 transform-none"
+      class="cursor-pointer px-4 text-xl lh-20 transition-transform duration-250 hover:text-gray-300"
       :class="[
         item.path === $route.path ? 'text-gray-300' : 'text-gray',
         open ? 'transform-none ' : 'translate-x--8',

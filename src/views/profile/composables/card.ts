@@ -1,17 +1,17 @@
-import type { CardGetListParams, CardInfo } from '~/apis/home'
-import { cardGetListApi } from '~/apis/home'
+import type { CardInfo } from '~/apis/profile'
+import { cardGetListApi } from '~/apis/profile'
 
 export const useCard = () => {
   const cLoading = ref(false)
   const cardList = ref<CardInfo[]>()
 
-  async function getCardList(params?: CardGetListParams) {
+  async function getCardList() {
     cLoading.value = true
 
     try {
-      const { data } = await cardGetListApi(params)
+      const { page } = await cardGetListApi()
       cLoading.value = false
-      if (data) cardList.value = data
+      if (page) cardList.value = page.list
     }
     catch (err) {
       cLoading.value = false

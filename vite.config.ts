@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
       __VUE_I18N_LEGACY_API__: false,
     },
     build: {
-      // sourcemap: true,
+      chunkSizeWarningLimit: 512,
       rollupOptions: {
         output: {
           manualChunks: {
@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       open: true,
-      host: '0.0.0.0',
+      host: true,
       port: 3000,
       proxy: {
         [env.VITE_APP_BASE_API]: {

@@ -5,7 +5,7 @@ import {
   userLogoutApi,
   userRegisterApi,
 } from '~/apis/user'
-
+import avatarJpeg from '~/assets/images/07akioni.jpeg'
 import i18n from '~/locale'
 import router from '~/router'
 
@@ -20,6 +20,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   function setUserInfo(info: UserInfo | undefined) {
+    if (info) info.avatar = avatarJpeg
     userInfo.value = info
   }
 
@@ -40,16 +41,21 @@ export const useUserStore = defineStore('user', () => {
   }
 
   async function logout() {
-    await userLogoutApi()
-    setToken(null)
-    setUserInfo(undefined)
-    message?.success(t('global.user.logout.success'))
-    await router.replace({
-      path: '/login',
-      query: {
-        redirect: router.currentRoute.value.path,
-      },
-    })
+    try {
+      await userLogoutApi()
+      setToken(null)
+      setUserInfo(undefined)
+      message?.success(t('global.user.logout.success'))
+      await router.replace({
+        path: '/login',
+        query: {
+          redirect: router.currentRoute.value.path,
+        },
+      })
+    }
+    catch (error) {
+      message?.error(t('global.request.error.failed'))
+    }
   }
 
   return {

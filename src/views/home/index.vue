@@ -58,7 +58,7 @@ getCardList()
           {{ $t('home-card-title-a') }}
         </a>
       </template>
-      <div flex="~ wrap sm:gap-4%">
+      <div flex="~ gap-6 wrap sm:gap-4%">
         <template v-for="item in cardList" :key="item.id">
           <CardItem
             :title="$t(item.title)"
