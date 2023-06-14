@@ -58,10 +58,13 @@ function switchTagType(type: Product['type']): TextProps['type'] {
         label-align="center"
       >
         <template #header>
-          <div flex="~ justify-between">
+          <n-divider class="m-0!">
+            {{ $t(item.classify) }}
+          </n-divider>
+          <!-- <div flex="~ justify-between">
             <span>{{ $t(item.classify) }}</span>
             <n-checkbox :value="item.id" />
-          </div>
+          </div> -->
         </template>
         <n-descriptions-item
           :label="$t('product.label.flow')"

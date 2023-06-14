@@ -31,8 +31,6 @@ const requestHandler = async (
 }
 
 const responseIsError = (res: any) => {
-  console.log(typeof res)
-
   switch (typeof res) {
     case 'boolean':
       if (!res) return true
@@ -48,7 +46,6 @@ const responseIsError = (res: any) => {
 
     default:
       return false
-      break
   }
 }
 
@@ -57,7 +54,6 @@ const responseHandler = (
 ): ResponseBody<any> | AxiosResponse<any> | Promise<any> | any => {
   const data = response.data
   const flag = responseIsError(data)
-  console.log(flag)
   if (flag) {
     const { message } = useGlobalConfig()
     data.msg && message?.error(data.msg)
