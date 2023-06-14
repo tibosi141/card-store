@@ -111,4 +111,8 @@ export default {
   'active.code.required': '激活码不能为空',
   'active.activate.btn': '激活',
   'active.activate.success': '激活成功',
+  // Profile Page
+  'profile.user-info.title': '个人信息',
+  'profile.device-info.title': '设备信息',
+  'profile.device-info.end-time': '过期时间',
 }

@@ -29,7 +29,7 @@ const userOptions = computed<DropdownOption[]>(() => {
     return [
       {
         key: 'user-center',
-        label: () => t('global.user.center'),
+        label: () => t('global.header.navigation.profile'),
         icon: () => renderIcon(UserOutlined),
       },
       {

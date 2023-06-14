@@ -1,87 +1,165 @@
 <script setup lang="ts">
-import type { CardProps, SpaceProps } from 'naive-ui'
-import { useCard, useDevice } from './composables'
-import Container from './container.vue'
-import DeviceItem from './device-item.vue'
-import CardItem from './card-item.vue'
+import {
+  ApiFilled,
+  EnvironmentFilled,
+  IdcardFilled,
+  LockFilled,
+} from '@vicons/antd'
+import type { CardProps, DescriptionsProps, TagProps } from 'naive-ui'
+import { useDevice } from './composables/device'
 
 const userStore = useUserStore()
 const { userInfo } = toRefs(userStore)
-const { isPad, isMobile } = useQueryBreakpoints()
-const { cLoading, cardList, getCardList } = useCard()
-const { dLoading, deviceList, getDeviceList } = useDevice()
+const { isDesktop, isMobile } = useQueryBreakpoints()
+const { dLoading, deviceInfo, tagType, getDeviceList } = useDevice()
 
-const vertical = ref(false)
-const spaceSize = ref<SpaceProps['size']>(45)
 const cardSize = ref<CardProps['size']>('medium')
+const tagSize = ref<TagProps['size']>('large')
+const descriptionSize = ref<DescriptionsProps['size']>('medium')
 
-watchEffect(() => {
-  if (isMobile.value)
-    vertical.value = true
-  else
-    vertical.value = false
-
-  if (isMobile.value || isPad.value) {
-    spaceSize.value = 'large'
-    cardSize.value = 'small'
-  }
-  else {
-    spaceSize.value = 45
-    cardSize.value = 'medium'
-  }
-})
+watch(
+  isMobile,
+  (newVal) => {
+    if (newVal) {
+      cardSize.value = 'small'
+      tagSize.value = 'medium'
+      descriptionSize.value = 'small'
+    }
+    else {
+      cardSize.value = 'medium'
+      tagSize.value = 'large'
+      descriptionSize.value = 'medium'
+    }
+  },
+  {
+    immediate: true,
+  },
+)
 
 getDeviceList()
-getCardList()
 </script>
 
 <template>
   <div p="x-4 t-16 b-12 sm:x-8 md:x-10% md:t-18">
-    <div>
-      <n-divider title-placement="center">
-        个人信息
-      </n-divider>
-      <div class="text-center">
+    <n-h2 class="text-center my-10!">
+      {{ $t('global.user.center') }}
+    </n-h2>
+    <div flex="~ col justify-between md:row gap-20%">
+      <div class="mb-12 flex-1">
+        <n-divider
+          v-if="isDesktop"
+          title-placement="center"
+          class="text-xl!"
+        >
+          {{ $t('profile.user-info.title') }}
+        </n-divider>
+        <n-h3
+          v-else
+          prefix="bar"
+          type="warning"
+        >
+          {{ $t('profile.user-info.title') }}
+        </n-h3>
         <n-image
           width="80"
           src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
         />
         <p m="t-8">
-          用户名：
-          {{ userInfo?.userName }}
+          {{ `${$t('login.username.placeholder')}：${userInfo?.userName}` }}
         </p>
       </div>
-    </div>
-    <Container title="我的设备">
-      <n-spin class="min-h-40" :show="dLoading">
-        <n-space size="large">
-          <template v-for="item in deviceList" :key="item.id">
-            <DeviceItem
-              :size="cardSize"
-              :device="item"
-            />
-          </template>
-        </n-space>
-      </n-spin>
-    </Container>
-    <Container title="已有卡片">
-      <n-spin class="min-h-50" :show="cLoading">
-        <n-space
-          :size="spaceSize"
-          :vertical="vertical"
-          :item-style="{
-            minWidth: '350px',
-          }"
+      <div class="flex-1">
+        <n-divider
+          v-if="isDesktop"
+          title-placement="center"
+          class="text-xl!"
         >
-          <template v-for="item in cardList" :key="item.id">
-            <CardItem
-              :card="item"
-              :size="cardSize"
-            />
-          </template>
-        </n-space>
-      </n-spin>
-    </Container>
+          {{ $t('profile.device-info.title') }}
+        </n-divider>
+        <n-h3
+          v-else
+          prefix="bar"
+          type="warning"
+        >
+          {{ $t('profile.device-info.title') }}
+        </n-h3>
+        <n-spin :show="dLoading">
+          <n-card
+            :size="cardSize"
+            :title="deviceInfo?.type"
+            hoverable
+            :segmented="{
+              content: true,
+              footer: 'soft',
+            }"
+          >
+            <template #header>
+              <n-tag :size="tagSize" :type="tagType">
+                {{ `${deviceInfo?.type}会员` }}
+              </n-tag>
+            </template>
+            <template #header-extra>
+              <span
+                text="10 sm:16 md:8"
+                :class="`i-flagpack-${deviceInfo?.ico}`"
+              />
+            </template>
+            <n-descriptions
+              :size="descriptionSize"
+              bordered
+              label-placement="left"
+              :columns="1"
+              :label-style="{
+                width: '10rem',
+              }"
+            >
+              <n-descriptions-item :content-style="{ textAlign: 'center' }">
+                <template #label>
+                  <n-icon>
+                    <EnvironmentFilled />
+                  </n-icon>
+                  IP
+                </template>
+                {{ deviceInfo?.devIp }}
+              </n-descriptions-item>
+              <n-descriptions-item :content-style="{ textAlign: 'center' }">
+                <template #label>
+                  <n-icon>
+                    <ApiFilled />
+                  </n-icon>
+                  {{ $t('home-card-item-port') }}
+                </template>
+                {{ deviceInfo?.devPort }}
+              </n-descriptions-item>
+              <n-descriptions-item :content-style="{ textAlign: 'center' }">
+                <template #label>
+                  <n-icon>
+                    <IdcardFilled />
+                  </n-icon>
+                  {{ $t('home-card-item-username') }}
+                </template>
+                {{ deviceInfo?.account }}
+              </n-descriptions-item>
+              <n-descriptions-item :content-style="{ textAlign: 'center' }">
+                <template #label>
+                  <n-icon>
+                    <LockFilled />
+                  </n-icon>
+                  {{ $t('home-card-item-password') }}
+                </template>
+                {{ deviceInfo?.password }}
+              </n-descriptions-item>
+            </n-descriptions>
+            <template #footer>
+              <p text="xl md:lg">
+                <span>{{ $t('profile.device-info.end-time') }}：</span>
+                <span>{{ deviceInfo?.endTime }}</span>
+              </p>
+            </template>
+          </n-card>
+        </n-spin>
+      </div>
+    </div>
   </div>
 </template>
 

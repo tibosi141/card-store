@@ -3,7 +3,7 @@ import { useDevice } from './composables/device'
 import Container from './container.vue'
 import DeviceItem from './device-item.vue'
 
-const { getDeviceList, deviceList } = useDevice()
+const { loading, deviceList, getDeviceList } = useDevice()
 
 getDeviceList()
 </script>
@@ -34,11 +34,13 @@ getDeviceList()
           {{ $t('home-card-title-a') }}
         </a>
       </template>
-      <div flex="~ gap-6 wrap sm:gap-4% md:gap-2%">
-        <template v-for="item in deviceList" :key="item.id">
-          <DeviceItem :device="item" />
-        </template>
-      </div>
+      <n-spin class="min-h-80" :show="loading">
+        <div flex="~ gap-6 wrap sm:gap-4% md:gap-2%">
+          <template v-for="item in deviceList" :key="item.id">
+            <DeviceItem :device="item" />
+          </template>
+        </div>
+      </n-spin>
     </Container>
   </div>
 </template>

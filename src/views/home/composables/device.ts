@@ -1,5 +1,5 @@
 import { deviceGetListApi } from '~/apis/home'
-import type { DeviceInfo } from '~/apis/profile'
+import type { DeviceInfo } from '~/apis/home'
 
 export const useDevice = () => {
   const loading = ref(false)
@@ -9,9 +9,9 @@ export const useDevice = () => {
     loading.value = true
 
     try {
-      const { page } = await deviceGetListApi()
+      const { data } = await deviceGetListApi()
       loading.value = false
-      if (page) deviceList.value = page.list
+      if (data) deviceList.value = data
     }
     catch (err) {
       loading.value = false
@@ -19,6 +19,7 @@ export const useDevice = () => {
   }
 
   return {
+    loading,
     deviceList,
     getDeviceList,
   }

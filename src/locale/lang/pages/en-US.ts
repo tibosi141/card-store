@@ -43,7 +43,7 @@ export default {
   'home-card-item-jp-detail': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum accusantium quisquam dicta voluptatem, eaque nostrum molestiae quo perferendis voluptatibus neque. Architecto corrupti, alias velit laudantium quidem debitis officia eius perspiciatis.',
   'home-card-item-kr-title': 'Korea',
   'home-card-item-kr-detail': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum accusantium quisquam dicta voluptatem, eaque nostrum molestiae quo perferendis voluptatibus neque. Architecto corrupti, alias velit laudantium quidem debitis officia eius perspiciatis.',
-  'home-card-item-username': 'UserName',
+  'home-card-item-username': 'Account',
   'home-card-item-password': 'Password',
   'home-card-item-port': 'Port',
   // Guide Page
@@ -111,4 +111,9 @@ export default {
   'active.code.required': 'Activation codes cannot be empty',
   'active.activate.btn': 'Activate',
   'active.activate.success': 'Successful activation',
+  // Profile Page
+  'profile.user-info.title': 'User',
+  'profile.device-info.title': 'Device',
+  'profile.device-info.end-time': 'Expiration time',
+
 }

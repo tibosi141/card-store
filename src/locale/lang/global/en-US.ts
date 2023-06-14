@@ -13,7 +13,7 @@ export default {
   'global.header.navigation.guide': 'Guide',
   'global.header.navigation.about': 'About Us',
   'global.header.navigation.contact': 'Contact Us',
-  'global.header.navigation.profile': 'User Center',
+  'global.header.navigation.profile': 'Profile',
   'global.header.navigation.product': 'Purchase',
   'global.header.navigation.active': 'Activate',
   // Request
@@ -25,7 +25,7 @@ export default {
   // User
   'global.user.logout': 'Logout ',
   'global.user.logout.success': 'Logout successfully',
-  'global.user.center': 'User Center',
+  'global.user.center': 'Personal Center',
   // Dialog
   'global.dialog.title.info': 'Hint',
   'global.dialog.title.warn': 'Warning',

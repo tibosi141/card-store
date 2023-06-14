@@ -3,13 +3,7 @@ import type { DeviceInfo } from '~/apis/profile'
 
 defineProps<{
   device: DeviceInfo
-  title?: string
-  icon?: string
-  description?: string
-  detail?: string
 }>()
-
-const { isDesktop } = useQueryBreakpoints()
 </script>
 
 <template>
@@ -26,16 +20,14 @@ const { isDesktop } = useQueryBreakpoints()
     <figure w="sm:16" m="y-4 sm:x-auto sm:y-6 md:x-0 md:y-2">
       <span text="12 sm:16 md:10" :class="`i-flagpack-${device.ico}`" />
     </figure>
-    <div>
-      <p m="b-6px sm:b-8px md:b-12px" text="12px gray sm:14px">
-        {{ $t(`home-card-item-${device.ico}-detail`) }}
-      </p>
-    </div>
+    <p text="12px gray sm:14px">
+      {{ $t(`home-card-item-${device.ico}-detail`) }}
+    </p>
+    <n-divider class="my-4!" />
     <n-descriptions
-      bordered
       size="small"
       label-placement="left"
-      :column="isDesktop ? 1 : 2"
+      :column="2"
     >
       <n-descriptions-item label="IP">
         {{ device.devIp }}

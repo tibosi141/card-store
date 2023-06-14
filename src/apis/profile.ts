@@ -1,11 +1,3 @@
-export interface ResponseData<T = any> {
-  totalCount: number
-  pageSize: number
-  totalPage: number
-  currPage: number
-  list: T[]
-}
-
 export interface DeviceInfo {
   id: number
   account: string
@@ -13,7 +5,8 @@ export interface DeviceInfo {
   devPort: string
   password: string
   type: string
-  userId?: string
+  endTime?: number | string
+  userId?: number
   ico: string
 }
 
@@ -27,16 +20,18 @@ export interface CardInfo {
   channel?: string
   device: number
   userId?: number
-  code?: string
+  code: string
+  ico: string
+  duration: number
 }
 
-export const deviceGetListUrl = '/card/device/list'
-export const cardGetListUrl = '/card/card/list'
+export const deviceGetListUrl = '/card/device/getList'
+export const cardGetListUrl = '/card/card/getList'
 
 export const deviceGetListApi = () => {
-  return usePost<any, ResponseData<DeviceInfo>>(deviceGetListUrl)
+  return useGet<any, DeviceInfo[]>(deviceGetListUrl)
 }
 
 export const cardGetListApi = () => {
-  return usePost<any, ResponseData<CardInfo>>(cardGetListUrl)
+  return useGet<any, CardInfo[]>(cardGetListUrl)
 }
