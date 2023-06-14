@@ -12,8 +12,9 @@ export interface DeviceInfo {
   devIp: string
   devPort: string
   password: string
-  type?: string
+  type: string
   userId?: string
+  ico: string
 }
 
 export interface CardInfo {

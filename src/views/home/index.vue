@@ -1,35 +1,11 @@
 <script setup lang="ts">
-import { useCard } from './composables/card'
+import { useDevice } from './composables/device'
 import Container from './container.vue'
-import CardItem from './card-item.vue'
+import DeviceItem from './device-item.vue'
 
-const { getCardList } = useCard()
+const { getDeviceList, deviceList } = useDevice()
 
-const cardList = ref([
-  {
-    id: 'cn',
-    icon: 'i-flagpack-cn',
-    title: 'home-card-item-cn-title',
-    description: 'home-card-item-cn-desc',
-    detail: 'home-card-item-cn-detail',
-  },
-  {
-    id: 'jp',
-    icon: 'i-flagpack-jp',
-    title: 'home-card-item-jp-title',
-    description: 'home-card-item-jp-desc',
-    detail: 'home-card-item-jp-detail',
-  },
-  {
-    id: 'kr',
-    icon: 'i-flagpack-kr',
-    title: 'home-card-item-kr-title',
-    description: 'home-card-item-kr-desc',
-    detail: 'home-card-item-kr-detail',
-  },
-])
-
-getCardList()
+getDeviceList()
 </script>
 
 <template>
@@ -58,14 +34,9 @@ getCardList()
           {{ $t('home-card-title-a') }}
         </a>
       </template>
-      <div flex="~ gap-6 wrap sm:gap-4%">
-        <template v-for="item in cardList" :key="item.id">
-          <CardItem
-            :title="$t(item.title)"
-            :icon="item.icon"
-            :description="$t(item.description)"
-            :detail="$t(item.detail)"
-          />
+      <div flex="~ gap-6 wrap sm:gap-4% md:gap-2%">
+        <template v-for="item in deviceList" :key="item.id">
+          <DeviceItem :device="item" />
         </template>
       </div>
     </Container>
