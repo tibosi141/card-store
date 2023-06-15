@@ -1,6 +1,6 @@
 import type { FormInst, FormRules } from 'naive-ui'
-import type { CardActivateParams } from '~/apis/active'
-import { cardActivateApi } from '~/apis/active'
+import type { CardActivateParams } from '~/api/active'
+import { cardActivateApi } from '~/api/active'
 
 export const useActive = () => {
   const { t } = useI18n()

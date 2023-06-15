@@ -1,6 +1,6 @@
 import type { FormInst, FormItemInst, FormItemRule, FormRules } from 'naive-ui'
-import type { UserRegisterParams } from '~/apis/user'
-import { userSendCodeApi } from '~/apis/user'
+import type { UserRegisterParams } from '~/api/user'
+import { userSendCodeApi } from '~/api/user'
 
 export const useRegister = () => {
   const { t } = useI18n()

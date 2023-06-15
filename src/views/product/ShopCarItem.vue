@@ -1,31 +1,22 @@
 <script setup lang="ts">
 import type { TagProps } from 'naive-ui'
-import type { GoodItem } from '~/apis/product'
+import type { GoodItem } from '~/api/product'
 
-defineProps<{
+const props = defineProps<{
   goodItem: GoodItem
   tagSize: TagProps['size']
 }>()
 const emit = defineEmits(['onRemove'])
 
+const tagType = computed<TagProps['type']>(() => {
+  if (props.goodItem.type === 'regular') return 'success'
+  else if (props.goodItem.type === 'higher') return 'info'
+  else if (props.goodItem.type === 'super') return 'error'
+  else return 'default'
+})
+
 function handleRemoveGoodItem(good: GoodItem) {
   emit('onRemove', good)
-}
-
-function switchTagType(type: GoodItem['type']): TagProps['type'] {
-  switch (type) {
-    case 'regular':
-      return 'success'
-
-    case 'higher':
-      return 'info'
-
-    case 'super':
-      return 'error'
-
-    default:
-      return 'default'
-  }
 }
 </script>
 
@@ -37,7 +28,7 @@ function switchTagType(type: GoodItem['type']): TagProps['type'] {
     @close="handleRemoveGoodItem(goodItem)"
   >
     <template #header>
-      <n-tag :size="tagSize" :type="switchTagType(goodItem.type)">
+      <n-tag :size="tagSize" :type="tagType">
         {{ $t(goodItem.name) }}
       </n-tag>
     </template>

@@ -9,9 +9,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AppProvider: typeof import('./../src/components/app-provider/index.vue')['default']
-    Banner: typeof import('./../src/components/banner/index.vue')['default']
-    NaiveProvider: typeof import('./../src/components/app-provider/naive-provider.vue')['default']
+    AppProvider: typeof import('./../src/components/AppProvider/index.vue')['default']
+    Banner: typeof import('./../src/components/Banner/index.vue')['default']
+    NaiveProvider: typeof import('./../src/components/AppProvider/NaiveProvider.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NBlockquote: typeof import('naive-ui')['NBlockquote']
     NButton: typeof import('naive-ui')['NButton']

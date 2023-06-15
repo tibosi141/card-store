@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Logo, Title } from '../common'
-import NavBar from '../nav-bar/index.vue'
-import { useScrollHandle } from './composables/handle-scroll'
-import RightMenu from './right-menu.vue'
+import NavBar from '../NavBar/index.vue'
+import { useScroll } from './composables/scroll'
+import RightMenu from './RightMenu.vue'
 
 const appStore = useAppStore()
 const { headerConfig, navigations } = storeToRefs(appStore)
-const { isScroll } = useScrollHandle()
+const { isScroll } = useScroll()
 const { isDesktop } = useQueryBreakpoints()
 
 const logo = computed(() => headerConfig.value.logo)

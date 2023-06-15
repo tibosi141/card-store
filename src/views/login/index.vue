@@ -6,15 +6,16 @@ import {
   MessageOutlined,
   UserOutlined,
 } from '@vicons/antd'
-import { useForgetPassword, useLogin, useRegister } from './composables'
+import { useLogin } from './composables/login'
+import { useRegister } from './composables/register'
+import { useForgetPassword } from './composables/forget-password'
 import { BlankLayout } from '~/layout'
 
 type TabName = 'login' | 'register'
 
 const { isMobile, isPad, isDesktop } = useQueryBreakpoints()
 const { lForm, lLoading, lModel, lRules, login } = useLogin()
-const { show, fForm, fLoading, fModel, fRules, toggleSwitch, sendEmail }
-  = useForgetPassword()
+const { show, fForm, fLoading, fModel, fRules, toggleSwitch, sendEmail } = useForgetPassword()
 const {
   rForm,
   password,
@@ -54,15 +55,6 @@ watchEffect(() => {
     lModel.password = password
   }
 })
-// watch(registerState, (newVal) => {
-//   if (newVal) {
-//     const { email, password } = rModel
-
-//     tabName.value = 'login'
-//     lModel.email = email
-//     lModel.password = password
-//   }
-// })
 </script>
 
 <template>

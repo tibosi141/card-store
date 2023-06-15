@@ -66,7 +66,7 @@ export default defineConfig(({ mode }) => {
             ],
           },
         ],
-        dts: 'types/auto-import.d.ts',
+        dts: 'types/auto-imports.d.ts',
         dirs: ['src/stores', 'src/composables'],
       }),
       Components({

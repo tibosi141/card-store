@@ -1,6 +1,6 @@
 import type { TagProps } from 'naive-ui'
-import type { DeviceInfo } from '~/apis/profile'
-import { deviceGetListApi } from '~/apis/profile'
+import type { DeviceInfo } from '~/api/profile'
+import { deviceGetListApi } from '~/api/profile'
 
 export const useDevice = () => {
   const token = useAuthorization()

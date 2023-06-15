@@ -1,4 +1,4 @@
-import Layout from './base-layout/index.vue'
-import BlankLayout from './blank-layout/index.vue'
+import Layout from './BaseLayout/index.vue'
+import BlankLayout from './BlankLayout/index.vue'
 
 export { Layout, BlankLayout }

@@ -1,7 +1,7 @@
-import type { GoodItem, ProductItem } from '~/apis/product'
-import { productGetListApi } from '~/apis/product'
+import type { GoodItem, ProductItem } from '~/api/product'
+import { productGetListApi } from '~/api/product'
 
-export const useProducts = () => {
+export const useProduct = () => {
   const productList = productGetListApi()
 
   const goodList = productList

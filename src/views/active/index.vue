@@ -9,16 +9,11 @@ const inline = ref<FormProps['inline']>(true)
 const labelAlign = ref<FormProps['labelPlacement']>('left')
 
 watchEffect(() => {
-  if (isDesktop.value)
-    labelAlign.value = 'left'
-  else
-    labelAlign.value = 'top'
+  if (isDesktop.value) labelAlign.value = 'left'
+  else labelAlign.value = 'top'
 
-  if (isMobile.value)
-    inline.value = false
-
-  else
-    inline.value = true
+  if (isMobile.value) inline.value = false
+  else inline.value = true
 })
 </script>
 
@@ -41,7 +36,10 @@ watchEffect(() => {
           :label="$t('active.code.label')"
           path="code"
         >
-          <n-input v-model:value="formModel.code" :placeholder="$t('active.code.placeholder')" />
+          <n-input
+            v-model:value="formModel.code"
+            :placeholder="$t('active.code.placeholder')"
+          />
         </n-form-item>
       </n-form>
       <n-button

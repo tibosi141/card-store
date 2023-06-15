@@ -4,8 +4,7 @@
 
   function setRem() {
     const scale = html.clientWidth / 1920
-    const fontSize
-      = baseSize * Math.min(scale, 2) > 12 ? baseSize * Math.min(scale, 2) : 12
+    const fontSize = baseSize * Math.min(scale, 2) > 12 ? baseSize * Math.min(scale, 2) : 12
     html.style.fontSize = `${fontSize}px`
   }
 

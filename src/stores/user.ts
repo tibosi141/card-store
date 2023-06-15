@@ -1,10 +1,10 @@
-import type { UserInfo, UserLoginParams, UserRegisterParams } from '~/apis/user'
+import type { UserInfo, UserLoginParams, UserRegisterParams } from '~/api/user'
 import {
   userGetInfoApi,
   userLoginApi,
   userLogoutApi,
   userRegisterApi,
-} from '~/apis/user'
+} from '~/api/user'
 import i18n from '~/locale'
 import router from '~/router'
 

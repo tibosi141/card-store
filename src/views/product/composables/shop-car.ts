@@ -1,7 +1,7 @@
 import { xor } from 'lodash-es'
-import type { GoodItem } from '~/apis/product'
+import type { GoodItem } from '~/api/product'
 
-export const useShoping = (goodList: GoodItem[]) => {
+export const useShopCar = (goodList: GoodItem[]) => {
   const { t } = useI18n()
   const { message, dialog } = useGlobalConfig()
   const multipleList = ref<string[]>()

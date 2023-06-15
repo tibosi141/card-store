@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DropdownOption } from 'naive-ui'
-import LangIcon from './lang-icon.vue'
+import LangIcon from './LangIcon.vue'
 
 defineProps<{ value: string; options: DropdownOption[] }>()
 defineEmits(['update:value'])

@@ -1,6 +1,6 @@
 import type { FormInst, FormRules } from 'naive-ui'
-import type { UserSendCodeParams } from '~/apis/user'
-import { userForgetPasswordApi } from '~/apis/user'
+import type { UserSendCodeParams } from '~/api/user'
+import { userForgetPasswordApi } from '~/api/user'
 
 export const useForgetPassword = () => {
   const { t } = useI18n()

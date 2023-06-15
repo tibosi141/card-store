@@ -6,15 +6,15 @@ import type {
   SpaceProps,
   TagProps,
 } from 'naive-ui'
-import { useProducts } from './composables'
-// import { usePay, useProducts, useShoping } from './composables'
-import ProductItem from './product-item.vue'
-// import ShopItem from './shop-item.vue'
+import { useProduct } from './composables/product'
+// import { useShopCar } from './composables/shop-car'
+// import { usePay } from './composables/pay'
+import ProductItem from './ProductItem.vue'
+// import ShopItem from './ShopCarItem.vue'
 
 const { isDesktop, isPad } = useQueryBreakpoints()
-const { productList } = useProducts()
-// const { productList, goodList } = useProducts()
-// const { multipleList, shopCar, totalPrice, onRemove } = useShoping(goodList)
+const { productList } = useProduct()
+// const { multipleList, shopCar, totalPrice, onRemove } = useShopCar(goodList)
 // const { pay, payErCode, payModeList, handlePay } = usePay()
 
 const vertical = ref(false)

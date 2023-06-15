@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DeviceInfo } from '~/apis/profile'
+import type { DeviceInfo } from '~/api/profile'
 
 defineProps<{
   device: DeviceInfo

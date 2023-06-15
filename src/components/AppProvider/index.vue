@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import naiveProvider from './naive-provider.vue'
+import NaiveProvider from './NaiveProvider.vue'
 </script>
 
 <template>
@@ -7,9 +7,9 @@ import naiveProvider from './naive-provider.vue'
     <n-dialog-provider>
       <n-notification-provider>
         <n-loading-bar-provider>
-          <naiveProvider>
+          <NaiveProvider>
             <slot />
-          </naiveProvider>
+          </NaiveProvider>
         </n-loading-bar-provider>
       </n-notification-provider>
     </n-dialog-provider>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDevice } from './composables/device'
-import Container from './container.vue'
-import DeviceItem from './device-item.vue'
+import CardContainer from './CardContainer.vue'
+import CardItem from './CardItem.vue'
 
 const { loading, deviceList, getDeviceList } = useDevice()
 
@@ -28,7 +28,7 @@ getDeviceList()
         </p>
       </div>
     </Banner>
-    <Container>
+    <CardContainer>
       <template #headerRight>
         <a class="text-14px md:text-16px" href="javascript:;">
           {{ $t('home-card-title-a') }}
@@ -37,11 +37,11 @@ getDeviceList()
       <n-spin class="min-h-80" :show="loading">
         <div flex="~ gap-6 wrap sm:gap-4% md:gap-2%">
           <template v-for="item in deviceList" :key="item.id">
-            <DeviceItem :device="item" />
+            <CardItem :device="item" />
           </template>
         </div>
       </n-spin>
-    </Container>
+    </CardContainer>
   </div>
 </template>
 

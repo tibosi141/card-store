@@ -35,15 +35,12 @@ const responseIsError = (res: any) => {
     case 'boolean':
       if (!res) return true
       break
-
     case 'string':
       if (res !== 'success') return true
       break
-
     case 'object':
       if (res.msg !== 'success') return true
       break
-
     default:
       return false
   }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Logo } from '../common'
-import SelectLang from '../select-lang/index.vue'
+import SelectLang from '../SelectLang/index.vue'
 
 const locale = useAppLocale()
 const appStore = useAppStore()

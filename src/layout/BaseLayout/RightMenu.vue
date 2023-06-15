@@ -8,8 +8,8 @@ import {
   UserOutlined,
 } from '@vicons/antd'
 import type { Component } from 'vue'
-import SelectLang from '../select-lang/index.vue'
-import SelectUser from '../select-user/index.vue'
+import SelectLang from '../SelectLang/index.vue'
+import SelectUser from '../SelectUser/index.vue'
 import profileJpg from '~/assets/images/profile.jpg'
 
 const router = useRouter()

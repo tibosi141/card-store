@@ -153,7 +153,10 @@ getDeviceList()
             <template #footer>
               <p text="xl md:4">
                 <span>{{ $t('profile.device-info.end-time') }}：</span>
-                <n-time :time="deviceInfo?.endTime" format="yyyy-MM-dd hh:mm:ss" />
+                <n-time
+                  :time="deviceInfo?.endTime"
+                  format="yyyy-MM-dd hh:mm:ss"
+                />
               </p>
             </template>
           </n-card>

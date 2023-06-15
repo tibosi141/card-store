@@ -128,7 +128,9 @@ const ConnectionList = ref([
       <n-divider class="text-7!" style="--n-color: white">
         {{ $t('guide-addguest-title') }}
       </n-divider>
-      <div class="flex flex-col justify-between gap-14 md:mt-7 md:flex-row md:flex-wrap md:gap-20">
+      <div
+        class="flex flex-col justify-between gap-14 md:mt-7 md:flex-row md:flex-wrap md:gap-20"
+      >
         <section v-for="platform in platformList" :key="platform.key">
           <n-h3 prefix="bar">
             {{ platform.key }}

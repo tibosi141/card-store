@@ -1,4 +1,4 @@
-import Logo from './logo.vue'
-import Title from './title.vue'
+import Logo from './Logo.vue'
+import Title from './Title.vue'
 
 export { Logo, Title }

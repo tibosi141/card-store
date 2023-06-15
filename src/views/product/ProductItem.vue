@@ -1,29 +1,20 @@
 <script setup lang="ts">
 import type { CardProps, SpaceProps, TextProps } from 'naive-ui'
-import type { Product } from '~/apis/product'
+import type { Product } from '~/api/product'
 
-defineProps<{
+const props = defineProps<{
   product: Product
   cardSize: CardProps['size']
   spaceSize: SpaceProps['size']
   vertical: boolean
 }>()
 
-function switchTagType(type: Product['type']): TextProps['type'] {
-  switch (type) {
-    case 'regular':
-      return 'success'
-
-    case 'higher':
-      return 'info'
-
-    case 'super':
-      return 'error'
-
-    default:
-      return 'default'
-  }
-}
+const textType = computed<TextProps['type']>(() => {
+  if (props.product.type === 'regular') return 'success'
+  else if (props.product.type === 'higher') return 'info'
+  else if (props.product.type === 'super') return 'error'
+  else return 'default'
+})
 </script>
 
 <template>
@@ -36,7 +27,7 @@ function switchTagType(type: Product['type']): TextProps['type'] {
     }"
   >
     <template #header>
-      <NText :type="switchTagType(product.type)">
+      <NText :type="textType">
         {{ $t(product.name) }}
       </NText>
     </template>

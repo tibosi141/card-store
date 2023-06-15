@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Dropdown from './drop-down.vue'
+import Dropdown from './DropDown.vue'
 import type { NavigationInfo } from '~/stores/app'
 
 defineProps<{
