@@ -110,7 +110,7 @@ export default {
   'active.code.placeholder': 'Please enter the activation code',
   'active.code.required': 'Activation codes cannot be empty',
   'active.activate.btn': 'Activate',
-  'active.activate.success': 'Successful activation',
+  'active.activate.success.content': 'Activation was successful! Click OK to jump to the personal center for details',
   // Profile Page
   'profile.user-info.title': 'User',
   'profile.device-info.title': 'Device',

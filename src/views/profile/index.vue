@@ -151,9 +151,9 @@ getDeviceList()
               </n-descriptions-item>
             </n-descriptions>
             <template #footer>
-              <p text="xl md:lg">
+              <p text="xl md:4">
                 <span>{{ $t('profile.device-info.end-time') }}：</span>
-                <span>{{ deviceInfo?.endTime }}</span>
+                <n-time :time="deviceInfo?.endTime" format="yyyy-MM-dd hh:mm:ss" />
               </p>
             </template>
           </n-card>

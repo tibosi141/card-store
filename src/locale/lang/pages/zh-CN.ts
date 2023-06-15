@@ -110,7 +110,7 @@ export default {
   'active.code.placeholder': '请输入激活码',
   'active.code.required': '激活码不能为空',
   'active.activate.btn': '激活',
-  'active.activate.success': '激活成功',
+  'active.activate.success.content': '激活成功！点击确定即可跳转至个人中心查看详情',
   // Profile Page
   'profile.user-info.title': '个人信息',
   'profile.device-info.title': '设备信息',

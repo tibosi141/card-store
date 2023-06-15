@@ -5,7 +5,7 @@ import { cardActivateApi } from '~/apis/active'
 export const useActive = () => {
   const { t } = useI18n()
   const userStore = useUserStore()
-  const { message } = useGlobalConfig()
+  const { dialog } = useGlobalConfig()
   const router = useRouter()
 
   const loading = ref(false)
@@ -27,14 +27,21 @@ export const useActive = () => {
     try {
       await formRef.value?.validate()
       await cardActivateApi(formModel)
-      message?.success(t('active.code.success'))
-      await router.push('/profile')
-    }
-    catch (error) {
-      console.log(error)
-      formModel.code = ''
+      dialog?.success({
+        title: t('global.dialog.title.success'),
+        content: t('active.activate.success.content'),
+        positiveText: t('global.dialog.btn.confirm'),
+        negativeText: t('global.dialog.btn.cancle'),
+        onPositiveClick: () => {
+          router
+            .push('/profile')
+            .then(() => {})
+            .catch(() => {})
+        },
+      })
     }
     finally {
+      formModel.code = ''
       loading.value = false
     }
   }

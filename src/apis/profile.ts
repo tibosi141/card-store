@@ -5,7 +5,7 @@ export interface DeviceInfo {
   devPort: string
   password: string
   type: string
-  endTime?: number | string
+  endTime?: number
   userId?: number
   ico: string
 }

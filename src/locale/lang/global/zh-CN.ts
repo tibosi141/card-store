@@ -29,6 +29,7 @@ export default {
   // Dialog
   'global.dialog.title.info': '提示',
   'global.dialog.title.warn': '警告',
+  'global.dialog.title.success': '成功',
   'global.dialog.btn.cancle': '取消',
   'global.dialog.btn.confirm': '确定',
   'global.dialog.message.cancle': '操作取消',

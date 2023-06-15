@@ -1,6 +1,6 @@
 import type { TagProps } from 'naive-ui'
 import type { DeviceInfo } from '~/apis/profile'
-import { cardGetListApi, deviceGetListApi } from '~/apis/profile'
+import { deviceGetListApi } from '~/apis/profile'
 
 export const useDevice = () => {
   const token = useAuthorization()
@@ -17,16 +17,12 @@ export const useDevice = () => {
     dLoading.value = true
 
     try {
-      const [{ data: device }, { data: card }] = await Promise.all([
-        deviceGetListApi(),
-        cardGetListApi(),
-      ])
+      const { data } = await deviceGetListApi()
       dLoading.value = false
-      if (device) deviceInfo.value = device[1]
-      if (deviceInfo.value && card) {
-        deviceInfo.value.endTime = card.find(
+      if (data) {
+        deviceInfo.value = data.find(
           item => String(item.userId) === token.value,
-        )?.endTime
+        )
       }
     }
     catch (err) {

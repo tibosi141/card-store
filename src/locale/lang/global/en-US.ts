@@ -29,6 +29,7 @@ export default {
   // Dialog
   'global.dialog.title.info': 'Hint',
   'global.dialog.title.warn': 'Warning',
+  'global.dialog.title.success': 'Succeed',
   'global.dialog.btn.cancle': 'Cancle',
   'global.dialog.btn.confirm': 'Confirm',
   'global.dialog.message.cancle': 'Cancel operation',
