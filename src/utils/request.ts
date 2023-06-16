@@ -17,7 +17,7 @@ export interface ResponseBody<T = any> {
 
 const instance = axios.create({
   baseURL: import.meta.env.DEV ? import.meta.env.VITE_APP_BASE_API : '/',
-  timeout: 6000,
+  timeout: 60 * 1000,
 })
 
 const requestHandler = async (
