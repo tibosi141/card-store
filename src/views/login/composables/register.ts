@@ -10,7 +10,7 @@ export const useRegister = () => {
   const rForm = ref<FormInst>()
   const password = ref<FormItemInst>()
   const rLoading = ref(false)
-  const counter = ref(120)
+  const counter = ref(60)
   const countState = ref(false)
   const registerState = ref(false)
   const rModel = reactive<UserRegisterParams>({
@@ -102,7 +102,7 @@ export const useRegister = () => {
   }
 
   function startCount() {
-    counter.value = 120
+    counter.value = 60
 
     const timer = setInterval(() => {
       if (counter.value <= 0) {
@@ -127,7 +127,17 @@ export const useRegister = () => {
     }
     catch (err) {
       msgIns?.destroy()
-      message?.error(t('register.verification-code.error'))
+      switch (typeof err) {
+        case 'boolean':
+          message?.error(t('register.verification-code.error1'))
+          break
+        case 'object':
+          message?.error(t('register.verification-code.error2'))
+          break
+        default:
+          message?.error((err as any).error)
+          break
+      }
     }
   }
 
