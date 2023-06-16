@@ -77,6 +77,7 @@ export default {
   'about-banner-text-item-four': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
   'about-banner-text-item-five': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
   // Product Page
+  'product.title': 'Membership price list',
   'product.type.month': 'Pay Monthly',
   'product.type.quarter': 'Pay Quarterly',
   'product.label.flow': 'Flow',
@@ -110,6 +111,7 @@ export default {
   'product.pay.success.title': 'Payment success',
   'product.pay.success.content': 'Click OK to go to the activation page for activation',
   // Active Page
+  'active.title': 'Member activation',
   'active.code.label': 'Activation code',
   'active.code.placeholder': 'Please enter the activation code',
   'active.code.required': 'Activation codes cannot be empty',

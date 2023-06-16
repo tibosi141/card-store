@@ -18,39 +18,58 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div p="x-4 t-24 b-12 sm:x-4% md:x-10%">
+  <Banner class="banner">
     <div
-      m="x-auto t-12 sm:x-0"
-      w="full md:32rem"
-      flex="~ col gap-4 sm:gap-8 sm:items-center sm:row md:items-start"
+      w="full"
+      h="full"
+      p="md:t-2 x-4 sm:x-4% md:x-10%"
     >
-      <n-form
-        ref="formRef"
-        :inline="inline"
-        :model="formModel"
-        :rules="rules"
-        :label-placement="labelAlign"
+      <n-h2 class="text-center my-10!">
+        {{ $t('active.title') }}
+      </n-h2>
+      <div
+        m="x-auto"
+        w="full sm:92% md:48%"
+        flex="~ col gap-4 sm:gap-8 sm:items-center sm:row md:items-start"
       >
-        <n-form-item
-          class="flex-1"
-          :label="$t('active.code.label')"
-          path="code"
+        <n-form
+          ref="formRef"
+          :inline="inline"
+          :model="formModel"
+          :rules="rules"
+          size="large"
+          :label-placement="labelAlign"
+          label-width="150"
         >
-          <n-input
-            v-model:value="formModel.code"
-            :placeholder="$t('active.code.placeholder')"
-          />
-        </n-form-item>
-      </n-form>
-      <n-button
-        type="primary"
-        strong
-        secondary
-        :loading="loading"
-        @click="handleActive"
-      >
-        {{ $t('active.activate.btn') }}
-      </n-button>
+          <n-form-item
+            class="flex-1"
+            :label="$t('active.code.label')"
+            path="code"
+          >
+            <n-input
+              v-model:value="formModel.code"
+              :placeholder="$t('active.code.placeholder')"
+            />
+          </n-form-item>
+        </n-form>
+        <n-button
+          class="sm:w-8rem!"
+          type="primary"
+          strong
+          secondary
+          size="large"
+          :loading="loading"
+          @click="handleActive"
+        >
+          {{ $t('active.activate.btn') }}
+        </n-button>
+      </div>
     </div>
-  </div>
+  </Banner>
 </template>
+
+<style scoped>
+.banner {
+  background-image: linear-gradient(to top, #537895 0%, #09203f 100%);
+}
+</style>

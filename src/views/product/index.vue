@@ -47,13 +47,13 @@ watchEffect(() => {
 
   if (isDesktop.value || isPad.value) {
     itemVertical.value = false
-    spaceSize.value = 60
+    spaceSize.value = 45
     cardSize.value = 'medium'
     radioSize.value = 'large'
   }
   else {
     itemVertical.value = true
-    spaceSize.value = 'large'
+    spaceSize.value = 24
     cardSize.value = 'small'
     radioSize.value = 'medium'
   }
@@ -63,12 +63,46 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div
+  <Banner
+    class="banner"
+    h="md:screen"
+    p="0"
+  >
+    <div
+      w="full"
+      h="full"
+      p="x-4 t-16 b-12 sm:x-4% md:x-10%"
+      flex="md:~ col justify-center sm:gap-10"
+      bg="black/55"
+    >
+      <n-h2 class="text-center my-10!">
+        {{ $t('product.title') }}
+      </n-h2>
+      <n-space
+        :size="spaceSize"
+        :vertical="vertical"
+        justify="space-between"
+        :item-style="{
+          flex: 1,
+        }"
+      >
+        <template v-for="item in productList" :key="item.name">
+          <ProductItem
+            :product="item"
+            :card-size="cardSize"
+            :space-size="spaceSize"
+            :vertical="itemVertical"
+          />
+        </template>
+      </n-space>
+    </div>
+  </Banner>
+  <!-- <div
     h="md:screen"
     p="x-4 t-24 b-12 sm:x-4% md:x-10%"
     flex="md:~ col justify-center"
   >
-    <!-- <n-checkbox-group v-model:value="multipleList"> -->
+    <n-checkbox-group v-model:value="multipleList">
     <n-space
       size="large"
       :vertical="vertical"
@@ -86,8 +120,8 @@ watchEffect(() => {
         />
       </template>
     </n-space>
-    <!-- </n-checkbox-group> -->
-    <!-- <div m="t-8 md:t-16">
+    </n-checkbox-group>
+    <div m="t-8 md:t-16">
       <div flex="~ gap-6 col md:row md:justify-between">
         <div
           flex="~ items-center justify-between md:gap-21.5 md:col md:items-start"
@@ -158,8 +192,12 @@ watchEffect(() => {
           </n-button>
         </div>
       </div>
-    </div> -->
-  </div>
+    </div>
+  </div> -->
 </template>
 
-<style scoped></style>
+<style scoped>
+.banner {
+  background-image: url('~/assets/images/product-banner.webp');
+}
+</style>

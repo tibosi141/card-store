@@ -77,6 +77,7 @@ export default {
   'about-banner-text-item-four': 'i哦不佛iu保修v已有的哟i福哦的覅u哦',
   'about-banner-text-item-five': '鬼地方v公开的数据被快捷方便快捷',
   // Product Page
+  'product.title': '会员价目表',
   'product.type.month': '月付',
   'product.type.quarter': '季付',
   'product.label.flow': '流量',
@@ -110,6 +111,7 @@ export default {
   'product.pay.success.title': '支付成功',
   'product.pay.success.content': '点击确定即可跳转至激活页面进行激活',
   // Active Page
+  'active.title': '会员激活',
   'active.code.label': '激活码',
   'active.code.placeholder': '请输入激活码',
   'active.code.required': '激活码不能为空',
