@@ -22,9 +22,9 @@ watchEffect(() => {
     <div
       w="full"
       h="full"
-      p="md:t-2 x-4 sm:x-4% md:x-10%"
+      p="x-4 sm:x-4% md:x-10%"
     >
-      <n-h2 class="text-center my-10!">
+      <n-h2 class="text-center my-9!">
         {{ $t('active.title') }}
       </n-h2>
       <div

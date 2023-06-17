@@ -11,7 +11,7 @@ import { useDevice } from './composables/device'
 const userStore = useUserStore()
 const { userInfo } = toRefs(userStore)
 const { isDesktop, isMobile } = useQueryBreakpoints()
-const { dLoading, deviceInfo, tagType, vipInfo, getDeviceList } = useDevice()
+const { dLoading, deviceInfo, isLast, tagType, vipInfo, getDeviceInfo } = useDevice()
 
 const cardSize = ref<CardProps['size']>('medium')
 const tagSize = ref<TagProps['size']>('large')
@@ -39,12 +39,12 @@ watch(
   },
 )
 
-getDeviceList()
+getDeviceInfo()
 </script>
 
 <template>
-  <div p="x-4 t-16 b-12 sm:x-8 md:x-10% md:t-18">
-    <n-h2 class="text-center my-10!">
+  <div p="x-4 t-16 b-12 sm:x-8 md:x-10%">
+    <n-h2 class="text-center my-9!">
       {{ $t('global.user.center') }}
     </n-h2>
     <div flex="col justify-between md:row gap-20%">
@@ -109,53 +109,63 @@ getDeviceList()
               />
             </template>
             <template v-if="deviceInfo" #default>
-              <n-descriptions
-                :size="descriptionSize"
-                bordered
-                label-placement="left"
-                label-align="center"
-                :columns="1"
-                :label-style="{
-                  width: '10rem',
-                }"
+              <n-spin
+                :show="isLast"
+                :rotate="false"
               >
-                <n-descriptions-item :content-style="{ textAlign: 'center' }">
-                  <template #label>
-                    <n-icon>
-                      <EnvironmentFilled />
-                    </n-icon>
-                    IP
-                  </template>
-                  {{ deviceInfo?.devIp }}
-                </n-descriptions-item>
-                <n-descriptions-item :content-style="{ textAlign: 'center' }">
-                  <template #label>
-                    <n-icon>
-                      <ApiFilled />
-                    </n-icon>
-                    {{ $t('home-card-item-port') }}
-                  </template>
-                  {{ deviceInfo?.devPort }}
-                </n-descriptions-item>
-                <n-descriptions-item :content-style="{ textAlign: 'center' }">
-                  <template #label>
-                    <n-icon>
-                      <IdcardFilled />
-                    </n-icon>
-                    {{ $t('home-card-item-username') }}
-                  </template>
-                  {{ deviceInfo?.account }}
-                </n-descriptions-item>
-                <n-descriptions-item :content-style="{ textAlign: 'center' }">
-                  <template #label>
-                    <n-icon>
-                      <LockFilled />
-                    </n-icon>
-                    {{ $t('home-card-item-password') }}
-                  </template>
-                  {{ deviceInfo?.password }}
-                </n-descriptions-item>
-              </n-descriptions>
+                <template #icon>
+                  <span class="translate-x--35% whitespace-nowrap text-4">
+                    {{ $t('profile.last.description') }}
+                  </span>
+                </template>
+                <n-descriptions
+                  :size="descriptionSize"
+                  bordered
+                  label-placement="left"
+                  label-align="center"
+                  :columns="1"
+                  :label-style="{
+                    width: '10rem',
+                  }"
+                >
+                  <n-descriptions-item :content-style="{ textAlign: 'center' }">
+                    <template #label>
+                      <n-icon>
+                        <EnvironmentFilled />
+                      </n-icon>
+                      IP
+                    </template>
+                    {{ deviceInfo?.devIp }}
+                  </n-descriptions-item>
+                  <n-descriptions-item :content-style="{ textAlign: 'center' }">
+                    <template #label>
+                      <n-icon>
+                        <ApiFilled />
+                      </n-icon>
+                      {{ $t('home-card-item-port') }}
+                    </template>
+                    {{ deviceInfo?.devPort }}
+                  </n-descriptions-item>
+                  <n-descriptions-item :content-style="{ textAlign: 'center' }">
+                    <template #label>
+                      <n-icon>
+                        <IdcardFilled />
+                      </n-icon>
+                      {{ $t('home-card-item-username') }}
+                    </template>
+                    {{ deviceInfo?.account }}
+                  </n-descriptions-item>
+                  <n-descriptions-item :content-style="{ textAlign: 'center' }">
+                    <template #label>
+                      <n-icon>
+                        <LockFilled />
+                      </n-icon>
+                      {{ $t('home-card-item-password') }}
+                    </template>
+                    {{ deviceInfo?.password }}
+                  </n-descriptions-item>
+                </n-descriptions>
+              </n-spin>
             </template>
             <template v-else #default>
               <n-empty :description="$t('product.empty.description')">

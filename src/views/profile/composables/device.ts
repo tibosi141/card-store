@@ -7,7 +7,15 @@ export const useDevice = () => {
   const userStore = useUserStore()
   const dLoading = ref(false)
   const deviceInfo = ref<DeviceInfo>()
+
+  const isLast = computed(() => {
+    if (deviceInfo.value?.endTime < new Date().getTime()) return true
+    else return false
+  })
+
   const tagType = computed<TagProps['type']>(() => {
+    if (isLast) return 'default'
+
     if (deviceInfo.value?.type === '普通') return 'success'
     else if (deviceInfo.value?.type === '高级') return 'info'
     else if (deviceInfo.value?.type === '超级') return 'error'
@@ -15,13 +23,15 @@ export const useDevice = () => {
   })
 
   const vipInfo = computed(() => {
+    if (isLast) return t('profile.last.tag')
+
     if (deviceInfo.value?.type === '普通') return t('product.regular.label')
     else if (deviceInfo.value?.type === '高级') return t('product.higher.label')
     else if (deviceInfo.value?.type === '超级') return t('product.super.label')
     else return t('product.empty.label')
   })
 
-  async function getDeviceList() {
+  async function getDeviceInfo() {
     dLoading.value = true
 
     try {
@@ -41,8 +51,9 @@ export const useDevice = () => {
   return {
     dLoading,
     deviceInfo,
+    isLast,
     tagType,
     vipInfo,
-    getDeviceList,
+    getDeviceInfo,
   }
 }

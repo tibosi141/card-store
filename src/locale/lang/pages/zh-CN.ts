@@ -28,7 +28,7 @@ export default {
   'register.verification-code.success': '验证码发送成功！',
   'register.verification-code.loading': '验证码发送中...',
   'register.verification-code.error1': '该邮箱已注册',
-  'register.verification-code.error2': '暂不支持此类邮箱',
+  'register.verification-code.error2': '邮箱格式不对，请重新输入邮箱',
   'register.verification-code.resend': '重新获取',
   'register.success.title': '注册成功',
   'register.success.content': '关闭此弹窗即可跳转至登录页',
@@ -120,5 +120,7 @@ export default {
   // Profile Page
   'profile.user-info.title': '个人信息',
   'profile.device-info.title': '设备信息',
+  'profile.last.tag': '会员已过期',
+  'profile.last.description': '会员已过期请重新购买进行激活',
   'profile.device-info.end-time': '过期时间',
 }

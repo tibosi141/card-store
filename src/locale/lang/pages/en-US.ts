@@ -28,7 +28,7 @@ export default {
   'register.verification-code.success': 'Verification code sent successfully!',
   'register.verification-code.loading': 'Sending verification code...',
   'register.verification-code.error1': 'This email is registered',
-  'register.verification-code.error2': 'This type of mailbox is not supported yet',
+  'register.verification-code.error2': 'The email format is wrong, please reenter the email',
   'register.verification-code.resend': 'Resend',
   'register.success.title': 'registered successfully',
   'register.success.content': 'Close this window to jump to the login page',
@@ -120,6 +120,8 @@ export default {
   // Profile Page
   'profile.user-info.title': 'User',
   'profile.device-info.title': 'Device',
+  'profile.last.tag': 'Membership has expired',
+  'profile.last.description': 'Membership has expired, please repurchase for activation',
   'profile.device-info.end-time': 'Expiration time',
 
 }
