@@ -8,8 +8,8 @@ defineProps<{
 
 <template>
   <section
-    w="100% sm:48% md:23.5%"
-    m="b-0 sm:b-4% md:b-2%"
+    w="100% sm:49% md:23.5%"
+    m="b-0 sm:b-2% md:b-0"
     p="16px sm:20px md:24px"
     class="box-border bg-#18181c duration-250"
     hover="translate-y--2px shadow-xl shadow-black/36"

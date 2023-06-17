@@ -2,19 +2,14 @@ import type { IncludeNull } from '~/utils/types'
 
 export interface UserInfo {
   id: number
+  code?: string
   userName: string
-  nickname?: string
   avatar?: string
   email?: string
-  mobile?: string
-  signature?: string
-  gender?: number
-  realName?: string
-  birthday?: string
-  money?: number
   createTime?: number
   ip?: string
   password?: string
+  resource?: string
 }
 
 export const userRegisterUrl = '/user/registerUser'
