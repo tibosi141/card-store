@@ -15,19 +15,7 @@ type TabName = 'login' | 'register'
 
 const { isMobile, isPad, isDesktop } = useQueryBreakpoints()
 const { lForm, lLoading, lModel, lRules, login } = useLogin()
-const {
-  show,
-  fPassword,
-  fForm,
-  fLoading,
-  fModel,
-  fRules,
-  resetState,
-  handleFPasswordInput,
-  toggleSwitch,
-  fSendCode,
-  sendEmail,
-} = useForgetPassword()
+const { show, fForm, fLoading, fModel, fRules, resetState, toggleSwitch, sendEmail } = useForgetPassword()
 const {
   rForm,
   rPassword,
@@ -277,59 +265,22 @@ watchEffect(() => {
       :size="formSize"
       label-align="left"
       label-placement="left"
-      label-width="84"
     >
       <n-form-item-row :label="$t('register.email.placeholder')" path="email">
-        <n-input-group>
-          <n-input
-            v-model:value="fModel.email"
-            :placeholder="$t('register.email.placeholder')"
-          />
-          <n-button
-            type="primary"
-            ghost
-            :disabled="countState"
-            @click="fSendCode"
-          >
-            {{
-              countState
-                ? `${counter}${$t('register.verification-code.resend')}`
-                : $t('register.verification-code.get-verification-code')
-            }}
-          </n-button>
-        </n-input-group>
-      </n-form-item-row>
-      <n-form-item-row
-        :label="$t('register.verification-code.placeholder')"
-        path="code"
-      >
         <n-input
-          v-model:value="fModel.code"
-          :placeholder="$t('register.verification-code.placeholder')"
+          v-model:value="fModel.email"
+          :placeholder="$t('register.email.placeholder')"
         />
       </n-form-item-row>
       <n-form-item-row
-        :label="$t('login.password.placeholder')"
+        :label="$t('login.new-password.placeholder')"
         path="password"
       >
         <n-input
           v-model:value="fModel.password"
           type="password"
           show-password-on="click"
-          :placeholder="$t('login.password.placeholder')"
-          @input="handleFPasswordInput"
-        />
-      </n-form-item-row>
-      <n-form-item-row
-        ref="fPassword"
-        :label="$t('register.confirm.password.placeholder')"
-        path="confirmPassword"
-      >
-        <n-input
-          v-model:value="fModel.confirmPassword"
-          type="password"
-          show-password-on="click"
-          :placeholder="$t('register.confirm.password.placeholder')"
+          :placeholder="$t('login.new-password.placeholder')"
         />
       </n-form-item-row>
     </n-form>

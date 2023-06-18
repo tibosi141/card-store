@@ -15,7 +15,7 @@ export interface UserInfo {
 export const userRegisterUrl = '/user/registerUser'
 export const userSendCodeUrl = '/user/check_yzm'
 export const userLoginUrl = '/user/userLogin'
-export const userForgetPasswordUrl = '/user/retrPass'
+export const userResetPasswordUrl = '/user/retrPass'
 export const userGetInfoUrl = '/user/getInfo/'
 export const userLogoutUrl = '/user/user_logout'
 
@@ -42,7 +42,7 @@ export interface UserLoginResult {
 
 export type UserSendCodeParams = Pick<UserRegisterParams, 'email'>
 
-export type UserForgetPassParams = Omit<UserRegisterParams, 'userName'>
+export type UserResetPassParams = Pick<UserRegisterParams, 'email' | 'password'>
 
 export const userRegisterApi = (params: UserRegisterParams) => {
   return usePost<UserRegisterParams, UserRegisterResult>(
@@ -59,8 +59,8 @@ export const userLoginApi = (params: UserLoginParams) => {
   return usePost<UserLoginParams, UserLoginResult>(userLoginUrl, params)
 }
 
-export const userForgetPasswordApi = (params: UserSendCodeParams) => {
-  return usePost<UserSendCodeParams, any>(userForgetPasswordUrl, params, {
+export const userResetPasswordApi = (params: UserResetPassParams) => {
+  return usePost<UserResetPassParams, any>(userResetPasswordUrl, params, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
