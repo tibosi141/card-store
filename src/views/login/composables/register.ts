@@ -8,7 +8,7 @@ export const useRegister = () => {
   const userStore = useUserStore()
 
   const rForm = ref<FormInst>()
-  const password = ref<FormItemInst>()
+  const rPassword = ref<FormItemInst>()
   const rLoading = ref(false)
   const counter = ref(60)
   const countState = ref(false)
@@ -50,12 +50,12 @@ export const useRegister = () => {
       },
       {
         validator: validatePasswordStartWith,
-        message: '两次密码输入不一致',
+        renderMessage: () => t('register.confirm.password.rule'),
         trigger: 'input',
       },
       {
         validator: validatePasswordSame,
-        message: '两次密码输入不一致',
+        renderMessage: () => t('register.confirm.password.rule'),
         trigger: ['blur', 'password-input'],
       },
     ],
@@ -84,9 +84,9 @@ export const useRegister = () => {
     ],
   })
 
-  function handlePasswordInput() {
+  function handleRPasswordInput() {
     if (rModel.confirmPassword)
-      password.value?.validate({ trigger: 'password-input' })
+      rPassword.value?.validate({ trigger: 'password-input' })
   }
 
   function validatePasswordStartWith(_: FormItemRule, value: string): boolean {
@@ -171,14 +171,14 @@ export const useRegister = () => {
 
   return {
     rForm,
-    password,
+    rPassword,
     rLoading,
     counter,
     countState,
     registerState,
     rModel,
     rRules,
-    handlePasswordInput,
+    handleRPasswordInput,
     sendCode,
     register,
   }

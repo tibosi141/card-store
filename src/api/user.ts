@@ -42,6 +42,8 @@ export interface UserLoginResult {
 
 export type UserSendCodeParams = Pick<UserRegisterParams, 'email'>
 
+export type UserForgetPassParams = Omit<UserRegisterParams, 'userName'>
+
 export const userRegisterApi = (params: UserRegisterParams) => {
   return usePost<UserRegisterParams, UserRegisterResult>(
     userRegisterUrl,
